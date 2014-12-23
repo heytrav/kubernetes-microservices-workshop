@@ -36,6 +36,18 @@ Catalyst themed reveal.js presentation
 
 @font-face {
     font-family: 'Lato';
+    src:url('../../lib/font/lato-light-webfont.eot');
+    src:url('../../lib/font/lato-light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../lib/font/lato-light-webfont.woff2') format('woff2'),
+        url('../../lib/font/lato-light-webfont.woff') format('woff'),
+        url('../../lib/font/lato-light-webfont.ttf') format('truetype'),
+        url('../../lib/font/lato-light-webfont.svg#latolight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
     src:url('../../lib/font/lato-lightitalic-webfont.eot');
     src:url('../../lib/font/lato-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
         url('../../lib/font/lato-lightitalic-webfont.woff2') format('woff2'),
@@ -60,25 +72,13 @@ Catalyst themed reveal.js presentation
 
 @font-face {
     font-family: 'Lato';
-    src:url('../../lib/font/lato-light-webfont.eot');
-    src:url('../../lib/font/lato-light-webfont.eot?#iefix') format('embedded-opentype'),
-        url('../../lib/font/lato-light-webfont.woff2') format('woff2'),
-        url('../../lib/font/lato-light-webfont.woff') format('woff'),
-        url('../../lib/font/lato-light-webfont.ttf') format('truetype'),
-        url('../../lib/font/lato-light-webfont.svg#latolight') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Lato';
     src:url('../../lib/font/lato-hairlineitalic-webfont.eot');
     src:url('../../lib/font/lato-hairlineitalic-webfont.eot?#iefix') format('embedded-opentype'),
         url('../../lib/font/lato-hairlineitalic-webfont.woff2') format('woff2'),
         url('../../lib/font/lato-hairlineitalic-webfont.woff') format('woff'),
         url('../../lib/font/lato-hairlineitalic-webfont.ttf') format('truetype'),
         url('../../lib/font/lato-hairlineitalic-webfont.svg#latohairline_italic') format('svg');
-    font-weight: 300;
+    font-weight: 100;
     font-style: italic;
 }
 
@@ -103,7 +103,7 @@ Catalyst themed reveal.js presentation
         url('../../lib/font/lato-bolditalic-webfont.ttf') format('truetype'),
         url('../../lib/font/lato-bolditalic-webfont.svg#latobold_italic') format('svg');
     font-weight: 700;
-    font-style: normal;
+    font-style: italic;
 }
 
 @font-face {
@@ -179,6 +179,7 @@ $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
     color: transparent;
     width: 100%;
     height: 100px;
+    padding-bottom:30px;
 }
 
 .reveal .print-only {
@@ -194,19 +195,27 @@ $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
  }
 
  .reveal blockquote {
-     color:darken($catGrey,30%);
+     color:$catBlue;
      padding:20px;
      letter-spacing: 0.01em;
+     box-shadow:none;
  }
 
- .reveal blockquote.quotation-marks:before,
+ .reveal blockquote.quotation-marks::before,
  .reveal blockquote p:before {
-     content:' “ '
+     content:url(images/quote-open.png);
+     vertical-align:super;
  }
 
- .reveal blockquote.quotation-marks:after,
+ .reveal blockquote p:before,
  .reveal blockquote p:after {
-     content:' ” ' 	
+     padding:0 10px;
+ }
+
+ .reveal blockquote.quotation-marks::after,
+ .reveal blockquote p:after {
+     content:url(images/quote-close.png);
+     vertical-align:super;
  }
 
 
@@ -364,6 +373,7 @@ $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
         background-color: $catOrange;
 
         font-weight: 700;
+        font-style: italic;
         font-size: 1.3em;
         line-height: 1.2em;
 
