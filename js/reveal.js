@@ -169,6 +169,9 @@
 		// The current scale of the presentation (see width/height config)
 		scale = 1,
 
+		// The current z position of the presentation container
+		z = 0,
+
 		// Cached references to DOM elements
 		dom = {},
 
@@ -1474,6 +1477,7 @@
 				// Prefer zooming in desktop Chrome so that content remains crisp
 				if( !isMobileDevice && /chrome/i.test( navigator.userAgent ) && typeof dom.slides.style.zoom !== 'undefined' ) {
 					dom.slides.style.zoom = scale;
+					transformElement( dom.slides, 'translateZ(-'+ z +'px)' );
 				}
 				// Apply scale transform as a fallback
 				else {
@@ -1481,7 +1485,7 @@
 					dom.slides.style.top = '50%';
 					dom.slides.style.bottom = 'auto';
 					dom.slides.style.right = 'auto';
-					transformElement( dom.slides, 'translate(-50%, -50%) scale('+ scale +')' );
+					transformElement( dom.slides, 'translate(-50%, -50%) scale('+ scale +')' + ' translateZ(-'+ z +'px)' );
 				}
 			}
 
@@ -1639,8 +1643,10 @@
 
 			var wasActive = dom.wrapper.classList.contains( 'overview' );
 
-			// Vary the depth of the overview based on screen size
-			var depth = window.innerWidth < 400 ? 1000 : 2500;
+			// Set the depth of the presentation. This determinse how far we
+			// zoom out and varies based on display size. It gets applied at
+			// the layout step.
+			z = window.innerWidth < 400 ? 1000 : 2500;
 
 			dom.wrapper.classList.add( 'overview' );
 			dom.wrapper.classList.remove( 'overview-deactivating' );
@@ -1657,7 +1663,7 @@
 					hbackground = horizontalBackgrounds[i],
 					hoffset = config.rtl ? -105 : 105;
 
-				var htransform = 'translateZ(-'+ depth +'px) translate(' + ( ( i - indexh ) * hoffset ) + '%, 0%)';
+				var htransform = 'translate(' + ( ( i - indexh ) * hoffset ) + '%, 0%)';
 
 				hslide.setAttribute( 'data-index-h', i );
 
