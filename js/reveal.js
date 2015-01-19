@@ -1450,6 +1450,7 @@
 			var size = getComputedSlideSize();
 
 			var slidePadding = 20; // TODO Dig this out of DOM
+			var zTransform = z !== 0 ? 'translateZ(-'+ z +'px)' : '';
 
 			// Layout the contents of the slides
 			layoutSlideContents( config.width, config.height, slidePadding );
@@ -1471,13 +1472,13 @@
 				dom.slides.style.top = '';
 				dom.slides.style.bottom = '';
 				dom.slides.style.right = '';
-				transformElement( dom.slides, '' );
+				transformElement( dom.slides, zTransform );
 			}
 			else {
 				// Prefer zooming in desktop Chrome so that content remains crisp
 				if( !isMobileDevice && /chrome/i.test( navigator.userAgent ) && typeof dom.slides.style.zoom !== 'undefined' ) {
 					dom.slides.style.zoom = scale;
-					transformElement( dom.slides, 'translateZ(-'+ z +'px)' );
+					transformElement( dom.slides, zTransform );
 				}
 				// Apply scale transform as a fallback
 				else {
@@ -1485,7 +1486,7 @@
 					dom.slides.style.top = '50%';
 					dom.slides.style.bottom = 'auto';
 					dom.slides.style.right = 'auto';
-					transformElement( dom.slides, 'translate(-50%, -50%) scale('+ scale +')' + ' translateZ(-'+ z +'px)' );
+					transformElement( dom.slides, 'translate(-50%, -50%) scale('+ scale +') ' + zTransform );
 				}
 			}
 
