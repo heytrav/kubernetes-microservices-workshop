@@ -1657,8 +1657,8 @@
 	}
 
 	/**
-	 * Displays the overview of slides (quick nav) by
-	 * scaling down and arranging all slide elements.
+	 * Displays the overview of slides (quick nav) by scaling
+	 * down and arranging all slide elements.
 	 */
 	function activateOverview() {
 
@@ -1708,8 +1708,8 @@
 	}
 
 	/**
-	 * Moves the slides into a grid for display in the
-	 * overview mode.
+	 * Uses CSS transforms to position all slides in a grid for
+	 * display inside of the overview mode.
 	 */
 	function layoutOverview() {
 
