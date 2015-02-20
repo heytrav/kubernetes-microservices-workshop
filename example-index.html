@@ -13,7 +13,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/catalyst.css" id="theme">
 
         <!-- For syntax highlighting -->
@@ -25,7 +25,7 @@
                 var link = document.createElement( 'link' );
                 link.rel = 'stylesheet';
                 link.type = 'text/css';
-                link.href = 'css/print/pdf.css';
+                link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
                 document.getElementsByTagName( 'head' )[0].appendChild( link );
             }
         </script>
@@ -193,7 +193,7 @@ function linkify( selector ) {
 
 
         <script src="lib/js/head.min.js"></script>
-        <script src="js/reveal.min.js"></script>
+        <script src="js/reveal.js"></script>
 
         <script>
 
