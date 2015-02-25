@@ -2762,7 +2762,8 @@
 				// Videos
 				else if ( backgroundVideo && !isSpeakerNotes() ) {
 					var video = document.createElement( 'video' );
-					if ( backgroundVideoLoop ) {
+
+					if( backgroundVideoLoop ) {
 						video.setAttribute( 'loop', '' );
 					}
 
@@ -2774,7 +2775,7 @@
 					background.appendChild( video );
 				}
 				// Iframes
-				else if ( backgroundIframe ) {
+				else if( backgroundIframe ) {
 					var iframe = document.createElement( 'iframe' );
 						iframe.setAttribute( 'src', backgroundIframe );
 						iframe.style.width  = '100%';
