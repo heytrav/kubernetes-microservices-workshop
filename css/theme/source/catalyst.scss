@@ -508,12 +508,15 @@ $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
 
 @media print {
     .reveal .slides > section:first-child {
-        padding-top:260px !important;
+        padding-top:100px !important;
     }
 
     .reveal .title-slide {
         padding-left:62px;
         margin-top:180px;
+        h2 {
+            left: 55px !important;
+        }
     }
 
     .reveal .image-slide img {
