@@ -52,7 +52,7 @@
 			progress: true,
 
 			// Display the page number of the current slide
-			slideNumber: false,
+			slideNumber: true,
 
 			// Push each slide change to the browser history
 			history: false,
@@ -128,10 +128,10 @@
 			transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 			// Transition speed
-			transitionSpeed: 'default', // default/fast/slow
+			transitionSpeed: 'fast', // default/fast/slow
 
 			// Transition style for full page slide backgrounds
-			backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+			backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
 
 			// Parallax background image
 			parallaxBackgroundImage: '', // CSS syntax, e.g. "a.jpg"
