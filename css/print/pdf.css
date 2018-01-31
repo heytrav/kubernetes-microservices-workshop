@@ -9,6 +9,14 @@
 	-webkit-print-color-adjust: exact;
 }
 
+.footer {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
 body {
 	margin: 0 auto !important;
 	border: 0;
