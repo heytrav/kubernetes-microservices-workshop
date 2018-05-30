@@ -1,0 +1,87 @@
+---
+- name: Preflight to set up machine specific variables
+  hosts: cluster
+  gather_facts: false
+  tasks:
+    - debug:
+        var: prefix | mandatory
+
+- name: Provision a set of hosts in the Catalyst Cloud
+  hosts: localhost
+  gather_facts: false
+  vars:
+    host_set: "{{ groups['cluster'] | unique | list }}"
+    # change if required or override at runtime using --extra-vars
+
+    security_groups: "{{ host_set | map('extract', hostvars, 'security_groups') | sum(start=[]) | unique | list }}"
+
+    security_group_names: "{{ security_groups | map(attribute='group') | unique | list }}"
+    ansible_python_interpreter: "/home/{{ lookup('env', 'USER') }}/catalystcloud-ansible/ansible-venv/bin/python"
+
+  tasks:
+    - name: Connect to Catalyst Cloud
+      os_auth:
+
+    - name: Remove floating ips from known_hosts
+      known_hosts:
+        name: "{{ item }}"
+        state: absent
+      with_items: "{{ host_set }}"
+
+    - name: Remove cluster servers
+      os_server:
+        name: "{{ item }}"
+        state: absent
+        delete_fip: true
+      with_items: "{{ host_set }}"
+
+    - name: Remove ports
+      os_port:
+        name: "{{ item }}"
+        state: absent
+      with_items: "{{ host_set }}"
+
+    - name: Remove cluster keypair
+      os_keypair: 
+        state: absent
+        name: "{{ keypair_name }}"
+
+    - name: Remove cluster router
+      os_router:
+        state: absent
+        name: "{{ router_name }}"
+
+    - name: Remove cluster network
+      os_network:
+        state: absent
+        name: "{{ network_name }}"
+
+    - name: Remove security group
+      os_security_group:
+        name: "{{ item }}"
+        state: absent
+      with_items: "{{ security_group_names }}"
+
+    - name: Remove hosts from local ~/.ssh/config
+      blockinfile:
+        dest: "{{  lookup('env', 'HOME')  }}/.ssh/config"
+        state: absent
+        marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ item }}"
+      with_items: "{{ host_set }}"
+
+    - name: Remove host from /etc/hosts
+      become: yes
+      blockinfile:
+        dest: /etc/hosts
+        state: absent
+        insertafter: EOF
+        marker: "# {mark} ANSIBLE MANAGED BLOCK for {{ item }}"
+      with_items: "{{ host_set }}"
+
+
+    - name: Remove fake domain from /etc/hosts
+      become: yes
+      blockinfile:
+        dest: /etc/hosts
+        state: absent
+        marker: "# {mark} ANSIBLE MANAGED BLOCK FOR voting.app"

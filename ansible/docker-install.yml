@@ -1,0 +1,34 @@
+- name: Install docker
+  hosts: localhost
+  become: yes
+  roles:
+    - docker
+  pre_tasks: 
+
+    - name: Bail out if not an ubuntu distribution
+      when: ansible_distribution != "Ubuntu"
+      fail:
+        msg: "Sorry this only works on Ubuntu"
+
+    - name: Make sure old versions of docker are not installed
+      apt:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - docker
+        - docker-engine
+        - docker-io
+
+
+- name: Install docker-compose
+  hosts: localhost
+  become: yes
+  tasks: 
+
+
+    - name: Install docker-compose
+      get_url: 
+        url: "https://github.com/docker/compose/releases/download/1.19.0/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+        dest: /usr/local/bin/docker-compose 
+        sha256sum: 78734996d716113f9f9716d0b5064166e9475835e5000fd01b0480d19e1f7372
+        mode: '0755'

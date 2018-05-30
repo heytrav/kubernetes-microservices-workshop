@@ -1,0 +1,13 @@
+# 2GB ram minimum for kubernetes
+default_flavor: c1.c1r2
+docker_lib: docker-ce=17.03.2~ce-0~ubuntu-xenial
+kubeadm_extra_args: "--pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans '{{ ansible_host  }}'"
+flannel_version: v0.9.1
+kube_flannel_url: "https://raw.githubusercontent.com/coreos/flannel/{{ flannel_version }}/Documentation/kube-flannel.yml"
+main_security_groups:
+  - group: "manage{{ suffix }}" 
+    port: 22 
+    remote_ip_prefix: "{{ ssh_remote_cidr }}"
+
+
+security_groups: "{{ main_security_groups + host_security_groups }}"

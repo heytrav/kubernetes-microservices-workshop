@@ -1,0 +1,114 @@
+
+
+- name: Install kubernetes admin on host machines
+  hosts: cluster:localhost
+  become: true
+  tasks:
+
+    - name: Add kubernetes repository key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+
+    - name: Add kubernetes repository
+      apt_repository:
+        repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+
+    - name: Update cache
+      apt:
+        update_cache: yes
+
+    - name: Install kubernetes packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items: 
+        - kubelet 
+        - kubeadm 
+        - kubectl
+
+
+- name: Set up kubeadm on master node
+  hosts: master
+  become: true
+  tasks:
+    - name: Init kubeadm with flannel
+      command: kubeadm init {{ kubeadm_extra_args }}
+      args:
+        creates: /etc/kubernetes/admin.conf
+
+    - name: Pass bridged ipv4 traffic to iptables
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: 1
+        state: present
+
+    - name: Create a kubeadm join token
+      command: kubeadm token generate
+      register: kubeadm_token
+
+    - name: Generate join token string
+      command: kubeadm token create {{ kubeadm_token.stdout_lines[0] }} --print-join-command --ttl=30m
+      register: kubeadm_join_token
+
+    - name: Create kube directory
+      file:
+        path: "/home/{{ ssh_user }}/.kube"
+        state: directory
+        owner: "{{ ssh_user }}"
+        group: "{{ ssh_user }}"
+
+    - name: Copy admin conf to user directory
+      become: yes
+      command: cp -i /etc/kubernetes/admin.conf /home/{{ ssh_user }}/.kube/config
+      args:
+        creates: "/home/{{ ssh_user }}/.kube/config"
+
+    - name: Change file ownership of kube config
+      file:
+        path: "/home/{{ ssh_user }}/.kube/config"
+        state: file
+        owner: "{{ ssh_user }}"
+        group: "{{ ssh_user }}"
+
+
+- name: Set up cluster for regular user
+  hosts: master
+  tasks:
+
+    - name: Import flannel pod network
+      command: kubectl apply -f {{ kube_flannel_url }}
+      register: pod_network_create
+      changed_when:
+        - pod_network_create.stdout | search('created')
+
+
+    - name: Retrieve admin.conf file
+      fetch:
+        src:  "/home/{{ ssh_user }}/.kube/config"
+        dest:  "{{ lookup('env', 'HOME') }}/k8s-admin.conf"
+        flat: true
+
+- name: Set up kubernetes worker nodes
+  hosts: worker
+  become: true
+  tasks:
+
+    - name: Join worker node to cluster
+      command: "{{ hostvars[groups.master[0]].kubeadm_join_token.stdout_lines[0] }}"
+      args:
+        creates: /etc/kubernetes/kubelet.conf
+
+
+- name: Retrieve admin
+  hosts: localhost
+  tasks:
+
+    - name: Replace cluster address with master floating ip
+      replace:
+        path:  "{{ lookup('env', 'HOME') }}/k8s-admin.conf"
+        regexp: '^(?P<firstpart>\s+server:\s+https:\/\/).*(?P<secondpart>:\d+).*'
+        backup: yes
+        replace: '\g<firstpart>{{ hostvars[groups.master[0]].ansible_host }}\g<secondpart>'
+
