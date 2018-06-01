@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Reveal Presentation Template - Catalyst</title>
+
+		<meta name="author" content="Catalyst">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/catalyst.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+		<link rel="stylesheet" href="lib/css/catalyst-syntax.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<style>
+			/* Add the ability to omit slides from the printed version (has to be after the print include)*/
+			@media print {
+				.reveal .slides section.no-print {
+					display: none !important;
+					visibility: hidden !important;
+				}
+			}
+		</style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<!-- Please put any custom styles here -->
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<!-- Cover slide -->
+				<section data-markdown>
+					<script type="text/template">
+					### Your presentation title
+					# Catalyst <!-- .element: class="catalyst-logo" -->
+					Presented by <!-- .element: class="small-text" --> [Name](Link) <!-- .element: class="small-text" -->
+					</script>
+				</section>
+
+				<!-- Section title slide with big colour dot -->
+				<section data-markdown class="title-slide">
+					<script type="text/template">
+						## Title goes here <!-- .element: class="orange" -->
+					</script>
+				</section>
+
+				<!-- Slide with a large title-->
+				<section data-markdown>
+					<script type="text/template">
+					## Large title
+
+					Note:
+					This will only display in the notes window.
+					</script>
+				</section>
+
+				<!-- Large image slide -->
+				<section data-markdown class="image-slide">
+					<script type="text/template">
+						## Title
+						![placeholder image](img/800x400.gif "Placeholder image")
+					</script>
+				</section>
+
+				<!-- Slide with list items (list items are displayed at once) -->
+				<section data-markdown>
+					<script type="text/template">
+					### List title
+					* List item ![placeholder image](img/300x400.gif "Placeholder image") <!-- .element: class="img-right" -->
+					* List item
+					* List item
+					</script>
+				</section>
+
+				<!-- Slide with list items (fragmented list items) -->
+				<section data-markdown>
+					<script type="text/template">
+					### Fragmented list
+					* List item <!-- .element: class="fragment" -->
+					* List item <!-- .element: class="fragment" -->
+					* List item <!-- .element: class="fragment" -->
+					![placeholder image](img/500x200.gif "Placeholder image") <!-- .element: class="img-centered" -->
+					</script>
+				</section>
+
+				<!-- Slide with vertical slides underneath  -->
+				<section>
+
+					<!-- Horizontal slide (This is one the same level as slide above) -->
+					<section data-markdown class="title-slide banner-3">
+						<script type="text/template">
+						## Title (press down to see vertical slides) <!-- .element: class="yellow" -->
+						</script>
+					</section>
+
+					<!-- The following slides are vertical, use down arrow key to navigate -->
+					<!-- Centered paragraph  -->
+					<section data-markdown>
+						<script type="text/template">
+						### Paragraph
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at scelerisque eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam placerat posuere nibh vel dapibus.
+						</script>
+					</section>
+
+					<!-- Blockquote  -->
+					<section data-markdown>
+						<script type="text/template">
+						### Blockquote
+						> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at scelerisque eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam placerat posuere nibh vel dapibus.
+						</script>
+					</section>
+
+					<!-- Nested lists-->
+					<section data-markdown>
+						<script type="text/template">
+							### Nested lists
+							+ One
+							+ Two
+							+ Three
+								- Nested One
+								- Nested Two
+						</script>
+					</section>
+				</section>
+
+				<!-- Slide with code block -->
+				<section data-markdown>
+					<script type="text/template">
+						### Title
+						Some text
+
+							function linkify( selector ) {
+								if( supports3DTransforms ) {
+
+									var nodes = document.querySelectorAll( selector );
+
+									for( var i = 0, len = nodes.length; i < len; i++ ) {
+										var node = nodes[i];
+
+										if( !node.className ) {
+											node.className += ' roll';
+										}
+									}
+								}
+							}
+					</script>
+				</section>
+
+				<!-- Slide with full background image -->
+				<section data-markdown data-background="img/800x600.gif">
+					<script type="text/template">
+					### Image backgrounds
+					</script>
+				</section>
+
+				<!-- Slide with Catalyst slogan -->
+				<section data-markdown class="image-slide">
+					<script type="text/template">
+					![freedom to innovate](css/theme/images/freedom-to-innovate.svg "freedom to innovate") <!-- .element: class="cat-slogan-image" -->
+					</script>
+				</section>
+			</div>
+
+			<div class="footer">
+				<div class="scarf">
+					<div class="scarf-orange"></div>
+					<div class="scarf-yellow"></div>
+					<div class="scarf-blue"></div>
+					<div class="scarf-green"></div>
+				</div>
+				<div class="footer-inner">
+					<div>
+						<div class="catalyst-logo-footer">Catalyst</div>
+	                    <!-- NOTE: use only one of these. open-source-technologists is the standard -->
+	                    <div class="open-source-technologists">open source technologists</div>
+	                    <!-- <div class="freedom-to-innovate">freedom to innovate</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
