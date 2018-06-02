@@ -23,16 +23,19 @@
   tasks:
     - name: Connect to Catalyst Cloud
       os_auth:
+        cloud: docker
 
     - name: Create keypair
       os_keypair:
         name: "{{ keypair_name }}"
         public_key: "{{ ssh_public_key }}"
+        cloud: docker
 
     - name: Create Network
       os_network:
         name: "{{ network_name }}"
         state: present
+        cloud: docker
 
     - name: Create subnet
       os_subnet:
@@ -44,6 +47,7 @@
         allocation_pool_end: "{{ subnet_dhcp_end }}"
         ip_version: 4
         dns_nameservers: "{{ default_nameservers }}"
+        cloud: docker
 
 
     - name: Create router
@@ -53,11 +57,13 @@
         network: "{{ public_net_name }}"
         interfaces:
           - "{{ subnet_name }}"
+        cloud: docker
 
     - name: Create security groups
       os_security_group:
         state: present
         name: "{{ item }}"
+        cloud: docker
       with_items: "{{ security_group_names }}"
 
     - name: Add rules for security group
@@ -69,11 +75,13 @@
         port_range_max: "{{ omit if item.port == 'any' else item.port_end | default(item.port) }}"
         remote_ip_prefix: "{{ item.remote_ip_prefix | default(omit) }}"
         remote_group: "{{ item.remote_group | default(omit) }}"
+        cloud: docker
       with_items: "{{ security_groups }}"
 
 
     - name: Create cluster instances
       os_server:
+        cloud: docker
         state: present
         name: "{{ item }}"
         image: "{{ default_os_image }}"
@@ -99,6 +107,7 @@
 
     - name: Assign floating ips
       os_floating_ip:
+        cloud: docker
         state: present
         reuse: yes
         wait: true
