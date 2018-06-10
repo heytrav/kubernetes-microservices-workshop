@@ -15,10 +15,12 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/catalyst.css" id="theme">
+		<link rel="stylesheet" href="css/asciinema-player.css">
 
 		<!-- For syntax highlighting -->
 		<!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
-		<link rel="stylesheet" href="lib/css/catalyst-syntax.css">
+		<!--<link rel="stylesheet" href="lib/css/catalyst-syntax.css">-->
+		<link rel="stylesheet" href="lib/css/solarized-light.css">
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
@@ -58,11 +60,34 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<!-- All of the content is in a separate file called content.md -->
-				<section data-markdown="content.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-				</section>
+				<!--<section data-markdown="content.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+				</section>-->
+
+                <section data-markdown="introduction.md" 
+                         data-separator-vertical="^\n\n">
+                     
+                </section>
+
+               <section data-markdown="docker-and-development.md" 
+                        data-separator-vertical="^\n\n">
+                    
+               </section> 
+
+               <section data-markdown="voting-app-local.md" 
+                        data-separator-vertical="^\n\n">
+                    
+               </section>
+               <section data-markdown="orchestration.md" 
+                        data-separator-vertical="^\n\n">
+                    
+               </section>
+               <section data-markdown="kubernetes.md" 
+                        data-separator-vertical="^\n\n">
+                    
+               </section>
 			</div>
 
-			<div class="footer">
+			<!--<div class="footer">
 				<div class="scarf">
 					<div class="scarf-orange"></div>
 					<div class="scarf-yellow"></div>
@@ -72,16 +97,17 @@
 				<div class="footer-inner">
 					<div>
 						<div class="catalyst-logo-footer">Catalyst</div>
-	                    <!-- NOTE: use only one of these. open-source-technologists is the standard -->
+	                    [> NOTE: use only one of these. open-source-technologists is the standard <]
 	                    <div class="open-source-technologists">open source technologists</div>
-	                    <!-- <div class="freedom-to-innovate">freedom to innovate</div> -->
+	                    [> <div class="freedom-to-innovate">freedom to innovate</div> <]
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 
 
 		<script src="lib/js/head.min.js"></script>
+		<script src="js/asciinema-player.js"></script>
 		<script src="js/reveal.js"></script>
 
 		<script>

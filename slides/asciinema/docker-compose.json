@@ -1,0 +1,854 @@
+{
+  "width": 178,
+  "env": {
+    "SHELL": "/bin/zsh",
+    "TERM": "screen-256color"
+  },
+  "duration": 18.887593,
+  "stdout": [
+    [
+      0.024027,
+      "\r\n\u001b[34m\u001b[01mexample-voting-app\u001b[22m \u001b[90m \u001b[39m \u001b[33m\u001b[39m\r\n"
+    ],
+    [
+      3.8e-05,
+      "\u001bk..le-voting-app\u001b\\"
+    ],
+    [
+      4.9e-05,
+      "\r\u001b[0m\u001b[23m\u001b[24m\u001b[J\u001b[35m❯\u001b[39m \u001b[K\u001b[175C\u001b[90m\u001b[39m\u001b[175D"
+    ],
+    [
+      3.5e-05,
+      "\u001b[?1h\u001b="
+    ],
+    [
+      2.2e-05,
+      "\u001b[?2004h"
+    ],
+    [
+      0.652965,
+      "d"
+    ],
+    [
+      0.149766,
+      "\bdo"
+    ],
+    [
+      0.105232,
+      "c"
+    ],
+    [
+      0.112271,
+      "k"
+    ],
+    [
+      0.166812,
+      "e"
+    ],
+    [
+      0.1484,
+      "r"
+    ],
+    [
+      0.205133,
+      "-"
+    ],
+    [
+      0.262175,
+      "c"
+    ],
+    [
+      0.158603,
+      "o"
+    ],
+    [
+      0.279659,
+      "m"
+    ],
+    [
+      0.230734,
+      "p"
+    ],
+    [
+      0.107574,
+      "o"
+    ],
+    [
+      0.169189,
+      "s"
+    ],
+    [
+      0.211666,
+      "e"
+    ],
+    [
+      0.155044,
+      " "
+    ],
+    [
+      0.33752,
+      "u"
+    ],
+    [
+      0.239781,
+      "p"
+    ],
+    [
+      0.134829,
+      " "
+    ],
+    [
+      0.296688,
+      "-"
+    ],
+    [
+      0.160582,
+      "d"
+    ],
+    [
+      0.359903,
+      "\u001b[?1l\u001b>\u001b[?2004l"
+    ],
+    [
+      7.3e-05,
+      "\r\r\n"
+    ],
+    [
+      0.5947,
+      "Creating network \"examplevotingapp_front-tier\" with the default driver\r\n"
+    ],
+    [
+      0.130847,
+      "Creating network \"examplevotingapp_back-tier\" with the default driver\r\n"
+    ],
+    [
+      0.165439,
+      "Building vote\r\n"
+    ],
+    [
+      0.059529,
+      "Step 1/7 : FROM python:2.7-alpine\r\n"
+    ],
+    [
+      0.000102,
+      " ---> 9b06bbaac1c7\r\n"
+    ],
+    [
+      9.1e-05,
+      "Step 2/7 : WORKDIR /app\r\n"
+    ],
+    [
+      0.247421,
+      " ---> 7d9f16f3c573\r\n"
+    ],
+    [
+      0.016064,
+      "Removing intermediate container acc64d316d13\r\n"
+    ],
+    [
+      0.000355,
+      "Step 3/7 : ADD requirements.txt /app/requirements.txt\r\n"
+    ],
+    [
+      0.359496,
+      " ---> f696e2abfde9\r\n"
+    ],
+    [
+      0.015772,
+      "Removing intermediate container 8ef6a06b4eba\r\n"
+    ],
+    [
+      0.000416,
+      "Step 4/7 : RUN pip install -r requirements.txt\r\n"
+    ],
+    [
+      0.080589,
+      " ---> Running in 5b0362945930\r\n"
+    ],
+    [
+      1.060519,
+      "Collecting Flask (from -r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.10489,
+      "  Downloading Flask-0.12.2-py2.py3-none-any.whl (83kB)"
+    ],
+    [
+      5.1e-05,
+      "\r\n"
+    ],
+    [
+      0.084269,
+      "Collecting Redis (from -r requirements.txt (line 2))\r\n"
+    ],
+    [
+      0.02483,
+      "  Downloading redis-2.10.6-py2.py3-none-any.whl (64kB)\r\n"
+    ],
+    [
+      0.051796,
+      "Collecting gunicorn (from -r requirements.txt (line 3))\r\n"
+    ],
+    [
+      0.037873,
+      "  Downloading gunicorn-19.7.1-py2.py3-none-any.whl (111kB)\r\n"
+    ],
+    [
+      0.059287,
+      "Collecting itsdangerous>=0.21 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.01383,
+      "  Downloading itsdangerous-0.24.tar.gz (46kB)\r\n"
+    ],
+    [
+      0.316233,
+      "Collecting click>=2.0 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.027831,
+      "  Downloading click-6.7-py2.py3-none-any.whl (71kB)\r\n"
+    ],
+    [
+      0.047791,
+      "Collecting Jinja2>=2.4 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.041959,
+      "  Downloading Jinja2-2.9.6-py2.py3-none-any.whl (340kB)\r\n"
+    ],
+    [
+      0.080102,
+      "Collecting Werkzeug>=0.7 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.029548,
+      "  Downloading Werkzeug-0.12.2-py2.py3-none-any.whl (312kB)"
+    ],
+    [
+      0.000173,
+      "\r\n"
+    ],
+    [
+      0.087286,
+      "Collecting MarkupSafe>=0.23 (from Jinja2>=2.4->Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.017539,
+      "  Downloading MarkupSafe-1.0.tar.gz\r\n"
+    ],
+    [
+      0.156771,
+      "Building wheels for collected packages: itsdangerous, MarkupSafe\r\n"
+    ],
+    [
+      0.000222,
+      "  Running setup.py bdist_wheel for itsdangerous: started\r\n"
+    ],
+    [
+      0.213167,
+      "  Running setup.py bdist_wheel for itsdangerous: finished with status 'done'\r\n"
+    ],
+    [
+      0.00019,
+      "  Stored in directory: /root/.cache/pip/wheels/fc/a8/66/24d655233c757e178d45dea2de22a04c6d92766abfb741129a\r\n"
+    ],
+    [
+      0.004498,
+      "  Running setup.py bdist_wheel for MarkupSafe: started\r\n"
+    ],
+    [
+      0.194088,
+      "  Running setup.py bdist_wheel for MarkupSafe: finished with status 'done'"
+    ],
+    [
+      3.2e-05,
+      "\r\n"
+    ],
+    [
+      0.000195,
+      "  Stored in directory: /root/.cache/pip/wheels/88/a7/30/e39a54a87bcbe25308fa3ca64e8ddc75d9b3e5afa21ee32d57"
+    ],
+    [
+      2.2e-05,
+      "\r\n"
+    ],
+    [
+      0.005755,
+      "Successfully built itsdangerous MarkupSafe\r\n"
+    ],
+    [
+      0.000176,
+      "Installing collected packages: itsdangerous, click, MarkupSafe, Jinja2, Werkzeug, Flask, Redis, gunicorn\r\n"
+    ],
+    [
+      0.387714,
+      "Successfully installed Flask-0.12.2 Jinja2-2.9.6 MarkupSafe-1.0 Redis-2.10.6 Werkzeug-0.12.2 click-6.7 gunicorn-19.7.1 itsdangerous-0.24\r\n"
+    ],
+    [
+      0.843005,
+      " ---> 6b4301aed31a\r\n"
+    ],
+    [
+      0.087757,
+      "Removing intermediate container 5b0362945930\r\n"
+    ],
+    [
+      0.000475,
+      "Step 5/7 : ADD . /app\r\n"
+    ],
+    [
+      0.319919,
+      " ---> e705e344cbc0\r\n"
+    ],
+    [
+      0.019576,
+      "Removing intermediate container 549a6e61e3a3\r\n"
+    ],
+    [
+      0.000532,
+      "Step 6/7 : EXPOSE 80\r\n"
+    ],
+    [
+      0.095097,
+      " ---> Running in 211cbeaf2e59\r\n"
+    ],
+    [
+      0.17693,
+      " ---> c541f8b08ac8\r\n"
+    ],
+    [
+      0.021599,
+      "Removing intermediate container 211cbeaf2e59\r\n"
+    ],
+    [
+      0.00043,
+      "Step 7/7 : CMD gunicorn app:app -b 0.0.0.0:80 --log-file - --access-logfile - --workers 4 --keep-alive 0\r\n"
+    ],
+    [
+      0.098332,
+      " ---> Running in fbe48ce57a22\r\n"
+    ],
+    [
+      0.129542,
+      " ---> d7aef6483024\r\n"
+    ],
+    [
+      0.007607,
+      "Removing intermediate container fbe48ce57a22\r\n"
+    ],
+    [
+      0.000138,
+      "Successfully built d7aef6483024\r\n"
+    ],
+    [
+      0.003671,
+      "Successfully tagged examplevotingapp_vote:latest\r\n"
+    ],
+    [
+      0.000973,
+      "\u001b[33mWARNING\u001b[0m: Image for service vote was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.\r\n"
+    ],
+    [
+      0.025059,
+      "Creating examplevotingapp_worker_1 ... \r\r\n"
+    ],
+    [
+      0.000836,
+      "Creating examplevotingapp_vote_1 ... \r\r\n"
+    ],
+    [
+      0.010562,
+      "Creating redis ... \r\r\n"
+    ],
+    [
+      0.00083,
+      "Creating db ... \r\r\n"
+    ],
+    [
+      0.004701,
+      "Creating examplevotingapp_worker_1\r\n"
+    ],
+    [
+      0.001258,
+      "Creating examplevotingapp_result_1 ... \r\r\n"
+    ],
+    [
+      0.024362,
+      "Creating redis\r\n"
+    ],
+    [
+      0.004275,
+      "Creating examplevotingapp_vote_1\r\n"
+    ],
+    [
+      0.002429,
+      "Creating db\r\n"
+    ],
+    [
+      0.011439,
+      "Creating examplevotingapp_result_1\r\n"
+    ],
+    [
+      0.768754,
+      "\u001b[1A\u001b[2K\rCreating examplevotingapp_worker_1 ... \u001b[32mdone\u001b[0m\r\u001b[1B"
+    ],
+    [
+      0.109914,
+      "\u001b[1A\u001b[2K\rCreating db ... \u001b[32mdone\u001b[0m\r\u001b[1B"
+    ],
+    [
+      0.338544,
+      "\u001b[1A\u001b[2K\rCreating examplevotingapp_vote_1 ... \u001b[32mdone\u001b[0m\r\u001b[1B"
+    ],
+    [
+      0.111373,
+      "\u001b[1A\u001b[2K\rCreating examplevotingapp_result_1 ... \u001b[32mdone\u001b[0m\r\u001b[1B"
+    ],
+    [
+      0.702554,
+      "\u001b[1A\u001b[2K\rCreating redis ... \u001b[32mdone\u001b[0m\r\u001b[1B"
+    ],
+    [
+      0.052446,
+      "\u001b[1m\u001b[3m%\u001b[23m\u001b[1m\u001b[0m                                                                                                                                                                                 \r \r"
+    ],
+    [
+      0.05043,
+      "\r\n\u001b[34m\u001b[01mexample-voting-app\u001b[22m \u001b[90m \u001b[39m \u001b[33m9s\u001b[39m\r\n"
+    ],
+    [
+      0.000135,
+      "\u001bk..le-voting-app\u001b\\"
+    ],
+    [
+      0.000116,
+      "\r\u001b[0m\u001b[23m\u001b[24m\u001b[J\u001b[35m❯\u001b[39m \u001b[K\u001b[175C\u001b[90m\u001b[39m\u001b[175D"
+    ],
+    [
+      5.4e-05,
+      "\u001b[?1h\u001b="
+    ],
+    [
+      0.000144,
+      "\u001b[?2004h"
+    ],
+    [
+      1.113486,
+      "d"
+    ],
+    [
+      0.248011,
+      "\bdo"
+    ],
+    [
+      0.159969,
+      "c"
+    ],
+    [
+      0.135959,
+      "k"
+    ],
+    [
+      0.176088,
+      "e"
+    ],
+    [
+      0.151987,
+      "r"
+    ],
+    [
+      0.151928,
+      " "
+    ],
+    [
+      0.152048,
+      "p"
+    ],
+    [
+      0.160062,
+      "s"
+    ],
+    [
+      0.881142,
+      "\u001b[?1l\u001b>\u001b[?2004l\r\r\n"
+    ],
+    [
+      0.013617,
+      "CONTAINER ID"
+    ],
+    [
+      3.7e-05,
+      "        "
+    ],
+    [
+      1.4e-05,
+      "IMAGE"
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      6.1e-05,
+      "        "
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      4.5e-05,
+      "        "
+    ],
+    [
+      1.8e-05,
+      "COMMAND"
+    ],
+    [
+      2.7e-05,
+      "        "
+    ],
+    [
+      2e-05,
+      "          CREATED        "
+    ],
+    [
+      1.6e-05,
+      "     "
+    ],
+    [
+      1.5e-05,
+      "STATUS"
+    ],
+    [
+      1.4e-05,
+      "        "
+    ],
+    [
+      1.5e-05,
+      "      "
+    ],
+    [
+      1.5e-05,
+      "PORTS"
+    ],
+    [
+      1.9e-05,
+      "        "
+    ],
+    [
+      1.7e-05,
+      "        "
+    ],
+    [
+      1.7e-05,
+      "        "
+    ],
+    [
+      1.7e-05,
+      "        "
+    ],
+    [
+      1.7e-05,
+      "        "
+    ],
+    [
+      5e-05,
+      "  "
+    ],
+    [
+      1.7e-05,
+      "NAMES"
+    ],
+    [
+      2.1e-05,
+      "\r\n"
+    ],
+    [
+      2.5e-05,
+      "f2b011912dcc"
+    ],
+    [
+      1.5e-05,
+      "        "
+    ],
+    [
+      1.5e-05,
+      "examplevotingapp_result"
+    ],
+    [
+      2.8e-05,
+      "        "
+    ],
+    [
+      1.7e-05,
+      "      "
+    ],
+    [
+      1.7e-05,
+      "\"nodemon --debug s...\""
+    ],
+    [
+      1.6e-05,
+      "   "
+    ],
+    [
+      1.7e-05,
+      "5 seconds ago"
+    ],
+    [
+      1.9e-05,
+      "       "
+    ],
+    [
+      1.3e-05,
+      "Up 4 seconds"
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      1.3e-05,
+      "0.0.0.0:5858->5858/tcp, 0.0.0.0:5001->80/tcp"
+    ],
+    [
+      1.3e-05,
+      "   "
+    ],
+    [
+      3.5e-05,
+      "examplevotingapp_result_1"
+    ],
+    [
+      1.3e-05,
+      "\r\n"
+    ],
+    [
+      3.9e-05,
+      "410d8739c4bc"
+    ],
+    [
+      3.1e-05,
+      "        "
+    ],
+    [
+      1.9e-05,
+      "examplevotingapp_vote"
+    ],
+    [
+      1.2e-05,
+      "        "
+    ],
+    [
+      1.5e-05,
+      "        "
+    ],
+    [
+      1.3e-05,
+      "\"python app.py\""
+    ],
+    [
+      1.2e-05,
+      "        "
+    ],
+    [
+      1.2e-05,
+      "  "
+    ],
+    [
+      1.2e-05,
+      "5 seconds ago"
+    ],
+    [
+      1.3e-05,
+      "       "
+    ],
+    [
+      1.5e-05,
+      "Up 4 seconds"
+    ],
+    [
+      1.2e-05,
+      "        "
+    ],
+    [
+      1.2e-05,
+      "0.0.0.0:5000->80/tcp"
+    ],
+    [
+      1.4e-05,
+      "        "
+    ],
+    [
+      1.5e-05,
+      "        "
+    ],
+    [
+      2.1e-05,
+      "        "
+    ],
+    [
+      1.8e-05,
+      "   "
+    ],
+    [
+      1.6e-05,
+      "examplevotingapp_vote_1"
+    ],
+    [
+      6.5e-05,
+      "\r\n"
+    ],
+    [
+      3.7e-05,
+      "bb43eca901f1"
+    ],
+    [
+      2.1e-05,
+      "        "
+    ],
+    [
+      4.7e-05,
+      "postgres:9.4"
+    ],
+    [
+      2e-05,
+      "        "
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      1.5e-05,
+      " "
+    ],
+    [
+      3.7e-05,
+      "\"docker-entrypoint...\""
+    ],
+    [
+      1.4e-05,
+      "   "
+    ],
+    [
+      1.2e-05,
+      "5 seconds ago"
+    ],
+    [
+      1.2e-05,
+      "       "
+    ],
+    [
+      4.6e-05,
+      "Up 4 seconds"
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      3.8e-05,
+      "5432/tcp"
+    ],
+    [
+      2.8e-05,
+      "        "
+    ],
+    [
+      2.7e-05,
+      "        "
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      4.7e-05,
+      "        "
+    ],
+    [
+      1.7e-05,
+      "       "
+    ],
+    [
+      1.3e-05,
+      "db"
+    ],
+    [
+      4.1e-05,
+      "\r\n"
+    ],
+    [
+      1.7e-05,
+      "8c6f9c9d469f"
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      1.2e-05,
+      "redis:alpine"
+    ],
+    [
+      4.4e-05,
+      "        "
+    ],
+    [
+      1.3e-05,
+      "        "
+    ],
+    [
+      3.2e-05,
+      "        "
+    ],
+    [
+      1.5e-05,
+      " "
+    ],
+    [
+      3.1e-05,
+      "\"docker-entrypoint...\""
+    ],
+    [
+      1.3e-05,
+      "   "
+    ],
+    [
+      4.3e-05,
+      "5 seconds ago"
+    ],
+    [
+      1.4e-05,
+      "       "
+    ],
+    [
+      1.5e-05,
+      "Up 3 seconds"
+    ],
+    [
+      0.000698,
+      "        0.0.0.0:32780->6379/tcp                        redis\r\n046a17f49dff        examplevotingapp_worker              \"/bin/sh -c 'dotne...\"   5 seconds ago       Up 4 seconds                                                       examplevotingapp_worker_1\r\n05e6a293c67b        heytrav/docker-introduction-slides   \"/usr/local/bin/du...\"   16 hours ago        Up 16 hours         0.0.0.0:8000->8000/tcp                         docker-intro\r\n"
+    ],
+    [
+      0.043158,
+      "\r\n\u001b[34m\u001b[01mexample-voting-app\u001b[22m \u001b[90mgit/master \u001b[39m \u001b[33m\u001b[39m\r\n\u001bk..le-voting-app\u001b\\\r\u001b[0m\u001b[23m\u001b[24m\u001b[J\u001b[35m❯\u001b[39m \u001b[K\u001b[175C\u001b[90m\u001b[39m\u001b[175D\u001b[?1h\u001b=\u001b[?2004h"
+    ],
+    [
+      1.744929,
+      "\u001b[?2004l\r\r\n"
+    ]
+  ],
+  "version": 1,
+  "title": "docker-compose up",
+  "height": 24,
+  "command": null
+}
