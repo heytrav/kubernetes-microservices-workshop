@@ -1,6 +1,11 @@
 ### Microservices
 
 
+
+#### Literature about Microservices
+* [Microservices](https://www.martinfowler.com/articles/microservices.html): Martin Fowler and James Lewis
+
+
 #### Typical Monolithic Systems
 * Often standard MVC architecture
    + Frontend _view_ HTML, JavaScript
