@@ -9,14 +9,25 @@
 
 #### Checkout code for workshop
 * These slides
+   ```
+   git clone ..../scaleconf-workshop-2018.git
+   ```
 * Example voting app
+   ```
+   git clone https://github.com/docker/example-voting-app.git
+   ```
+* Ansible for setting up Kubernetes
+   ```
+   git clone https://github.com/heytrav/k8s-ansible.git
+   ```
 
 
 
 #### Course slides
-* Repository for workshop should be on your machine
+* Install nodejs and run the course slides
    ```
    cd ~/scaleconf-workshop-2018/slides
+   npm install
    npm start
    ```
 * This should open a browser with the slides for this workshop
@@ -27,7 +38,6 @@
 * `docker-compose`
 * `minikube`
 * Ansible
-
 
 
 #### Installing Docker

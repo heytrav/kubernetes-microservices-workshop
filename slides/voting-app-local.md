@@ -1,8 +1,16 @@
-## Docker Workflow Example
+### Sample Microservice Application
 
 
-### Example Voting Application
+#### Building a microservice application
+* In this section we'll set up a microservice application
+* The [Example Voting App](https://github.com/dockersamples/example-voting-app) tutorial from Docker
+* A basic polyglot application
+* Polyglot applications are common in microservices
+   + Team staffing/skill
+   + Some languages more suited for specific tasks
 
+
+#### The Voting Application
 * Microservice application consisting of 5 components ![voting-app](img/voting-app.png "Voting App") <!-- .element: class="img-right" -->
     * Python web application <!-- .element: class="fragment" data-fragment-index="0" -->
     * Redis queue <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -14,10 +22,12 @@
 ### Start Application
 ```
 cd ~/example-voting-app
+docker-compose up 
 ```
 <asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1"
-    theme="solarized-light" src="asciinema/docker-compose.json" cols="174" rows="15"></asciinema-player>
+    theme="solarized-light" src="asciinema/docker-compose.json" cols="174" rows="10"></asciinema-player>
 [Vote](http://localhost:5000) and [view results](http://localhost:5001)
+ Note: The default worker app can be a bit flakey. Try using `docker-compose-javaworker.yml` if you have problems.
 
 
 ### Interactive development
