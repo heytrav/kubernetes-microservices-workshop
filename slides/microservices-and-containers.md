@@ -17,12 +17,3 @@ Note: containers mitigate some of the above issues
    + constant number of _healthy_ services
    + scale in proportion to demand
 Note: Containers solve part of the problem 
-
-
-
-#### Orchestration to the rescue
-* Monitors health of services
-   + Cull unhealthy services
-   + Periodically spawn new services
-* React to change in demand (autoscaling)
-* Manage networking between services

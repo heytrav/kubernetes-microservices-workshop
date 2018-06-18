@@ -4,7 +4,11 @@
 #### Building a microservice application
 * In this section we'll set up a microservice application
 * The [Example Voting App](https://github.com/dockersamples/example-voting-app) tutorial from Docker
-* Simulate development on application:
+* Should be on your machine
+   ```
+   ~/example-voting-app
+   ```
+* Developer workflow
    + Start it locally
    + Interactive development
    + Ship images
@@ -12,7 +16,7 @@
 
 
 #### The Voting Application
-* A basic polyglot application <!-- .element: class="fragment" data-fragment-index="0" -->
+* A polyglot application <!-- .element: class="fragment" data-fragment-index="0" -->
 * 5 components: <!-- .element: class="fragment" data-fragment-index="1" --> ![voting-app](img/voting-app.png "Voting App") <!-- .element: class="img-right" -->
     * Python web application <!-- .element: class="fragment" data-fragment-index="2" -->
     * Redis queue <!-- .element: class="fragment" data-fragment-index="3" -->
@@ -24,39 +28,63 @@
 
 
 
-### Start Application
+#### Start Application
 ```
 cd ~/example-voting-app
 docker-compose up 
 ```
 <asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1"
     theme="solarized-light" src="asciinema/docker-compose.json" cols="174" rows="10"></asciinema-player>
-[Vote](http://localhost:5000) and [view results](http://localhost:5001)
+* This may take some time to download/build images
+* Once completed you can [vote](http://localhost:5000) and [view results](http://localhost:5001)
  Note: The default worker app can be a bit flakey. Try using `docker-compose-javaworker.yml` if you have problems.
 
 
-### Interactive development
+#### Interactive development
 
 * Open up <code>vote/app.py</code> 
+   ```
+   vim vote/app.py
+   ```
 * On lines 8 & 9, modify vote options
 * View change in <a href="http://localhost:5000">voting</a> application
 
 
-### Change Vote Options
+#### Change Vote Options
 <asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1" theme="solarized-light" src="asciinema/asciicast-120556.json" cols="138" rows="21"></asciinema-player>
 
 
 
-### Change Result Display
+##### Exercise: Package your update into an image
+
+* Tell docker-compose to rebuild the voting app image <!-- .element: class="fragment" data-fragment-index="0" -->
+   ```bash
+   docker-compose build vote
+   ```
+   + This will build `examplevotingapp_vote:latest`
+* Tag the image<!-- .element: class="fragment" data-fragment-index="1" -->
+   ```bash
+   docker tag examplevotingapp_vote:latest YOURNAME/vote:v2
+   ```
+* Push to <!-- .element: class="fragment" data-fragment-index="2" -->[hub.docker.com](https://hub.docker.com)
+   ```bash
+   docker push YOURNAME/vote:v2
+   ```
+Note: Hve them repeat everything for the Result nodejs app
+
+
+##### Exercise: Change Result Display
 * Results are rendered in the NodeJS application
 * Edit the view template to replace _Cats_ and _Dogs_ with your own options
    ```
    vim ~/example-voting-app/result/views/index.html
    ```
-<!--<asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1" theme="solarized-light" src="asciinema/update-nodeapp.cast" start-at="10" cols="138" rows="21"></asciinema-player>-->
+* Repeat previous steps to ship `YOURNAME/result:v2` to DockerHub
+
+<!--<asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1" theme="solarized-light" src="asciinema/update-nodejs.cast" rows="15" cols="100" ></asciinema-player>-->
 
 
-### Developer Workflow
+#### Developer Workflow
 
 * Push code to repository <!-- .element: class="fragment" data-fragment-index="0" -->
 * Continuous Integration (CI) system runs tests <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -69,23 +97,7 @@ docker-compose up
    * [Quay.io](https://quay.io)
 
 
-### Developer Workflow
-
-* Ship your artefact directly using docker-compose <!-- .element: class="fragment" data-fragment-index="0" -->
-   * Useful if you want to test an image immediately
-* Tell docker-compose to rebuild the voting app image <!-- .element: class="fragment" data-fragment-index="1" -->
-* Let's build and tag the image as <!-- .element: class="fragment" data-fragment-index="2" -->`YOURNAME/vote:v2` and push to [hub.docker.com](https://hub.docker.com)
-* This will come in handy in an example we're doing later <!-- .element: class="fragment" data-fragment-index="2" -->
-```
-docker-compose build vote
-docker tag examplevotingapp_vote:latest YOURNAME/vote:v2
-docker push YOURNAME/vote:v2
-```
-<!-- .element: class="fragment" data-fragment-index="2" -->
-Note: Hve them repeat everything for the Result nodejs app
-
-
-### Summary
+#### Summary
 
 * With docker-compose it's relatively easy to develop on a microservice application
 * Changes visible in real time

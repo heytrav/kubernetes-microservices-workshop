@@ -1,4 +1,12 @@
-## Deploying to Production
+## Orchestration
+
+
+#### Orchestration to the rescue
+* Monitors health of services
+   + Cull unhealthy services
+   + Periodically spawn new services
+* React to change in demand (autoscaling)
+* Manage networking between services
 
 
 ### Container Orchestration

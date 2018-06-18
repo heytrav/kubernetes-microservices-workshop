@@ -2,7 +2,10 @@
 
 
 #### Controlling a Kubernetes Cluster
-* The client tool for interacting with Kubernetes REST API is `kubectl`
+
+
+##### `kubectl`
+* The client tool for interacting with Kubernetes REST API
 * A very rich CLI tool
 * Pronounced:
   + _cube C T L_
@@ -13,7 +16,7 @@
 
 #### Configuring `kubectl`
 * Configuration file for `kubectl` 
-   + `~/.kube/config
+   + `~/.kube/config`
    + using `--kubeconfig` to pass a configuration
 * Override via specific CLI options; ie:
    + `--server`
@@ -21,14 +24,14 @@
 * `kubectl` currently configured to interact with minikube 
 
 
-### Practice with `kubectl` and minikube
+### `kubectl` and minikube
 
 
 
 #### Inline documentation
-* Use `kubectl -h` to get an overview of commands
-   ```
-   kubectl -h  
+* Use `-h` option to get an overview of commands 
+   <pre style="font-size:10;"><code data-trim data-noescape>
+   $ kubectl -h  
    kubectl controls the Kubernetes cluster manager. 
    
    Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
@@ -36,8 +39,12 @@
    Basic Commands (Beginner):
      create         Create a resource from a file or from stdin.
      expose         Take a replication controller, service, deployment or pod and
-   ```
+   <!-- .element: style="font-size:10;"  -->
+
+</code></pre>   
 * Note that they are sorted from _beginner_ to _advanced_
+
+<!-- .element: class="stretch"  -->
 
 
 #### Command documentation
@@ -52,7 +59,7 @@
   + etc.
 
 ```
-kubectl explain ns
+$ kubectl explain ns
 
 KIND:     Namespace
 VERSION:  v1
@@ -60,17 +67,20 @@ VERSION:  v1
 DESCRIPTION:
      Namespace provides a scope for Names. Use of multiple namespaces is
      optional.
-
-FIELDS:
-   apiVersion   <string>
-     APIVersion defines the 
 ```
-<!-- .element: class="fragment" data-fragment-index="0" style="font-size:13;" -->
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:10;" -->
 
 
 
 #### Gathering information
-* `kubectl` provides an extensive set of commands for retrieving information
+* Use `get` to retrieve information about kubernetes resource objects
+  ```
+  kubectl get RESOURCE
+  ```
+  + nodes
+  + pods
+  + deployments
+
 * A number of objects can be abbreviated
    + `kubectl get nodes`
    + `kubectl get no`
