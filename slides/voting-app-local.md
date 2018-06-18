@@ -12,6 +12,7 @@
    + Start it locally
    + Interactive development
    + Ship images
+* We'll use `docker-compose` for now (kubernetes comes later)
 
 
 
@@ -89,11 +90,10 @@ Note: Hve them repeat everything for the Result nodejs app
 * Push code to repository <!-- .element: class="fragment" data-fragment-index="0" -->
 * Continuous Integration (CI) system runs tests <!-- .element: class="fragment" data-fragment-index="1" -->
 * If tests successful, automate image build &amp; push to a docker registry <!-- .element: class="fragment" data-fragment-index="2" -->
-* Easy to setup with existing services <!-- .element: class="fragment" data-fragment-index="3" -->
-   * [DockerHub](https://hub.docker.com) (eg. [these slides](https://hub.docker.com/r/heytrav/docker-introduction-slides/builds/))
+* Easy to setup Docker build pipelines with existing services <!-- .element: class="fragment" data-fragment-index="3" -->
+   * [DockerHub](https://hub.docker.com) 
    * [GitHub](https://github.com)
    * [CircleCI](https://circleci.com)
-   * GitLab
    * [Quay.io](https://quay.io)
 
 

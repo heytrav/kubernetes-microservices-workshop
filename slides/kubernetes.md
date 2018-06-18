@@ -126,12 +126,5 @@ metadata:
       <span class="fragment" data-fragment-index="3">volumes:
       - name: redis-data
         emptyDir: {}</span> 
-        </code></pre>
-
-
-
-### Controlling Kubernetes
-* Control plane of Kubernetes is a REST API ![admin interaction](img/kubernetes-admin-interaction.svg "Kubernetes Admin Control") <!-- .element: class="img-right" style="width:60%;"  -->
-* Admin cluster using `kubectl` command line client
-
+</code></pre>
 
