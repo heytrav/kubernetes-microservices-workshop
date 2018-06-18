@@ -12,8 +12,8 @@
 
 ### Server Architecture
 
-* Machine designated the <!-- .element: class="fragment" data-fragment-index="0" -->_master_ 
-* Several machines designated <!-- .element: class="fragment" data-fragment-index="1" -->_nodes_ 
+* Machine designated the <!-- .element: class="fragment" data-fragment-index="0" -->_master_  or _manager_
+* Several machines designated <!-- .element: class="fragment" data-fragment-index="1" -->_workers_ or _nodes_ 
 
 ![Orchestration](img/container-orchestration.svg "Container Orchestration") <!-- .element: class="fragment" data-fragment-index="3" -->
 

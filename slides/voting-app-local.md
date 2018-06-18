@@ -4,19 +4,24 @@
 #### Building a microservice application
 * In this section we'll set up a microservice application
 * The [Example Voting App](https://github.com/dockersamples/example-voting-app) tutorial from Docker
-* A basic polyglot application
-* Polyglot applications are common in microservices
-   + Team staffing/skill
-   + Some languages more suited for specific tasks
+* Simulate development on application:
+   + Start it locally
+   + Interactive development
+   + Ship images
+
 
 
 #### The Voting Application
-* Microservice application consisting of 5 components ![voting-app](img/voting-app.png "Voting App") <!-- .element: class="img-right" -->
-    * Python web application <!-- .element: class="fragment" data-fragment-index="0" -->
-    * Redis queue <!-- .element: class="fragment" data-fragment-index="1" -->
-    * .NET worker <!-- .element: class="fragment" data-fragment-index="2" -->
-    * Postgres DB with a data volume <!-- .element: class="fragment" data-fragment-index="3" -->
-    * Node.js app to show votes in real time <!-- .element: class="fragment" data-fragment-index="4" -->
+* A basic polyglot application <!-- .element: class="fragment" data-fragment-index="0" -->
+* 5 components: <!-- .element: class="fragment" data-fragment-index="1" --> ![voting-app](img/voting-app.png "Voting App") <!-- .element: class="img-right" -->
+    * Python web application <!-- .element: class="fragment" data-fragment-index="2" -->
+    * Redis queue <!-- .element: class="fragment" data-fragment-index="3" -->
+    * .NET worker <!-- .element: class="fragment" data-fragment-index="4" -->
+    * Postgres DB with a data volume <!-- .element: class="fragment" data-fragment-index="5" -->
+    * Node.js app to show votes in real time <!-- .element: class="fragment" data-fragment-index="6" -->
+
+<!-- .element: class="stretch" -->
+
 
 
 ### Start Application
@@ -41,6 +46,16 @@ docker-compose up
 <asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1" theme="solarized-light" src="asciinema/asciicast-120556.json" cols="138" rows="21"></asciinema-player>
 
 
+
+### Change Result Display
+* Results are rendered in the NodeJS application
+* Edit the view template to replace _Cats_ and _Dogs_ with your own options
+   ```
+   vim ~/example-voting-app/result/views/index.html
+   ```
+<!--<asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1" theme="solarized-light" src="asciinema/update-nodeapp.cast" start-at="10" cols="138" rows="21"></asciinema-player>-->
+
+
 ### Developer Workflow
 
 * Push code to repository <!-- .element: class="fragment" data-fragment-index="0" -->
@@ -58,7 +73,7 @@ docker-compose up
 
 * Ship your artefact directly using docker-compose <!-- .element: class="fragment" data-fragment-index="0" -->
    * Useful if you want to test an image immediately
-* Tell docker-compose to rebuild the image <!-- .element: class="fragment" data-fragment-index="1" -->
+* Tell docker-compose to rebuild the voting app image <!-- .element: class="fragment" data-fragment-index="1" -->
 * Let's build and tag the image as <!-- .element: class="fragment" data-fragment-index="2" -->`YOURNAME/vote:v2` and push to [hub.docker.com](https://hub.docker.com)
 * This will come in handy in an example we're doing later <!-- .element: class="fragment" data-fragment-index="2" -->
 ```
@@ -67,6 +82,7 @@ docker tag examplevotingapp_vote:latest YOURNAME/vote:v2
 docker push YOURNAME/vote:v2
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
+Note: Hve them repeat everything for the Result nodejs app
 
 
 ### Summary

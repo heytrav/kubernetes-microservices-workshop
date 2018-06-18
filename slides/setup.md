@@ -1,6 +1,18 @@
 ### Setting up
 
 
+
+#### Course Prerequisites
+(things we won't be covering)
+* Linux/Unix
+   + working with a shell
+   + navigating directories
+* Basic understanding of Docker
+   + commands and usage
+   + How to run containers
+* Account with [Docker Hub](https://hub.docker.com)
+
+
 #### Training Environment
 * Training machines
    + Ubuntu 18.04?
