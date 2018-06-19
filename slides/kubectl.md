@@ -1,9 +1,6 @@
 ### Controlling Kubernetes
 
 
-#### Controlling a Kubernetes Cluster
-
-
 ##### `kubectl`
 * The client tool for interacting with Kubernetes REST API
 * A very rich CLI tool
@@ -22,10 +19,6 @@
    + `--server`
    + `--user`
 * `kubectl` currently configured to interact with minikube 
-
-
-### `kubectl` and minikube
-
 
 
 #### Inline documentation
@@ -104,11 +97,22 @@ Usage:
 
 ##### Exercise: Get list of nodes
 * Output node information in YAML or JSON
+   ```
+   kubectl get nodes -o yaml
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" -->
+* At the moment you'll only have one node called <!-- .element: class="fragment" data-fragment-index="1" -->_minikube_
 
+
+##### Exercise: Process `kubectl` output
+* Get a JSON list of node names with corresponding IP
+* Helpful to pipe output through tools like *`jq`*
 ```
-kubectl get nodes -o yaml
+kubectl get nodes -o json | jq '.items[] | 
+   {name: .metadata.name, ip: (.status.addresses[] | select(.type == "InternalIP")) | .address }'
 ```
-<!-- .element: class="fragment" data-fragment-index="0" -->
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:10pt;" -->
+
 
 
 ##### Exercise: Get list of pods
