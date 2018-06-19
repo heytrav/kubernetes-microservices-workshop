@@ -59,11 +59,9 @@
       - `role in (webserver, backend)`
 
 
-
 ### Namespaces
 * Virtual cluster
 * Isolate set of containers on same physical cluster
-
 
 
 ### Kubernetes Labels & Deployments <!-- .slide: class="image-slide" -->

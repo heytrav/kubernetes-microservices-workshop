@@ -2,7 +2,7 @@
 
 
 #### Kubernetes Networking Model
-* A kubernetes cluster is essentially a big flag IP network
+* A kubernetes cluster is essentially a big flat IP network
 * Nodes and pods must be able to reach each other without a NAT
 * Kubernetes doesn't mandate a specific implementation
 * As result, there are dozens of implementations 

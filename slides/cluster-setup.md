@@ -1,7 +1,6 @@
 ### Kubernetes Cluster
 
 
-
 #### Setup a Kubernetes cluster
 * Steps needed:
    + Create host machines in the cloud
@@ -11,7 +10,6 @@
       - kubeadm
       - kubelet
    + Join nodes to master
-
 
 
 #### Bootstrapping a Cluster
@@ -27,18 +25,26 @@ source venv/bin/activate
 ```
 
 
-### Create Kubernetes Cluster
+![fortune cookie](img/fortune-cookie.jpg "Fortune cookie")<!-- .slide: class="image-slide" -->
 
-```
+
+#### Create Kubernetes Cluster
+
+```bash
 ansible-playbook -K -i cloud-hosts \
    create-cluster-hosts.yml kubeadm-install.yml -e prefix=<username>
 ```
+<!-- .element: style="font-size:13pt;"  -->
+* This playbook should do the following
+  + Set up a cluster in OpenStack
+  + Install Docker and Kubernetes libraries on servers
+  + Initialise the _master_ node with `kubeadm`
+  + Join worker nodes to cluster
 
 
-
-### Remotely Controlling Kubernetes
+#### Controlling Kubernetes Remotely
 * Start kubectl proxy locally
-   ```
+   ```bash
    kubectl --kubeconfig ~/k8s-admin.conf proxy
    Starting to serve on 127.0.0.1:8001
    ```
@@ -46,8 +52,8 @@ ansible-playbook -K -i cloud-hosts \
 
 
 
-### Verify Kubernetes Cluster
-```
+#### Verify Kubernetes Cluster
+```bash
 kubectl --server=127.0.0.1:8001 get nodes
 NAME               STATUS    ROLES     AGE       VERSION
 trainingpc-master   Ready     master    26m       v1.10.2
