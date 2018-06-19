@@ -14,7 +14,7 @@
 #### Configuring `kubectl`
 * Configuration file for `kubectl` 
    + `~/.kube/config`
-   + using `--kubeconfig` to pass a configuration
+   + pass a configuration file with `--kubeconfig`
 * Override via specific CLI options; ie:
    + `--server`
    + `--user`
@@ -22,6 +22,7 @@
 
 
 #### Inline documentation
+<code>kubectl </code><code style="color:red;">-h</code>
 * Use `-h` option to get an overview of commands 
    <pre style="font-size:10;"><code data-trim data-noescape>
    $ kubectl -h  
@@ -32,8 +33,6 @@
    Basic Commands (Beginner):
      create         Create a resource from a file or from stdin.
      expose         Take a replication controller, service, deployment or pod and
-   <!-- .element: style="font-size:10;"  -->
-
 </code></pre>   
 * Note that they are sorted from _beginner_ to _advanced_
 
@@ -41,15 +40,27 @@
 
 
 #### Command documentation
-* Use `kubectl COMMAND -h` to get usage for any commands
+<code>kubectl </code><code style="color:green;">COMMAND </code><code>-h</code>
+* Get usage for any commands
+
+```
+$ kubectl run -h
+Create and run a particular image, possibly replicated. 
+
+Creates a deployment or job to manage the created container(s).
+
+Examples:
+  # Start a single instance of nginx.
+  kubectl run nginx --image=nginx
+```
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:12pt;" -->
+
 
 
 #### Explain resources
-* Use `kubectl explain RESOURCE` to see info about specific kubernetes resources
-  + pods
-  + nodes
-  + deployments
-  + etc.
+<code>kubectl explain </code><code style="color:red;">RESOURCE</code>
+* View info about specific kubernetes resources
+* See ` kubectl explain -h  ` for list
 
 ```
 $ kubectl explain ns
@@ -61,28 +72,25 @@ DESCRIPTION:
      Namespace provides a scope for Names. Use of multiple namespaces is
      optional.
 ```
-<!-- .element: class="fragment" data-fragment-index="0" style="font-size:10;" -->
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:10pt;" -->
 
 
 
 #### Gathering information
-* Use `get` to retrieve information about kubernetes resource objects
-  ```
-  kubectl get RESOURCE
-  ```
-  + nodes
-  + pods
-  + deployments
-
-* A number of objects can be abbreviated
-   + `kubectl get nodes`
-   + `kubectl get no`
-   + `kubectl get services`
-   + `kubectl get svc`
+<code>kubectl </code><code style="color:green;">get </code><code style="color:red;">RESOURCE</code>
+* Retrieve information about kubernetes resource
+* See ` kubectl get -h ` for list
+* Resources can often be abbreviated
+   + `kubectl get nodes == kubectl get no`
+   + `kubectl get services == kubectl get svc`
+* Can fetch multiple at the same time
+   + `kubectl get nodes,svc,deploy`
+* Or all at once
+   + `kubectl get all`
 
 
 #### Formatting output
-* `kubectl` output different formats
+* Many `kubectl` commands can output different data formats
   + yaml
   + json
   + custom
@@ -90,7 +98,9 @@ DESCRIPTION:
 ```
 Usage:
   kubectl get
-[(-o|--output=)json|yaml|wide|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...]
+[(-o|--output=)json|yaml|wide|custom-columns=...|
+   custom-columns-file=...|go-template=...|
+   go-template-file=...|jsonpath=...|jsonpath-file=...]
 ```
 <!-- .element: class="fragment" data-fragment-index="0" -->
 
@@ -109,9 +119,24 @@ Usage:
 * Helpful to pipe output through tools like *`jq`*
 ```
 kubectl get nodes -o json | jq '.items[] | 
-   {name: .metadata.name, ip: (.status.addresses[] | select(.type == "InternalIP")) | .address }'
+   {name: .metadata.name, ip: (.status.addresses[] 
+            | select(.type == "InternalIP")) | .address }'
 ```
-<!-- .element: class="fragment" data-fragment-index="0" style="font-size:10pt;" -->
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->
+
+
+
+##### Exercise: Get list of namespaces
+* Use `kubectl get ?` to return list of known namespace resources
+
+```bash
+$ kubectl get ns
+NAME          STATUS    AGE
+default       Active    2d
+kube-public   Active    2d
+kube-system   Active    2d
+```
+<!-- .element: class="fragment" data-fragment-index="0" -->
 
 
 
@@ -122,17 +147,12 @@ kubectl get nodes -o json | jq '.items[] |
     No resources found.
    ```
    <!-- .element: class="fragment" data-fragment-index="0" -->
-* At present there are no pods running in the default namespace <!-- .element: class="fragment" data-fragment-index="1" -->
-   ```bash
-   $ kubectl get ns
-   NAME          STATUS    AGE
-   default       Active    2d
-   kube-public   Active    2d
-   kube-system   Active    2d
-   ```
+* If you do not specify a namespace, queries will be against default namespace <!-- .element: class="fragment" data-fragment-index="1" -->
+* At present there are no pods running in the default namespace <!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 ### Querying in a specific namespace
+<code>kubectl get </code><code style="color:blue;">-n namespace </code><code style="color:red;">RESOURCE</code>
 * Specify a namespace with<!-- .element: class="fragment" data-fragment-index="2" -->*`-n <namespace>`* flag
    ```bash
   $ kubectl -n kube-system get pods
@@ -167,7 +187,6 @@ kubectl get nodes -o json | jq '.items[] |
    kubectl run pingpong --image alpine ping 1.1.1.1
    deployment.apps "pingpong" created
    ```
-k
 * So, what is happening? <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
