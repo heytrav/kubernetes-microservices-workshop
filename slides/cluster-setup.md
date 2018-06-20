@@ -43,20 +43,36 @@ ansible-playbook -K -i cloud-hosts \
 
 
 #### Controlling Kubernetes Remotely
-* Start kubectl proxy locally
+* Start kubectl proxy locally <!-- .element: class="fragment" data-fragment-index="0" -->
    ```bash
    kubectl --kubeconfig ~/k8s-admin.conf proxy
    Starting to serve on 127.0.0.1:8001
    ```
-* Put this terminal aside and open a new one
+* Put this terminal aside and open a new one <!-- .element: class="fragment" data-fragment-index="1" -->
+* All <!-- .element: class="fragment" data-fragment-index="2" -->`kubectl` calls must override server location
+   ```
+   kubectl --server=127.0.0.1:8001 ...
+   ```
 
 
 
-#### Verify Kubernetes Cluster
-```bash
-kubectl --server=127.0.0.1:8001 get nodes
-NAME               STATUS    ROLES     AGE       VERSION
-trainingpc-master   Ready     master    26m       v1.10.2
-trainingpc-worker1  Ready     <none>    25m       v1.10.2
-trainingpc-worker2  Ready     <none>    25m       v1.10.2
+##### Exercise: Verify Kubernetes Cluster
+
+* Verify that nodes exist
+    ```bash
+    kubectl --server=127.0.0.1:8001 get nodes
+    NAME               STATUS    ROLES     AGE       VERSION
+    trainingpc-master   Ready     master    26m       v1.10.2
+    trainingpc-worker1  Ready     <none>    25m       v1.10.2
+    trainingpc-worker2  Ready     <none>    25m       v1.10.2
+    ```
+    <!-- .element: class="fragment" data-fragment-index="0" style="font-size:12pt;"-->
+
+
+##### Exercise: Get JSON list of nodes with IPs
 ```
+kubectl --server=127.0.0.1:8001 get nodes -o json | jq '.items[] | 
+   {name: .metadata.name, ip: (.status.addresses[] 
+            | select(.type == "InternalIP")) | .address }'
+```
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->

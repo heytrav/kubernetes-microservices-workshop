@@ -1,7 +1,7 @@
-## Kubernetes
+#### Kubernetes
 
 
-### Kubernetes Facts
+#### Kubernetes Facts
 
 * Greek word for _helmsman_ or _pilot_
 * Also origin of words like _cybernetics_ and _government_
@@ -10,7 +10,7 @@
 * [Source](https://news.ycombinator.com/item?id=9653797)
 
 
-### Kubernetes Concepts
+#### Kubernetes Concepts
 * Host types
    + master
       - performs _scheduling_
@@ -19,7 +19,7 @@
       - runs containers
 
 
-### Pods
+#### Pods
 * A _pod_ is the unit of work 
    + Consist of ≥ 1 containers ![pod and services](img/pod-diagram.svg "Pod and Services") <!-- .element: class="img-right" style="width:50%;" -->
       - Always _scheduled_ together
@@ -27,7 +27,7 @@
       - Communication via localhost
 
 
-### Deployments
+#### Deployments
 
 * Provides declarative updates for Pods
 * Describe _desired state_ of an object and controller changes state at a
@@ -40,14 +40,14 @@
 
 
 
-### Services
+#### Services
 * Exposes IP of Pod to ![kubernetes interaction](img/kubernetes-user-interaction.svg "Kubernetes Architecture") <!-- .element: class="img-right" style="width:50%;" -->
     + Other Pods
     + External ports (i.e. web, API ingress)
 
 
 
-### Labels & Selectors
+#### Labels & Selectors
 * Label is a key: value pair used to group objects
     - replication controllers for scheduling pods
     - services 
@@ -59,17 +59,17 @@
       - `role in (webserver, backend)`
 
 
-### Namespaces
+#### Namespaces
 * Virtual cluster
 * Isolate set of containers on same physical cluster
 
 
-### Kubernetes Labels & Deployments <!-- .slide: class="image-slide" -->
+#### Kubernetes Labels & Deployments <!-- .slide: class="image-slide" -->
 ![label-selectors](img/label-selectors.svg "Label Selectors") 
 
 
 
-### Defining a Service
+#### Defining a Service
 * Service spec defines
   + Type <!-- .element: class="fragment" data-fragment-index="0" -->
      - <!-- .element: class="fragment" data-fragment-index="1" -->`NodePort | ClusterIP`
@@ -93,7 +93,7 @@ spec:
 
 
 
-### Defining a Deployment
+#### Defining a Deployment
 * Specification deployment file
 * Attributes define <!-- .element: class="fragment" data-fragment-index="0" -->
    + How many instances to run at start<!-- .element: class="fragment" data-fragment-index="1" -->

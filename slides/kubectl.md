@@ -230,3 +230,20 @@ kube-system   Active    2d
    kubectl delete deploy/pingpong
    ```
 
+
+#### Scheduling Pods
+
+<code style="font-size:15pt;">kubectl run </code><code style="font-size:15pt;color:blue;">--schedule="\*/5 \* \* \* \* " ...</code>
+
+* The <!-- .element: class="fragment" data-fragment-index="0" -->`--schedule=` option takes a cron-like time pattern
+* Creates a type of pod that runs periodically at assigned times <!-- .element: class="fragment" data-fragment-index="1" -->
+* In other words, a cronjob <!-- .element: class="fragment" data-fragment-index="2" -->
+
+```
+kubectl run pi --schedule="0/5 * * * ?" --image=perl 
+   --restart=OnFailure -- 
+       perl -Mbignum=bpi -wle 'print bpi(2000)'
+```
+<!-- .element: class="fragment" data-fragment-index="3" -->
+
+This pod calculates the value of PI to 2000 places every 5 minutes <!-- .element: class="fragment" data-fragment-index="4" -->
