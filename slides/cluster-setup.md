@@ -58,7 +58,7 @@ ansible-playbook -K -i cloud-hosts \
 
 ##### Exercise: Verify Kubernetes Cluster
 
-* Verify that nodes exist
+* Verify nodes
     ```bash
     kubectl --server=127.0.0.1:8001 get nodes
     NAME               STATUS    ROLES     AGE       VERSION
@@ -66,7 +66,7 @@ ansible-playbook -K -i cloud-hosts \
     trainingpc-worker1  Ready     <none>    25m       v1.10.2
     trainingpc-worker2  Ready     <none>    25m       v1.10.2
     ```
-    <!-- .element: class="fragment" data-fragment-index="0" style="font-size:12pt;"-->
+    <!-- .element: class="fragment" data-fragment-index="0" style="font-size:11pt;"-->
 
 
 ##### Exercise: Get JSON list of nodes with IPs

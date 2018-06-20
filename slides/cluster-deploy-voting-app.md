@@ -9,13 +9,16 @@
    ```
 
 
-#### Create Namespace
-* Create a namespace for our application
+#### Creating resources
+<code>kubectl </code><code style="color:blue;">create </code><code style="color:green;">RESOURCE</code>
+* Can create pods, services, etc. <!-- .element: class="fragment" data-fragment-index="0" -->
+* Let's create a namespace for our application <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```
 kubectl  --server=127.0.0.1:8001 create namespace vote
 namespace "vote" created
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 #### Watch cluster
@@ -35,11 +38,9 @@ watch -t -n1 'echo Vote Pods \
 
 
 #### Load Specification Files
+<code>kubectl </code><code style="color:blue;">apply</code><code style="color:green;"> -f specfile.yml</code>
 
-* The <!-- .element: class="fragment" data-fragment-index="0" -->`apply` command loads a specification into kubernetes
-   ```
-   kubectl apply <file> 
-   ```
+* The <!-- .element: class="fragment" data-fragment-index="0" -->`apply` command _applies_ a configuration to a specific resource
 *  <!-- .element: class="fragment" data-fragment-index="1" -->The entire vote app is specified in yaml files
    ```
    cd ~/example-voting-app/k8s-specifications
@@ -64,28 +65,54 @@ watch -t -n1 'echo Vote Pods \
 	result    NodePort    10.107.43.36     ...   5001:<mark>31001/TCP</mark>   3h
 	vote      NodePort    10.104.244.69    ...   5000:<mark>31000/TCP</mark>   3h
 </code></pre> <!-- .element: style="font-size:13pt;" -->
-* Navigate to the [voting app](http://voting:appl:31000). You may need to
+* Go to the [voting app](http://voting:appl:31000). You may need to
   change the port
 
 
-#### Scaling 
+#### Resizing resources
+<code>kubectl </code><code style="color:blue;">scale </code><code style="color:red;">RESOURCE</code><code style="color:blue;"> OPTIONS</code>
+* Set a new size for a resource<!-- .element: class="fragment" data-fragment-index="0" -->
+   + Deployment
+   + ReplicaSet
+   + Replication Controller
+   + StatefulSet 
+* Specify preconditions <!-- .element: class="fragment" data-fragment-index="1" -->
+   + `--current-replicas`
+   + `--resource-version`
 
-* Orchestration platforms make it easy to scale your app up/down
-   + Simply increase or decrease the number of containers
-* Let's increase the number of replicas (pods) for the _vote_ service
-   <pre><code data-trim data-noescape>kubectl --server=127.0.0.1:8001 -n vote scale deployment vote <mark>--replicas=9</mark></code></pre>
-   <!-- .element: style="font-size:13pt;" -->
-* Play with the scaled number; keep an eye on _watcher_ terminal 
+
+
+#### Exercise: Scale number of replicas for vote
+
+* Increase the number of replicas (pods) for the _vote_ service
+   <pre class="fragment" data-fragment-index="0"><code data-trim data-noescape>
+      kubectl --server=127.0.0.1:8001 -n vote 
+          <mark>scale deployment vote</mark> --replicas=9
+    </code></pre>
+
+* Keep an eye on <!-- .element: class="fragment" data-fragment-index="1" -->_watcher_ terminal 
+* Try varying number of replicas up and down<!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 
-####  Updating Our Application
+#### Configuring existing resources
+<code>kubectl </code><code style="color:blue;">set </code><code style="color:red;">SUBCOMMAND</code><code style="color:green;"> OPTIONS</code>
+* Make changes to existing application resources <!-- .element: class="fragment" data-fragment-index="0" -->
+* subcommands: <!-- .element: class="fragment" data-fragment-index="1" -->
+   + <!-- .element: class="fragment" data-fragment-index="2" -->**env**: Update environment variables 
+   + <!-- .element: class="fragment" data-fragment-index="3" -->**image**: Change image in a particular Pod 
+   + <!-- .element: class="fragment" data-fragment-index="4" -->**resources**: Update resource limits on objects with Pod templates
+   + <!-- .element: class="fragment" data-fragment-index="5" -->**selector**: Set selector on a resource
+
+
+
+##### Exercise:  Update voting app
 * Update the _vote_ application with your image
-   ```
+   <pre><code data-trim data-noescape>
    kubectl --server=127.0.0.1:8001  \
-        -n vote set image deployment/vote \
+        -n vote <mark>set image</mark> deployment/vote \
             vote=YOURNAME/vote:v2
-   ```
+  </code></pre>
 * Watch the _watcher_ terminal
 * Refresh the site several times while update is running
 

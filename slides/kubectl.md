@@ -3,7 +3,7 @@
 
 ##### `kubectl`
 * The client tool for interacting with Kubernetes REST API
-* A very rich CLI tool
+* Tons of functionality
 * Pronounced:
   + _cube C T L_
   + _cube C D L_
