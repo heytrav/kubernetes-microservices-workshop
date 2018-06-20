@@ -151,7 +151,7 @@ kube-system   Active    2d
 * At present there are no pods running in the default namespace <!-- .element: class="fragment" data-fragment-index="2" -->
 
 
-### Querying in a specific namespace
+#### Querying in a specific namespace
 <code>kubectl get </code><code style="color:blue;">-n namespace </code><code style="color:red;">RESOURCE</code>
 * Specify a namespace with<!-- .element: class="fragment" data-fragment-index="2" -->*`-n <namespace>`* flag
    ```bash
