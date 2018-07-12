@@ -21,7 +21,9 @@
 ```
 cd ~/k8s-ansible
 source venv/bin/activate
+(venv) ansible-galaxy install -f -r requirements.yml
 (venv) ansible-playbook local-setup.yml -e prefix=<username>
+    -e profile_name=docker-training
 ```
 
 
@@ -31,8 +33,8 @@ source venv/bin/activate
 #### Create Kubernetes Cluster
 
 ```bash
-ansible-playbook -K -i cloud-hosts \
-   create-cluster-hosts.yml kubeadm-install.yml -e prefix=<username>
+ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml 
+   -e prefix=<username> -e cloud_name=docker-training
 ```
 <!-- .element: style="font-size:13pt;"  -->
 * This playbook should do the following
@@ -76,3 +78,10 @@ kubectl --server=127.0.0.1:8001 get nodes -o json | jq '.items[] |
             | select(.type == "InternalIP")) | .address }'
 ```
 <!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->
+
+
+
+#### Summary
+* We've each (hopefully) a functioning Kubernetes cluster
+* Set up the control plane
+* In the next section we'll deploy code to it
