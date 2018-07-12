@@ -82,7 +82,7 @@
 
 
 
-##### Adding back a node
+#### Adding back a node
 <code>kubectl </code><code style="color:blue;">uncordon</code><code style="color:red;"> node</code>
 * Uncordon returns or adds a cordoned node back to service
 * Let's restore the worker 2 node
@@ -92,3 +92,15 @@
 * K8s will not immediately add pods to node
    + culling/respawning
    + scale operations
+
+
+#### Note about this method
+* There are probably cleaner ways to do what we just did
+* Probably do a little better with Ansible or other tools
+* It was just to illustrate what is _possible_
+
+
+#### Summary
+* Rebuilding nodes on a regular basis essential for security
+* K8s provides means for coordinating stack maintenance
+* Draining and rebuilding nodes easy to automate
