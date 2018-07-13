@@ -32,7 +32,8 @@
    </code></pre>
 * Re run the cluster setup
    ```bash
-   ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml 
+   ansible-playbook -K create-cluster-hosts.yml 
+          kubeadm-install.yml 
       -e prefix=<username> -e cloud_name=docker-training
    ```
    <!-- .element: style="font-size:10pt;"  -->
@@ -75,7 +76,7 @@
 * Rerun the playbook for creating the cluster
    ```bash
    ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml 
-      -e prefix=<username> -e cloud_name=docker-training
+      -e prefix=<username>
    ```
    <!-- .element: style="font-size:10pt;"  -->
 * This create a new worker node

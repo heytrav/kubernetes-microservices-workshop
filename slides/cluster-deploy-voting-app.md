@@ -117,7 +117,8 @@ watch -t -n1 'echo Vote Pods \
 * Refresh the site several times while update is running
 
 
-
-
-
-
+#### Summary
+* In this section we deployed a microservice application
+* kubectl can scale services up or down
+* Deployment rolling updates ensure that the application updates seemlessly
+  with zero downtime

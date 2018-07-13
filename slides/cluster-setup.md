@@ -12,22 +12,34 @@
    + Join nodes to master
 
 
+![fortune cookie](img/fortune-cookie.jpg "Fortune cookie")<!-- .slide: class="image-slide" -->
+
+
 #### Bootstrapping a Cluster
 * Setting up a Kubernetes cluster by hand is complicated
 * Tools available to make this easier
    + Magnum
    + Google Kubernetes Environment
 * Create an Ansible inventory file for your cluster
+
+
+#### Create ansible config
+* in `~/.ansible.cfg`
+   ```
+   [defaults]
+   inventory = /home/USER/.ansible/inventory
+   vault_password_file = /home/USER/.ansible/vault_password
+   ```
+* Replace USER with the user on your machine
+
+
+#### Run local setup
 ```
 cd ~/k8s-ansible
 source venv/bin/activate
 (venv) ansible-galaxy install -f -r requirements.yml
 (venv) ansible-playbook local-setup.yml -e prefix=<username>
-    -e profile_name=docker-training
 ```
-
-
-![fortune cookie](img/fortune-cookie.jpg "Fortune cookie")<!-- .slide: class="image-slide" -->
 
 
 #### Create Kubernetes Cluster
@@ -82,6 +94,6 @@ kubectl --server=127.0.0.1:8001 get nodes -o json | jq '.items[] |
 
 
 #### Summary
-* We've each (hopefully) a functioning Kubernetes cluster
+* We've each (hopefully) have a functioning Kubernetes cluster
 * Set up the control plane
 * In the next section we'll deploy code to it
