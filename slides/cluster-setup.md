@@ -30,15 +30,37 @@
    inventory = /home/USER/.ansible/inventory
    vault_password_file = /home/USER/.ansible/vault_password
    ```
+   <!-- .element: style="font-size:12pt;"  -->
 * Replace USER with the user on your machine
+
+
+#### Activate virtualenv
+* The Ansible playbooks require specific libraries to interact with Catalyst
+  Cloud
+* Check out the Catalyst Cloud Ansible directory
+   ```
+   cd
+   git clone https://github.com/catalyst/catalystcloud-ansible.git
+   ```
+   <!-- .element: style="font-size:10pt;"  -->
+* change into the directory and run the install ansible script
+   ```
+   cd ~/catalystcloud-ansible
+   ./install-ansible.sh
+   ```
+   <!-- .element: style="font-size:10pt;"  -->
+* Activate the virtualenv
+   ```
+   source ~/catalystcloud-ansible/ansible-venv/bin/activate
+   ```
+   <!-- .element: style="font-size:10pt;"  -->
 
 
 #### Run local setup
 ```
 cd ~/k8s-ansible
-source venv/bin/activate
-(venv) ansible-galaxy install -f -r requirements.yml
-(venv) ansible-playbook local-setup.yml -e prefix=<username>
+(ansible-venv) ansible-galaxy install -f -r requirements.yml
+(ansible-venv) ansible-playbook local-setup.yml -e prefix=<username>
 ```
 
 
