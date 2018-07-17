@@ -1,0 +1,12 @@
+- name: Set up reveal presentation
+  hosts: localhost
+  tags: setup
+  roles:
+    - role: trainingpc-nodejs
+  post_tasks:
+
+    - name: Set up reveal presentation
+      command: npm install
+      args:
+        chdir: "{{ ansible_env.HOME }}/introduction-to-ansible/slides"
+        creates: node_modules

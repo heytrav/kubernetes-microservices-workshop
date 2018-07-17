@@ -1,0 +1,6 @@
+---
+- src: https://github.com/heytrav/ansible-nodejs.git
+  scm: git
+  name: trainingpc-nodejs
+  version: master
+
