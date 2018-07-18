@@ -1,6 +1,9 @@
 ### Kubernetes Cluster
 
 
+![fortune cookie](img/fortune-cookie.jpg "Fortune cookie")<!-- .slide: class="image-slide" -->
+
+
 #### Setup a Kubernetes cluster
 * Steps needed:
    + Create host machines in the cloud
@@ -12,9 +15,6 @@
    + Join nodes to master
 
 
-![fortune cookie](img/fortune-cookie.jpg "Fortune cookie")<!-- .slide: class="image-slide" -->
-
-
 #### Bootstrapping a Cluster
 * Setting up a Kubernetes cluster by hand is complicated
 * Tools available to make this easier
@@ -23,45 +23,9 @@
 * Create an Ansible inventory file for your cluster
 
 
-#### Create ansible config
-* in `~/.ansible.cfg`
-   ```
-   [defaults]
-   inventory = /home/USER/.ansible/inventory
-   vault_password_file = /home/USER/.ansible/vault_password
-   ```
-   <!-- .element: style="font-size:12pt;"  -->
-* Replace USER with the user on your machine
-
-
-#### Activate virtualenv
-* The Ansible playbooks require specific libraries to interact with Catalyst
-  Cloud
-* Check out the Catalyst Cloud Ansible directory
-   ```
-   cd
-   git clone https://github.com/catalyst/catalystcloud-ansible.git
-   ```
-   <!-- .element: style="font-size:10pt;"  -->
-* change into the directory and run the install ansible script
-   ```
-   cd ~/catalystcloud-ansible
-   ./install-ansible.sh
-   ```
-   <!-- .element: style="font-size:10pt;"  -->
-* Activate the virtualenv
-   ```
-   source ~/catalystcloud-ansible/ansible-venv/bin/activate
-   ```
-   <!-- .element: style="font-size:10pt;"  -->
-
-
-#### Run local setup
-```
-cd ~/k8s-ansible
-(ansible-venv) ansible-galaxy install -f -r requirements.yml
-(ansible-venv) ansible-playbook local-setup.yml -e prefix=<username>
-```
+#### Setup
+* Follow [instructions](https://github.com/heytrav/k8s-ansible) for
+  configuring Ansible
 
 
 #### Create Kubernetes Cluster
@@ -95,14 +59,16 @@ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 ##### Exercise: Verify Kubernetes Cluster
 
 * Verify nodes
-    ```bash
-    kubectl --server=127.0.0.1:8001 get nodes
-    NAME               STATUS    ROLES     AGE       VERSION
-    trainingpc-master   Ready     master    26m       v1.10.2
-    trainingpc-worker1  Ready     <none>    25m       v1.10.2
-    trainingpc-worker2  Ready     <none>    25m       v1.10.2
-    ```
-    <!-- .element: class="fragment" data-fragment-index="0" style="font-size:11pt;"-->
+   ```bash
+   kubectl --server=127.0.0.1:8001 get nodes
+   NAME               STATUS    ROLES     AGE       VERSION
+   trainingpc-master   Ready     master    26m       v1.10.2
+   trainingpc-worker1  Ready     <none>    25m       v1.10.2
+   trainingpc-worker2  Ready     <none>    25m       v1.10.2
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" style="font-size:12pt;"-->
+
+<!-- .element: class="stretch"  -->
 
 
 ##### Exercise: Get JSON list of nodes with IPs

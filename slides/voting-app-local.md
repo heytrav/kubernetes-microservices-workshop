@@ -2,17 +2,11 @@
 
 
 #### Building a microservice application
-* In this section we'll set up a microservice application
-* The [Example Voting App](https://github.com/dockersamples/example-voting-app) tutorial from Docker
-* Should be on your machine
+* We're going to build the <!-- .element: class="fragment" data-fragment-index="0" -->[Example Voting App](https://github.com/dockersamples/example-voting-app) tutorial from Docker
+* Clone the repository if it's not on your machine already <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
-   ~/example-voting-app
+   git clone https://github.com/docker/example-voting-app.git
    ```
-* Developer workflow
-   + Start it locally
-   + Interactive development
-   + Ship images
-* We'll use `docker-compose` for now (kubernetes comes later)
 
 
 

@@ -11,7 +11,7 @@
     - name: Set up scaleconf 2018 lessons
       git:
         version: master
-        repo: https://github.com/heytrav/sc-2018.git
+        repo: https://github.com/heytrav/scaleconf-2018-kubernetes.git
         dest: "{{ lookup('env', 'HOME') }}/scaleconf-2018-kubernetes"
 
 

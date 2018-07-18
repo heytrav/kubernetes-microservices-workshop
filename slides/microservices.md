@@ -43,7 +43,9 @@ Note: A component is a unit that is pluggable and replaceable
 
 #### Disadvantages of Microservices
 * Remote calls more expensive
-* Need to define service interface ![service network](img/title-connecting-containers-with-links-with-versions.png "versioned services") <!-- .element: class="img-right" -->
+* Services must agree on a protocol ![service network](img/title-connecting-containers-with-links-with-versions.png "versioned services") <!-- .element: class="img-right" -->
+   + XML (XMLRPC, SOAP)
+   + JSON
 * Can become complicated to version individual services
 
 

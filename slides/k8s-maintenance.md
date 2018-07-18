@@ -15,7 +15,7 @@
    ```
    vim ~/.ansible/inventory/cloud-hosts
    ```
-   <!-- .element: style="font-size:10pt;"  -->
+   <!-- .element: style="font-size:13pt;"  -->
 * Add an extra worker
    <pre style="font-size:13pt;"><code class="ini" data-trim data-noescape>
     localhost ansible_connection=local 
@@ -36,7 +36,10 @@
           kubeadm-install.yml 
       -e prefix=<username> -e cloud_name=docker-training
    ```
-   <!-- .element: style="font-size:10pt;"  -->
+   <!-- .element: style="font-size:13pt;"  -->
+
+<!-- .element: class="stretch"  -->
+
 
 
 #### Verifying cluster
