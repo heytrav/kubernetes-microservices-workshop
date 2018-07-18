@@ -53,11 +53,13 @@ source $CC_ANSIBLE_DIR/ansible-venv/bin/activate
 
 
 #### Course slides
-* These slides
+* The course slides are available as nodejs presentation
    ```
-   git clone https://github.com/heytrav/sc-2018.git
+   $ cd ~/scaleconf-2018-kubernetes
    ```
    <!-- .element: style="font-size:12pt;"  -->
+* 
+* To run them you'll need to have a recent nodejs
 * Install nodejs and run the course slides
    ```
    cd ~/sc-2018/slides
