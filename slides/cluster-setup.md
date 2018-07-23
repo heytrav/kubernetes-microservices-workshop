@@ -24,6 +24,13 @@
 
 
 #### Setup
+* Set `USERNAME` environment variable
+   ```
+   export USERNAME=?
+   ```
+   + Something unique
+   + i.e.  Docker Hub username or `$(hostname)`
+   + Add this to `~/.bashrc`
 * Follow [instructions](https://github.com/heytrav/k8s-ansible) for
   configuring Ansible
 
@@ -39,9 +46,6 @@ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USER
   + Install Docker and Kubernetes libraries on servers
   + Initialise the _master_ node with `kubeadm`
   + Join worker nodes to cluster
-* Can set `USERNAME` environment variable
-   + Docker Hub username
-   + `$(hostname)`
 
 
 #### Controlling Kubernetes Remotely
