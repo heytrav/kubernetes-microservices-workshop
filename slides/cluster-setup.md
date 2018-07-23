@@ -31,15 +31,17 @@
 #### Create Kubernetes Cluster
 
 ```bash
-ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml 
-   -e prefix=<username> -e cloud_name=docker-training
+ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USERNAME
 ```
-<!-- .element: style="font-size:13pt;"  -->
+<!-- .element: style="font-size:12pt;"  -->
 * This playbook should do the following
   + Set up a cluster in OpenStack
   + Install Docker and Kubernetes libraries on servers
   + Initialise the _master_ node with `kubeadm`
   + Join worker nodes to cluster
+* Can set `USERNAME` environment variable
+   + Docker Hub username
+   + `$(hostname)`
 
 
 #### Controlling Kubernetes Remotely

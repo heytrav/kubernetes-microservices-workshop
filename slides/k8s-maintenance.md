@@ -32,11 +32,9 @@
    </code></pre>
 * Re run the cluster setup
    ```bash
-   ansible-playbook -K create-cluster-hosts.yml 
-          kubeadm-install.yml 
-      -e prefix=<username> -e cloud_name=docker-training
+   ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USERNAME
    ```
-   <!-- .element: style="font-size:13pt;"  -->
+   <!-- .element: style="font-size:12pt;"  -->
 
 <!-- .element: class="stretch"  -->
 
@@ -69,9 +67,8 @@
 #### Remove worker node
 * Remove the worker node from our stack
    <pre style="font-size:11pt;"><code data-trim data-noescape>
-   ansible-playbook -K -e cloud_name=docker-training
-      -e prefix=$(hostname) <mark>-e node=PREFIX-worker2 --tags node_only</mark>
-        remove-cluster-hosts.yml
+   ansible-playbook -K <mark>-e node=PREFIX-worker2 --tags node_only</mark>
+        -e prefix=$USERNAME remove-cluster-hosts.yml
 </code></pre>
 
 
@@ -79,7 +76,7 @@
 * Rerun the playbook for creating the cluster
    ```bash
    ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml 
-      -e prefix=<username>
+      -e prefix=$USERNAME
    ```
    <!-- .element: style="font-size:10pt;"  -->
 * This create a new worker node

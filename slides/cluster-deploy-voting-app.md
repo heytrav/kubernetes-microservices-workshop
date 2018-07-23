@@ -80,6 +80,8 @@ watch -t -n1 'echo Vote Pods \
    + `--current-replicas`
    + `--resource-version`
 
+<!-- .element: class="stretch"  -->
+
 
 
 #### Exercise: Scale number of replicas for vote
