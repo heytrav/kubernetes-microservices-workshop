@@ -1,6 +1,28 @@
 ### Controlling Kubernetes
 
 
+#### Kubernetes Processes on Master
+* kubectl
+   - client API interface for kubernetes control plane
+* api server ![control-plane](img/k8s-master-control.png "Kubernetes Control Plane") <!-- .element: class="img-right"  width="60%"-->
+   - REST frontend
++ controller manager
+   - replication
+   - deployment
++ etcd
+   - key/value storage
+
+<!-- .element: style="font-size:19pt;"  -->
+
+
+
+#### Kubernetes Processes on Nodes
+* kubelet ![control-plane](img/k8s-node-processes.png "Kubernetes Control Plane") <!-- .element: class="img-right"  width="50%"-->
+   + Makes sure that containers are running in a Pod
+* kubeproxy
+   + Enables service abstraction; performs connection forwarding
+
+
 ##### `kubectl`
 * The client tool for interacting with Kubernetes REST API
 * Tons of functionality

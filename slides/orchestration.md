@@ -56,11 +56,12 @@
 
 #### Orchestration Platforms
 
-* Apache Mesos
-* AWS ECS
+* Vendor
+    + AWS ECS
+    + Azure container services
+    + Google GKE (based on Kubernetes)
 * Docker Swarm
    + Integrated into Docker since 17.03
 * Kubernetes
    + Descends from _Borg_, (Google)
-   + Joint project from Google, CoreOS, OpenShift
    + Can use other container platforms than Docker (eg. rkt)

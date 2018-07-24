@@ -9,8 +9,10 @@
 
 #### Setting up Minikube
 
-* Install a hypervisor (virtualbox)
-* Install minikube
+* Install a hypervisor
+  + [KVM](https://www.linux-kvm.org/page/Main_Page)
+  + [virtualbox](https://www.virtualbox.org/wiki/Downloads)
+* [Install minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 
 
 

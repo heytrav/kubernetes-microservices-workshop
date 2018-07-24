@@ -1,4 +1,4 @@
-#### Kubernetes
+### Kubernetes
 
 
 #### Kubernetes Facts
@@ -157,7 +157,10 @@ spec:
 * Each Pod in k8s has its own IP<!-- .element: class="fragment" data-fragment-index="0" --> ![raw pod](img/k8s-raw-pod-ip.png "Raw Pod Networking") <!-- .element: class="img-right" -->
    + even on same node
 * Pod IPs never exposed outside cluster <!-- .element: class="fragment" data-fragment-index="1" -->
-* Need to reconcile changing Pod IPs <!-- .element: class="fragment" data-fragment-index="2" -->
+* Pod IPs change often <!-- .element: class="fragment" data-fragment-index="2" -->
+   + updates/rollbacks
+   + routine health maintenance
+* Need a way to reliably map traffic to Pods <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
 #### Services

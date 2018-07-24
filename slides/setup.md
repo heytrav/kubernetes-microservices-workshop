@@ -2,28 +2,35 @@
 
 
 #### Course Prerequisites
-(things we won't be covering)
+* Account with [Docker Hub](https://hub.docker.com)
+   + take a few minutes to set one up
 * Linux/Unix
    + working with a shell
    + navigating directories
 * Basic understanding of Docker
    + commands and usage
    + How to run containers
-* Account with [Docker Hub](https://hub.docker.com)
 
 
 #### Training Environment
-* Training machines
-   + Ubuntu 18.04?
+* In this course we'll be using <!-- .element: class="fragment" data-fragment-index="0" -->
+   + Docker Community Edition
+   + `docker-compose`
+   + Ansible
+   + minikube
+* Training machines should be setup <!-- .element: class="fragment" data-fragment-index="1" -->
    + Ubuntu 14.04
+* Following slides contain instructions for setting up environment <!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 
 #### Install some dependencies
-* Ansible
-* Docker
-* `docker-compose`
-* `minikube`
+* [Ansible](http://docs.ansible.com/ansible/latest/intro_installation.html)
+* [Docker Community Edition](https://store.docker.com/search?offering=community&type=edition)
+* [docker-compose](https://docs.docker.com/compose/install/)
+* [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+  + [KVM](https://www.linux-kvm.org/page/Main_Page)
+  + [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
 Note: some of these should be done anyway but you might have to walk through
 them anyway
@@ -46,6 +53,10 @@ them anyway
    ```
    <!-- .element: style="font-size:12pt;"  -->
 * We'll be using this virtualenv for tasks throughout the course <!-- .element: class="fragment" data-fragment-index="2" -->
+* Might need to downgrade some libraries <!-- .element: class="fragment" data-fragment-index="3" -->
+   ```
+   pip install ansible==2.5.5 shade==1.28.0
+   ```
 
 <!-- .element: class="stretch"  -->
 

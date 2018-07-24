@@ -47,5 +47,3 @@ Presented by <!-- .element: class="small-text" --> [Travis Holton](Link) <!-- .e
    + deployments
    + scaling
    + rolling updates
-
-
