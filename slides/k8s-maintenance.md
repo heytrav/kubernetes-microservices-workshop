@@ -58,7 +58,7 @@
 * Let's drain worker 2
    ````
    kubectl --server=127.0.0.1:8001 
-     drain PREFIX-worker2 --ignore-daemonsets --delete-local-data
+     drain $USERNAME-worker2 --ignore-daemonsets --delete-local-data
    ```
    <!-- .element: style="font-size:10pt;"  -->
 * Watch _watch_ terminal to see how containers are redistributed
@@ -67,7 +67,7 @@
 #### Remove worker node
 * Remove the worker node from our stack
    <pre style="font-size:11pt;"><code data-trim data-noescape>
-   ansible-playbook -K <mark>-e node=PREFIX-worker2 --tags node_only</mark>
+   ansible-playbook -K <mark>-e node=$USERNAME-worker2 --tags node_only</mark>
         -e prefix=$USERNAME remove-cluster-hosts.yml
 </code></pre>
 
@@ -79,7 +79,7 @@
       -e prefix=$USERNAME
    ```
    <!-- .element: style="font-size:10pt;"  -->
-* This create a new worker node
+* This will create a new worker node
 
 
 
@@ -88,7 +88,7 @@
 * Uncordon returns or adds a cordoned node back to service
 * Let's restore the worker 2 node
    <pre ><code data-trim data-noescape>
-    kubectl --server=127.0.0.1:8001 uncordon PREFIX-worker2 
+    kubectl --server=127.0.0.1:8001 uncordon $USERNAME-worker2 
    </code></pre>
 * K8s will not immediately add pods to node
    + culling/respawning
