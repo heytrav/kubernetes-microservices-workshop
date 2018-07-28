@@ -9,6 +9,9 @@
 * Easiest way is to simply replace VMs on a regular basis
 
 
+#### Expand and Contract <!-- .slide: class="image-slide" -->
+![k8s-initial](img/k8s-nodes-expand-contract1.png "Start expand")
+
 
 #### Add a new worker
 * Edit your cloud inventory
@@ -46,6 +49,10 @@
 
 
 
+#### Drain Node <!-- .slide: class="image-slide" -->
+![k8s-drain](img/k8s-drain-expand.png "Expand")
+
+
 #### Draining nodes
 <code>kubectl </code><code style="color:blue;">drain</code><code style="color:green;"> OPTIONS</code>
 * Tell kubernetes to take a node out of service
@@ -80,6 +87,11 @@
    ```
    <!-- .element: style="font-size:10pt;"  -->
 * This will create a new worker node
+
+
+
+#### Uncordon Node <!-- .slide: class="image-slide" -->
+![drain-uncordon](img/k8s-drain-build-replacement.png "Drain")
 
 
 

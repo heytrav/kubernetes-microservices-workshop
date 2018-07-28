@@ -58,8 +58,19 @@
 * Periodically culls and respawns instances
 
 
-#### Maintaining State of a Deployment <!-- .slide: class="image-slide" -->
-![k8s homeostasis](img/k8s-deployment-homeostasis.png "K8s homeostasis") <!-- .element: class="fragment" data-fragment-index="0" -->
+
+#### Maintaining Instance Health <!-- .slide: class="image-slide" -->
+![k8s-instance-health](img/k8s-deployment-homeostasis-unhealthy.png "Instance Health")
+
+
+
+#### Recovery <!-- .slide: class="image-slide" -->
+![k8s-node-recovery](img/k8s-deployment-homeostasis-lost-node.png "Recover from lost node")
+
+
+
+#### Routine Cull and Respawn Instances <!-- .slide: class="image-slide" -->
+![k8s-routine](img/k8s-deployment-homeostasis-routine.png "Routine respawn")
 
 
 #### Managing Deployments
