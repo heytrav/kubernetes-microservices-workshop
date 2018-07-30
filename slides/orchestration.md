@@ -1,7 +1,7 @@
 ### Orchestration
 
 
-#### Orchestration to the rescue
+#### Goals of Container Orchestration
 * Monitors health of services
    + Cull unhealthy services
    + Periodically spawn new services
@@ -10,12 +10,11 @@
 
 
 #### Container Orchestration
-* Primary means of deploying containerised applications to production <!-- .element: class="fragment" data-fragment-index="0" -->
-* Provides tools for managing containers across a cluster <!-- .element: class="fragment" data-fragment-index="1" -->
+* Provides tools for managing containers across a cluster <!-- .element: class="fragment" data-fragment-index="0" -->
    + networking
    + scaling
    + monitoring
-* Ideal for deploying containerised applications in production <!-- .element: class="fragment" data-fragment-index="2" -->
+* Ideal for deploying containerised applications in production <!-- .element: class="fragment" data-fragment-index="1" -->
 
 
 #### Server Architecture

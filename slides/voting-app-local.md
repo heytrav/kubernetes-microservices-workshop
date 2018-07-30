@@ -59,7 +59,7 @@ docker-compose up
    + This will build `examplevotingapp_vote:latest`
 * Tag the image<!-- .element: class="fragment" data-fragment-index="1" -->
    ```bash
-   docker tag examplevotingapp_vote:latest YOURNAME/vote:v2
+   docker tag example-voting-app_vote:latest YOURNAME/vote:v2
    ```
 * Push to <!-- .element: class="fragment" data-fragment-index="2" -->[hub.docker.com](https://hub.docker.com)
    ```bash
