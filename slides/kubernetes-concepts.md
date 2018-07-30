@@ -1,29 +1,135 @@
-### Kubernetes
-
-
-#### Kubernetes Facts
-
-* Greek word for _helmsman_ or _pilot_
-* Also origin of words like _cybernetics_ and _government_
-* Inspired by _Borg_, Google's internal scheduling tool
-* Play on _Borg cube_
-* [Source](https://news.ycombinator.com/item?id=9653797)
-
-
-#### Kubernetes Host Types
-* master
-   - performs _scheduling_
-   - monitoring/healthchecks
-* node (formerly _minion_)
-   - runs containers
+### Kubernetes Resources
 
 
 #### Kubernetes Concepts
-* Deployment
+* Nodes
 * Pod
+* Deployment
+* Namespaces
 * Services
 * Labels and Selectors
-* Namespaces
+
+
+#### Nodes
+* Nodes are where your containerised workloads will run![Orchestration](img/container-orchestration.svg "Container Orchestration")<!-- .element: class="img-right" width="50%" -->
+* No upper limit on number of nodes in a Kubernetes cluster <!-- .element: class="fragment" data-fragment-index="0" -->
+* Let's have a look at our <!-- .element: class="fragment" data-fragment-index="1" -->_minikube_ instance
+
+
+
+#### Gathering information
+<code>kubectl </code><code style="color:green;">get </code><code style="color:red;">RESOURCE</code>
+* Retrieve information about kubernetes resources <!-- .element: class="fragment" data-fragment-index="0" -->
+    + eg. _nodes_
+
+
+##### Exercise: Using `kubectl get`
+* Use `kubectl get` to get info about current nodes
+   ```
+   kubectl get nodes
+
+   NAME       STATUS    ROLES     AGE       VERSION
+   minikube   Ready     master    6d        v1.10.0
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" -->
+* We currently only have one node named <!-- .element: class="fragment" data-fragment-index="1" -->_minikube_
+
+
+#### Formatting output
+* Many `kubectl` commands can output different data formats
+  + yaml
+  + json
+* Pass `-o FORMAT` to command
+
+```
+Usage:
+  kubectl get [(-o|--output=)json|yaml|wide|custom-columns=...|
+   custom-columns-file=...|go-template=...|
+   go-template-file=...|jsonpath=...|jsonpath-file=...]
+```
+<!-- .element: class="fragment" data-fragment-index="0" -->
+
+
+##### Exercise: Get yaml list of nodes
+* Output node information in YAML
+   ```
+   $ kubectl get nodes -o yaml
+
+   apiVersion: v1
+   items:
+   - apiVersion: v1
+     kind: Node
+     metadata:
+       annotations:
+         node.alpha.kubernetes.io/ttl: "0"
+         volumes.kubernetes.io/controller-managed-attach
+       creationTimestamp: 2018-07-24T07:57:04Z
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" -->
+* Quite a bit more information here <!-- .element: class="fragment" data-fragment-index="1" -->
+
+
+##### Exercise: Process `kubectl` output
+* It can be useful to pipe formatted output through other tools
+* Get a JSON list of node names with corresponding IP
+* *`jq`* is handy for processing output
+```
+kubectl get nodes -o json | jq '.items[] | 
+   {name: .metadata.name, ip: (.status.addresses[] 
+            | select(.type == "InternalIP")) | .address }'
+```
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->
+
+
+
+#### Running Containerised Workloads
+<code style="font-size:16pt;">kubectl run </code><code style="color:red;font-size:16pt;">name </code><code style="color:red;font-size:16pt;">--image=IMAGE:TAG</code><code style="color:green;font-size:16pt;"> OPTIONS</code>
+* Create and run jobs in Kubernetes
+* Example<!-- .element: class="fragment" data-fragment-index="0" -->:
+   ```
+   $ kubectl run nginx --image=nginx 
+   
+   deployment.apps/nginx created
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" -->
+* How can you get info about the container you just started? <!-- .element: class="fragment" data-fragment-index="1" -->
+   ```
+   kubectl get container
+   error: the server doesn't have a resource type "container"
+   ```
+   <!-- .element: class="fragment" data-fragment-index="2" -->
+
+
+#### Pods
+* Technically we do not run  <!-- .element: class="fragment" data-fragment-index="0" -->_containers_ in Kubernetes
+* The atomic <!-- .element: class="fragment" data-fragment-index="1" -->_run unit_ of K8s is called a *_Pod_* 
+* An abstraction representing group <!-- .element: class="fragment" data-fragment-index="2" -->of ≥ 1 containers
+   - images![pod and services](img/k8s-pods.png "Pods") <!-- .element: class="img-right" style="width:50%;" -->
+   - network ports
+   - volumes
+
+
+
+#### Pods
+* Containers in a Pod share common <!-- .element: class="fragment" data-fragment-index="0" -->resources   
+   - Network IP address ![pod-anatomy](img/k8s-pod-anatomy.png "Pod upclose") <!-- .element: class="img-right" -->
+   - Mounted volumes
+   - Always co-located and co-scheduled
+* Containers within a Pod communicate via <!-- .element: class="fragment" data-fragment-index="1" -->_localhost_
+* Deployments defined with a <!-- .element: class="fragment" data-fragment-index="2" -->_Deployment Spec_
+   - typically yaml or json file <!-- .element: class="fragment" data-fragment-index="3" -->
+   - number of replicas <!-- .element: class="fragment" data-fragment-index="4" -->
+   - how containers are run <!-- .element: class="fragment" data-fragment-index="5" -->
+
+
+##### Exercise: Gather info about pods
+* Use `kubectl get` to find info about running pods
+
+```
+$ kubectl get pods
+
+```
+
 
 
 #### Running applications in Kubernetes
@@ -82,29 +188,6 @@
   + _rollback_
      - roll back to a previous version of application
 * Kubernetes replication controller adapts to new desired state
-
-
-#### Pods
-* From <!-- .element: class="fragment" data-fragment-index="1" -->_Deployment_ Kubernetes creates _Pods_
-* Atomic <!-- .element: class="fragment" data-fragment-index="2" -->_run unit_ of K8s (not containers)
-* An abstraction representing group <!-- .element: class="fragment" data-fragment-index="3" -->of ≥ 1 containers
-   - images![pod and services](img/k8s-pods.png "Pods") <!-- .element: class="img-right" style="width:50%;" -->
-   - network ports
-   - volumes
-
-
-
-#### Pods
-* Containers in a Pod share common <!-- .element: class="fragment" data-fragment-index="0" -->resources   
-   - Network IP address ![pod-anatomy](img/k8s-pod-anatomy.png "Pod upclose") <!-- .element: class="img-right" -->
-   - Mounted volumes
-   - Always co-located and co-scheduled
-* Containers within a Pod communicate via <!-- .element: class="fragment" data-fragment-index="1" -->_localhost_
-* Deployments defined with a <!-- .element: class="fragment" data-fragment-index="2" -->_Deployment Spec_
-   - typically yaml or json file <!-- .element: class="fragment" data-fragment-index="3" -->
-   - number of replicas <!-- .element: class="fragment" data-fragment-index="4" -->
-   - how containers are run <!-- .element: class="fragment" data-fragment-index="5" -->
-
 
 
 #### Deployment Spec

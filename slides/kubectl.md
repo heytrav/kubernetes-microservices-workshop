@@ -1,7 +1,17 @@
 ### Controlling Kubernetes
 
 
-#### Kubernetes Processes on Master
+##### `kubectl`
+* The client tool for interacting with Kubernetes REST API
+* Tons of functionality
+* Pronounced:
+  + _cube C T L_
+  + _cube C D L_
+  + _cube cuddle_
+
+
+
+#### Kubernetes Control Plane
 * kubectl
    - client API interface for kubernetes control plane
 * api server ![control-plane](img/k8s-master-control.png "Kubernetes Control Plane") <!-- .element: class="img-right"  width="60%"-->
@@ -14,33 +24,6 @@
 
 <!-- .element: style="font-size:19pt;"  -->
 
-
-
-#### Kubernetes Processes on Nodes
-* kubelet ![control-plane](img/k8s-node-processes.png "Kubernetes Control Plane") <!-- .element: class="img-right"  width="50%"-->
-   + Makes sure that containers are running in a Pod
-* kubeproxy
-   + Enables service abstraction; performs connection forwarding
-
-
-##### `kubectl`
-* The client tool for interacting with Kubernetes REST API
-* Tons of functionality
-* Pronounced:
-  + _cube C T L_
-  + _cube C D L_
-  + _cube cuddle_
-
-
-
-#### Configuring `kubectl`
-* Configuration file for `kubectl` 
-   + `~/.kube/config`
-   + pass a configuration file with `--kubeconfig`
-* Override via specific CLI options; ie:
-   + `--server`
-   + `--user`
-* `kubectl` currently configured to interact with minikube 
 
 
 #### Inline documentation
@@ -79,72 +62,39 @@ Examples:
 
 
 
-#### Explain resources
+#### Documentation about Resources in Kubernetes
 <code>kubectl explain </code><code style="color:red;">RESOURCE</code>
-* View info about specific kubernetes resources
-* See ` kubectl explain -h  ` for list
+* View info about specific kubernetes resources <!-- .element: class="fragment" data-fragment-index="0" -->
+   + eg. pods, services, namespaces, nodes
+* See <!-- .element: class="fragment" data-fragment-index="1" -->` kubectl explain -h  ` for help
+
+
+
+#### Exercise: Ask `kubectl` about resources
+* Use `kubectl explain` to find out about
+   + nodes
+   + namespaces
+   + pods
+   + services
+* These are typical _resource types_ in Kubernetes
 
 ```
-$ kubectl explain ns
-
-KIND:     Namespace
+$ kubectl explain node
+KIND:     Node
 VERSION:  v1
 
 DESCRIPTION:
-     Namespace provides a scope for Names. Use of multiple namespaces is
-     optional.
+     Node is a worker node in Kubernetes. Each node will have a unique
+     identifier in the cache (i.e. in etcd).
+
+FIELDS:
+   apiVersion   <string>
+     APIVersion defines the versioned schema of this representation of an
+     object. Servers should convert recognized schemas to the latest internal
+     value, and may reject unrecognized values. More info:
+     https://git.k8s.io/community/contributors/devel/api-conventions.md#resources
 ```
 <!-- .element: class="fragment" data-fragment-index="0" style="font-size:10pt;" -->
-
-
-
-#### Gathering information
-<code>kubectl </code><code style="color:green;">get </code><code style="color:red;">RESOURCE</code>
-* Retrieve information about kubernetes resource
-* See ` kubectl get -h ` for list
-* Resources can often be abbreviated
-   + `kubectl get nodes == kubectl get no`
-   + `kubectl get services == kubectl get svc`
-* Can fetch multiple at the same time
-   + `kubectl get nodes,svc,deploy`
-* Or all at once
-   + `kubectl get all`
-
-
-#### Formatting output
-* Many `kubectl` commands can output different data formats
-  + yaml
-  + json
-  + custom
-
-```
-Usage:
-  kubectl get
-[(-o|--output=)json|yaml|wide|custom-columns=...|
-   custom-columns-file=...|go-template=...|
-   go-template-file=...|jsonpath=...|jsonpath-file=...]
-```
-<!-- .element: class="fragment" data-fragment-index="0" -->
-
-
-##### Exercise: Get list of nodes
-* Output node information in YAML or JSON
-   ```
-   kubectl get nodes -o yaml
-   ```
-   <!-- .element: class="fragment" data-fragment-index="0" -->
-* At the moment you'll only have one node called <!-- .element: class="fragment" data-fragment-index="1" -->_minikube_
-
-
-##### Exercise: Process `kubectl` output
-* Get a JSON list of node names with corresponding IP
-* Helpful to pipe output through tools like *`jq`*
-```
-kubectl get nodes -o json | jq '.items[] | 
-   {name: .metadata.name, ip: (.status.addresses[] 
-            | select(.type == "InternalIP")) | .address }'
-```
-<!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->
 
 
 
@@ -269,3 +219,14 @@ kubectl run pi --schedule="0/5 * * * ?" --image=perl
 <!-- .element: class="fragment" data-fragment-index="3" -->
 
 This pod calculates the value of PI to 2000 places every 5 minutes <!-- .element: class="fragment" data-fragment-index="4" -->
+
+
+
+#### Configuring `kubectl`
+* Configuration file for `kubectl` 
+   + `~/.kube/config`
+   + pass a configuration file with `--kubeconfig`
+* Override via specific CLI options; ie:
+   + `--server`
+   + `--user`
+* `kubectl` currently configured to interact with minikube 

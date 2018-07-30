@@ -2,9 +2,10 @@
 
 
 #### Minikube
-* Creates a _single node_ kubernetes cluster on your PC
-* Useful for blah
-* Practice with kubernetes
+* Creates a _single node_ Kubernetes cluster on your PC
+* Useful way to become aquainted with Kubernetes
+   + Basic concepts
+   + Controlling Kubernetes
 
 
 #### Setting up Minikube
@@ -22,6 +23,16 @@
    minikube start
    ```
 * This will configure `~/.kube/config` to speak to local cluster
+* Download `kubectl` 
+   + Instructions in output of previous command
+
+
+#### Your Minikube Cluster
+* You now have a functioning Kubernetes cluster on your workstation
+* Single machine playing both roles
+   + master
+   + node
+
 
 
 #### Interacting with minikube
