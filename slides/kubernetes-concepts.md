@@ -50,29 +50,31 @@ Usage:
 <!-- .element: class="fragment" data-fragment-index="0" -->
 
 
-##### Exercise: Get yaml list of nodes
-* Output node information in YAML
+##### Exercise: Get formatted data about nodes
+* Output node information in JSON
    ```
-   $ kubectl get nodes -o yaml
-
-   apiVersion: v1
-   items:
-   - apiVersion: v1
-     kind: Node
-     metadata:
-       annotations:
-         node.alpha.kubernetes.io/ttl: "0"
-         volumes.kubernetes.io/controller-managed-attach
-       creationTimestamp: 2018-07-24T07:57:04Z
+   $ kubectl get nodes -o json
+   ```
+   ```json
+   {
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Node",
+            "metadata": {
+                "annotations": {
+                    "node.alpha.
+                    "volumes.kub
    ```
    <!-- .element: class="fragment" data-fragment-index="0" -->
-* Quite a bit more information here <!-- .element: class="fragment" data-fragment-index="1" -->
+* Quite a bit more information to process <!-- .element: class="fragment" data-fragment-index="1" -->
 
 
 ##### Exercise: Process `kubectl` output
-* It can be useful to pipe formatted output through other tools
-* Get a JSON list of node names with corresponding IP
-* *`jq`* is handy for processing output
+* It can be useful to pipe formatted output through other tools <!-- .element: class="fragment" data-fragment-index="0" -->
+* Get a JSON list of node names with corresponding IP <!-- .element: class="fragment" data-fragment-index="1" -->
+* jq is handy for processing <!-- .element: class="fragment" data-fragment-index="2" -->output
 ```
 kubectl get nodes -o json | jq '.items[] | 
    {name: .metadata.name, ip: (.status.addresses[] 
@@ -88,21 +90,21 @@ kubectl get nodes -o json | jq '.items[] |
 * Example<!-- .element: class="fragment" data-fragment-index="0" -->:
    ```
    $ kubectl run nginx --image=nginx 
-   
-   deployment.apps/nginx created
    ```
-   <!-- .element: class="fragment" data-fragment-index="0" -->
-* How can you get info about the container you just started? <!-- .element: class="fragment" data-fragment-index="1" -->
+* Use get command to find out about container <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
-   kubectl get container
+   $ kubectl get container
+   ```
+   ```
    error: the server doesn't have a resource type "container"
    ```
    <!-- .element: class="fragment" data-fragment-index="2" -->
+* Container isn't actually a resource type in Kubernetes <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
 #### Pods
-* Technically we do not run  <!-- .element: class="fragment" data-fragment-index="0" -->_containers_ in Kubernetes
-* The atomic <!-- .element: class="fragment" data-fragment-index="1" -->_run unit_ of K8s is called a *_Pod_* 
+* Technically you do not run  <!-- .element: class="fragment" data-fragment-index="0" -->_containers_ in Kubernetes
+* The atomic <!-- .element: class="fragment" data-fragment-index="1" -->_run unit_ of Kubernetes is called a *_Pod_* 
 * An abstraction representing group <!-- .element: class="fragment" data-fragment-index="2" -->of ≥ 1 containers
    - images![pod and services](img/k8s-pods.png "Pods") <!-- .element: class="img-right" style="width:50%;" -->
    - network ports
@@ -111,49 +113,56 @@ kubectl get nodes -o json | jq '.items[] |
 
 
 #### Pods
-* Containers in a Pod share common <!-- .element: class="fragment" data-fragment-index="0" -->resources   
+* Containers in a Pod share common resources   
    - Network IP address ![pod-anatomy](img/k8s-pod-anatomy.png "Pod upclose") <!-- .element: class="img-right" -->
    - Mounted volumes
    - Always co-located and co-scheduled
-* Containers within a Pod communicate via <!-- .element: class="fragment" data-fragment-index="1" -->_localhost_
-* Deployments defined with a <!-- .element: class="fragment" data-fragment-index="2" -->_Deployment Spec_
-   - typically yaml or json file <!-- .element: class="fragment" data-fragment-index="3" -->
-   - number of replicas <!-- .element: class="fragment" data-fragment-index="4" -->
-   - how containers are run <!-- .element: class="fragment" data-fragment-index="5" -->
+* Containers within a Pod communicate via _localhost_
+Note: For this lesson we'll be using 1 container pods so the distinction isn't
+that important. It is still good to be aware of the terminology
 
 
 ##### Exercise: Gather info about pods
 * Use `kubectl get` to find info about running pods
+   ```
+   $ kubectl get pods
+   ```
+   ```
+   NAME                     READY     STATUS    RESTARTS   AGE
+   nginx-65899c769f-ttt2x   1/1       Running   0          1h
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->
+* We get even more information using <!-- .element: class="fragment" data-fragment-index="1" -->_all_
 
-```
-$ kubectl get pods
+    ```
+    kubectl get all
+    ```
+   <!-- .element: class="fragment" data-fragment-index="1"  -->
+   <pre class="fragment" data-fragment-index="2" style="font-size:13pt;"><code data-trim data-noescape>
+    NAME                         READY     STATUS              RESTARTS   AGE
+    <mark>pod/nginx-65899c769f-28r95</mark>   1/1       ContainerCreating   0          4s
 
-```
+    NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+    service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   6d
+
+    NAME                    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+    <mark>deployment.apps/nginx</mark>   1         1         1            0           4s
+
+    NAME                               DESIRED   CURRENT   READY     AGE
+    <mark>replicaset.apps/nginx-65899c769f</mark>   1         1         0         4s
+   </code></pre>    
 
 
-
-#### Running applications in Kubernetes
-* A declarative configuration called a <!-- .element: class="fragment" data-fragment-index="0" -->_Deployment_
+#### Deployments
+* A declarative configuration<!-- .element: class="fragment" data-fragment-index="0" -->
 * Tell Kubernetes the <!-- .element: class="fragment" data-fragment-index="1" -->_desired state_ of an application 
    + which image(s) to use for an application ![k8s deployment](img/k8s-deployment.png "Deployment") <!-- .element: class="img-right" style="width:50%;" -->
    + number of _replicas_ to run
    + network ports
    + volume mounts
 * The <!-- .element: class="fragment" data-fragment-index="2" -->_deployment controller_ changes cluster from actual to desired state
-
-
-
-#### Creating a Deployment
-<code style="font-size:14pt;">kubectl run </code><code style="color:red;font-size:14pt;">name </code><code style="color:red;font-size:14pt;">--image=IMAGE:TAG</code><code style="color:green;font-size:14pt;"> OPTIONS</code>
-* Simplest way to create a deployment in Kubernetes <!-- .element: class="fragment" data-fragment-index="0" -->
-   + `kubectl run` command
-   ```
-   kubectl run nginx --image=nginx --replicas=3
-   ```
-* CLI options <!-- .element: class="fragment" data-fragment-index="1" -->![pod-anatomy](img/k8s-deployment-replicas.png "Deployment Replicas") <!-- .element: class="img-right" -->
-   + _name_ for the deployment
-   + an image
-   + other info (i.e. replicas, ports, volumes)
+Note: On the CLI earlier we relied on default settings, however for more
+complicated scenarious we would use files to manage this
 
 
 #### Maintaining Deployment State
