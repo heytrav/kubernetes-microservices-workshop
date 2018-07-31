@@ -19,7 +19,19 @@
     kube-system   Active    16m
    ```
    <!-- .element: class="fragment" data-fragment-index="0" -->
-* Unless otherwise specified, queries will be against <!-- .element: class="fragment" data-fragment-index="1" -->_default_ namespace 
+
+
+
+#### Namespaces in Kubernetes
+* Kubernetes has 3 namespaces out of the box
+* default
+   + Unless otherwise specified, objects will be created or queried
+* kube-public
+   + Reserved for cluster usage for resources that should be visible
+     throughout cluster
+   + Generally not used
+* kube-system
+   + Reserved for Kubernetes control 
 
 
 #### Operating in specific namespace

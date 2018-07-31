@@ -8,16 +8,17 @@
    $ kubectl -n cats get pods -o json | 
         jq '.items[] | 
          {name: .metadata.name, 
-           podIP: .status.podIP, hostIP: .status.hostIP }'
+           podIP: .status.podIP }'
    ```
    ```
    {
      "name": "cat-app-b848f798f-clrvd",
-     "podIP": "172.17.0.5",
-     "hostIP": "10.0.2.15"
+     "podIP": "172.17.0.5"
    }
    ```
    <!-- .element: style="font-size:13pt;" class="fragment" data-fragment-index="0"  -->
+* The <!-- .element: class="fragment" data-fragment-index="1" -->_podIP_ is not reachable
+
 
 
 #### Container Networking
@@ -58,6 +59,15 @@
    - Expose port on each node in cluster
 
 
+
+#### The `expose` command
+<code>kubectl expose -h</code>
+* Creates a service
+* Takes the name (label) of a resource to use as a selector
+* Can assign a port on the host to route traffic to our pod
+
+
+
 ##### Exercise: Expose our _Cat of the Day_ application
 * Need to create a service which
   + is in _cats_ namespace
@@ -78,14 +88,17 @@
    <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
     NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
     service/cat-app   NodePort   10.107.94.1   &lt;none&gt;        5000:<mark>31355</mark>/TCP   18s
-    redis             ClusterIP  10.105.162.248 &lt;none&gt;       6379/TCP   5s
    </code></pre>
-* Application should be exposed on localhost at highlighted port <!-- .element: class="fragment" data-fragment-index="1" -->
+* Find IP of minikube host <!-- .element: class="fragment" data-fragment-index="1" -->
+   ```
+   $ minikube ip
+   ```
+* Application should be exposed on the minikube IP at highlighted port <!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 #### Service Specification Files
-* As with creating Pods/deployments, it is generally possible to do so on
-  command line
+* As we've seen, it is possible to expose a Pod with a Service using
+  `kubectl expose` command line
 * For complex applications, probably better to define Service
   Specificatiion files
 

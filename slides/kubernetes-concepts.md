@@ -1,7 +1,7 @@
 ### Kubernetes Resources
 
 
-#### Kubernetes Concepts
+#### Kubernetes Resource Types
 * Nodes
 * Pod
 * Deployment
@@ -17,22 +17,25 @@
 
 
 
-#### Gathering information
+#### Displaying Resources
 <code>kubectl </code><code style="color:green;">get </code><code style="color:red;">RESOURCE</code>
 * Retrieve information about kubernetes resources <!-- .element: class="fragment" data-fragment-index="0" -->
-    + eg. _nodes_
+    + eg. nodes
 
 
 ##### Exercise: Using `kubectl get`
 * Use `kubectl get` to get info about current nodes
    ```
-   kubectl get nodes
-
+   $ kubectl get nodes
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" -->
+   ```
    NAME       STATUS    ROLES     AGE       VERSION
    minikube   Ready     master    6d        v1.10.0
    ```
-   <!-- .element: class="fragment" data-fragment-index="0" -->
+   <!-- .element: class="fragment" data-fragment-index="1" -->
 * We currently only have one node named <!-- .element: class="fragment" data-fragment-index="1" -->_minikube_
+* The default stdout is minimal <!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 #### Formatting output

@@ -10,7 +10,7 @@
    ```
 * Use get command to find out about container <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
-   $ kubectl get container
+   $ kubectl get containers
    ```
    ```
    error: the server doesn't have a resource type "container"
@@ -49,25 +49,6 @@ that important. It is still good to be aware of the terminology
    nginx-65899c769f-ttt2x   1/1       Running   0          1h
    ```
    <!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->
-* We get even more information using <!-- .element: class="fragment" data-fragment-index="1" -->_all_
-
-    ```
-    kubectl get all
-    ```
-   <!-- .element: class="fragment" data-fragment-index="1"  -->
-   <pre class="fragment" data-fragment-index="2" style="font-size:13pt;"><code data-trim data-noescape>
-    NAME                         READY     STATUS              RESTARTS   AGE
-    <mark>pod/nginx-65899c769f-28r95</mark>   1/1       ContainerCreating   0          4s
-
-    NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-    service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   6d
-
-    NAME                    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-    <mark>deployment.apps/nginx</mark>   1         1         1            0           4s
-
-    NAME                               DESIRED   CURRENT   READY     AGE
-    <mark>replicaset.apps/nginx-65899c769f</mark>   1         1         0         4s
-   </code></pre>    
 
 
 #### Running a Pod
@@ -79,20 +60,21 @@ that important. It is still good to be aware of the terminology
 * So, what is happening? <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
-#### Viewing resources
-<asciinema-player autoplay="1" loop="1" font-size="medium" speed="1"
+#### Viewing all resources
+* We query multiple resource types using _all_
+
+    ```
+    kubectl get all
+    ```
+
+<asciinema-player autoplay="1"  font-size="medium" speed="1"
     theme="solarized-light" src="asciinema/basic-kubectl-get.cast" rows="15" ></asciinema-player>
 
-| Resource Type | Identifier |
-|---   | --- |
-|Deployment | `deployment.apps/pingpong` |
-|Replica Set | `replicaset.apps/pingpong-abcdef1234` |
-| Pod | `pod/pingpong-abcde12345` |
 
 
 #### View logs for a pod
 * The `logs` command behaves the same as with `docker logs`
-* Accepts either:
+* Accepts either
    + pod name
       ```
       kubectl logs pingpong-abcde1234

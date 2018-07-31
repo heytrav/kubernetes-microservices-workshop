@@ -40,13 +40,13 @@
      expose         Take a replication controller, service, deployment or pod and
 </code></pre>   
 * Note that they are sorted from _beginner_ to _advanced_
-
 <!-- .element: class="stretch"  -->
 
 
 #### Command documentation
 <code>kubectl </code><code style="color:green;">COMMAND </code><code>-h</code>
 * Get usage for any commands
+<!-- .element: class="stretch"  -->
 
 ```
 $ kubectl run -h
@@ -62,11 +62,11 @@ Examples:
 
 
 
-#### Documentation about Resources in Kubernetes
+#### Get documentation about resources in Kubernetes
 <code>kubectl explain </code><code style="color:red;">RESOURCE</code>
-* View info about specific kubernetes resources <!-- .element: class="fragment" data-fragment-index="0" -->
+* In Kubernetes we manage objects, or _resource types_
    + eg. pods, services, namespaces, nodes
-* See <!-- .element: class="fragment" data-fragment-index="1" -->` kubectl explain -h  ` for help
+* The <!-- .element: class="fragment" data-fragment-index="0" -->`explain` command displays documentation about specific kubernetes resources 
 
 
 
