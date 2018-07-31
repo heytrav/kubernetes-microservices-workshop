@@ -88,6 +88,6 @@ kubectl --server=127.0.0.1:8001 get nodes -o json | jq '.items[] |
 
 
 #### Summary
-* We've each (hopefully) have a functioning Kubernetes cluster
+* We each have a functioning Kubernetes cluster
 * Set up the control plane
 * In the next section we'll deploy code to it

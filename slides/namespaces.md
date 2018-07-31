@@ -2,7 +2,7 @@
 
 
 #### Namespaces
-* A way to partition a k8s cluster for different applications
+* A way to partition a Kubernetes cluster for different applications
 * Virtual cluster ![namespaces](img/k8s-namespaces.png "Namespaces") <!-- .element: class="img-right" -->
 * Isolate set of containers on same physical cluster
 
@@ -77,7 +77,7 @@
 ##### Create application in namespace
 * Let's spin up an application in our new namespace
    ```
-   kubectl run -n cats cat-app  --port=5000 
+   kubectl run -n cats cat-app  --port=5000  \
        --image=heytrav/cat-of-the-day:v1
    ```
 * Query state of pod/deployments in <!-- .element: class="fragment" data-fragment-index="0" -->_cats_ namespace

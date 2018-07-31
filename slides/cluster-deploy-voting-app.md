@@ -69,21 +69,6 @@ watch -t -n1 'echo Vote Pods \
   change the port
 
 
-#### Resizing resources
-<code>kubectl </code><code style="color:blue;">scale </code><code style="color:red;">RESOURCE</code><code style="color:blue;"> OPTIONS</code>
-* Set a new size for a resource<!-- .element: class="fragment" data-fragment-index="0" -->
-   + Deployment
-   + ReplicaSet
-   + Replication Controller
-   + StatefulSet 
-* Specify preconditions <!-- .element: class="fragment" data-fragment-index="1" -->
-   + `--current-replicas`
-   + `--resource-version`
-
-<!-- .element: class="stretch"  -->
-
-
-
 #### Exercise: Scale number of replicas for vote
 
 * Increase the number of replicas (pods) for the _vote_ service
@@ -94,17 +79,6 @@ watch -t -n1 'echo Vote Pods \
 
 * Keep an eye on <!-- .element: class="fragment" data-fragment-index="1" -->_watcher_ terminal 
 * Try varying number of replicas up and down<!-- .element: class="fragment" data-fragment-index="2" -->
-
-
-
-#### Configuring existing resources
-<code>kubectl </code><code style="color:blue;">set </code><code style="color:red;">SUBCOMMAND</code><code style="color:green;"> OPTIONS</code>
-* Make changes to existing application resources <!-- .element: class="fragment" data-fragment-index="0" -->
-* subcommands: <!-- .element: class="fragment" data-fragment-index="1" -->
-   + <!-- .element: class="fragment" data-fragment-index="2" -->**env**: Update environment variables 
-   + <!-- .element: class="fragment" data-fragment-index="3" -->**image**: Change image in a particular Pod 
-   + <!-- .element: class="fragment" data-fragment-index="4" -->**resources**: Update resource limits on objects with Pod templates
-   + <!-- .element: class="fragment" data-fragment-index="5" -->**selector**: Set selector on a resource
 
 
 

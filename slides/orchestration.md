@@ -60,7 +60,7 @@
     + Azure container services
     + Google GKE (based on Kubernetes)
 * Docker Swarm
-   + Integrated into Docker since 17.03
+   + Integrated into Docker since mid 2016
 * Kubernetes
    + Descends from _Borg_, (Google)
    + Can use other container platforms than Docker (eg. rkt)

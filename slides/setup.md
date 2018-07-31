@@ -19,7 +19,7 @@
    + Ansible
    + minikube
 * Training machines should be setup <!-- .element: class="fragment" data-fragment-index="1" -->
-   + Ubuntu 14.04
+   + Ubuntu (trusty or xenial)
 * Following slides contain instructions for setting up environment <!-- .element: class="fragment" data-fragment-index="2" -->
 
 
