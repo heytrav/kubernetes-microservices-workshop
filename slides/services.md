@@ -2,7 +2,8 @@
 
 
 #### Routing Traffic to Pods
-* In the previous section we started a _Cat of the Day_ web application
+* We just started a _Cat of the Day_ web application
+* A small Python Flask application
 * At the moment there is no way to reach it
    ```
    $ kubectl -n cats get pods -o json | 
@@ -21,7 +22,7 @@
 
 
 
-#### Container Networking
+#### Networking Pods
 * Each Pod in k8s has its own IP<!-- .element: class="fragment" data-fragment-index="0" --> ![raw pod](img/k8s-raw-pod-ip.png "Raw Pod Networking") <!-- .element: class="img-right" -->
    + even on same node
 * Pod IPs never exposed outside cluster <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -59,6 +60,16 @@
    - Expose port on each node in cluster
 
 
+#### ClusterIP Service
+ Exposes the Service on an internal IP in the cluster 
+ ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
+
+
+#### NodePort Service
+Expose port on each node in cluster
+ ![nodeport-service](img/k8s-nodeport-service.png "NodePort")
+
+
 
 #### The `expose` command
 <code>kubectl expose -h</code>
@@ -75,15 +86,19 @@
   + opens a port that is visible on our machine
 
 ```
- kubectl -n cats expose deployment cat-app --type=NodePort
+$ kubectl -n cats expose deployment cat-app --type=NodePort
 ```
 <!-- .element: class="fragment" data-fragment-index="0" font-size:13pt; -->
+```
+service/cat-app exposed
+```
+<!-- .element: class="fragment" data-fragment-index="1" font-size:13pt; -->
 
 
 #### Query namespace
 * Query the _cats_ namespace
    ```
-   kubectl -n cats get svc
+   $ kubectl -n cats get svc
    ```
    <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
     NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
@@ -103,8 +118,7 @@
   Specificatiion files
 
 
-#### ClusterIP
-_ClusterIP_ services are only visible within a cluster
+#### ClusterIP Spec File
  ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
 <!-- .element: style="width:40%;float:right;"  -->
 
@@ -123,8 +137,7 @@ spec:
 
 
 
-#### NodePort
-_NodePort_ services exposed on each node of cluster
+#### NodePort Spec File
  ![nodeport-service](img/k8s-nodeport-service.png "NodePort")
 <!-- .element: style="width:50%;float:right;"  -->
 

@@ -35,7 +35,7 @@
    </code></pre>
 * Re run the cluster setup
    ```bash
-   ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USERNAME
+   $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USERNAME
    ```
    <!-- .element: style="font-size:12pt;"  -->
 
@@ -64,7 +64,7 @@
 #### Drain node
 * Let's drain worker 2
    ````
-   kubectl --server=127.0.0.1:8001 
+   $ kubectl --server=127.0.0.1:8001 \
      drain $USERNAME-worker2 --ignore-daemonsets --delete-local-data
    ```
    <!-- .element: style="font-size:10pt;"  -->
@@ -74,7 +74,7 @@
 #### Remove worker node
 * Remove the worker node from our stack
    <pre style="font-size:11pt;"><code data-trim data-noescape>
-   ansible-playbook -K <mark>-e node=$USERNAME-worker2 --tags node_only</mark>
+   $ ansible-playbook -K <mark>-e node=$USERNAME-worker2 --tags node_only</mark> \
         -e prefix=$USERNAME remove-cluster-hosts.yml
 </code></pre>
 
@@ -82,7 +82,7 @@
 #### Restore new node
 * Rerun the playbook for creating the cluster
    ```bash
-   ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml 
+   $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml  \
       -e prefix=$USERNAME
    ```
    <!-- .element: style="font-size:10pt;"  -->

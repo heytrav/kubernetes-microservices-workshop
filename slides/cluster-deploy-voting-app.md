@@ -7,6 +7,9 @@
    ```
    cd ~/example-voting-app/k8s-specifications
    ```
+* Folder contains specification files for 
+   + Deployments
+   + Services
 
 
 #### Creating resources
@@ -15,10 +18,13 @@
 * Let's create a namespace for our application <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```
-kubectl  --server=127.0.0.1:8001 create namespace vote
-namespace "vote" created
+$ kubectl  --server=127.0.0.1:8001 create namespace vote
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
+```
+namespace "vote" created
+```
+<!-- .element: class="fragment" data-fragment-index="3" -->
 
 
 #### Watch cluster
@@ -73,7 +79,7 @@ watch -t -n1 'echo Vote Pods \
 
 * Increase the number of replicas (pods) for the _vote_ service
    <pre class="fragment" data-fragment-index="0"><code data-trim data-noescape>
-      kubectl --server=127.0.0.1:8001 -n vote 
+      $ kubectl --server=127.0.0.1:8001 -n vote \
           <mark>scale deployment vote</mark> --replicas=9
     </code></pre>
 

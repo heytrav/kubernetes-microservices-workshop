@@ -3,8 +3,7 @@
 
 #### Namespaces
 * A way to partition a Kubernetes cluster for different applications
-* Virtual cluster ![namespaces](img/k8s-namespaces.png "Namespaces") <!-- .element: class="img-right" -->
-* Isolate set of containers on same physical cluster
+* Partition physical cluster into virtual clusters ![namespaces](img/k8s-namespaces.png "Namespaces") <!-- .element: class="img-right" -->
 
 
 ##### Exercise: Get list of namespaces
@@ -24,14 +23,13 @@
 
 #### Namespaces in Kubernetes
 * Kubernetes has 3 namespaces out of the box
-* default
-   + Unless otherwise specified, objects will be created or queried
-* kube-public
-   + Reserved for cluster usage for resources that should be visible
-     throughout cluster
-   + Generally not used
-* kube-system
-   + Reserved for Kubernetes control 
+  + default
+    - Unless otherwise specified, objects will be created or queried here
+  + kube-public
+    - Reserved for cluster usage for resources that should be visible
+      throughout cluster
+  + kube-system
+    - Reserved for Kubernetes control 
 
 
 #### Operating in specific namespace

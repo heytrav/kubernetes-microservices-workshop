@@ -35,7 +35,7 @@
 #### Create Kubernetes Cluster
 
 ```bash
-ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USERNAME
+$ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USERNAME
 ```
 <!-- .element: style="font-size:12pt;"  -->
 * This playbook should do the following
@@ -48,14 +48,18 @@ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USER
 #### Controlling Kubernetes Remotely
 * Start kubectl proxy locally <!-- .element: class="fragment" data-fragment-index="0" -->
    ```bash
-   kubectl --kubeconfig ~/k8s-admin.conf proxy
+   $ kubectl --kubeconfig ~/k8s-admin.conf proxy
+   ```
+   ```
    Starting to serve on 127.0.0.1:8001
    ```
-* Put this terminal aside and open a new one <!-- .element: class="fragment" data-fragment-index="1" -->
-* All <!-- .element: class="fragment" data-fragment-index="2" -->`kubectl` calls must override server location
+   <!-- .element: class="fragment" data-fragment-index="1" -->
+* Put this terminal aside and open a new one <!-- .element: class="fragment" data-fragment-index="2" -->
+* All <!-- .element: class="fragment" data-fragment-index="3" -->`kubectl` calls must override server location
    ```
    kubectl --server=127.0.0.1:8001 ...
    ```
+   + you might also consider making an alias in .bashrc
 
 
 
@@ -63,7 +67,7 @@ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USER
 
 * Verify nodes
    ```bash
-   kubectl --server=127.0.0.1:8001 get nodes
+   $ kubectl --server=127.0.0.1:8001 get nodes
    NAME               STATUS    ROLES     AGE       VERSION
    trainingpc-master   Ready     master    26m       v1.10.2
    trainingpc-worker1  Ready     <none>    25m       v1.10.2
@@ -76,7 +80,7 @@ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USER
 
 ##### Exercise: Get JSON list of nodes with IPs
 ```
-kubectl --server=127.0.0.1:8001 get nodes -o json | jq '.items[] | 
+$ kubectl --server=127.0.0.1:8001 get nodes -o json | jq '.items[] | 
    {name: .metadata.name, ip: (.status.addresses[] 
             | select(.type == "InternalIP")) | .address }'
 ```
