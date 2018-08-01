@@ -64,8 +64,10 @@ Examples:
 
 #### Get documentation about resources in Kubernetes
 <code>kubectl explain </code><code style="color:red;">RESOURCE</code>
-* In Kubernetes we manage objects, or _resource types_
-   + eg. pods, services, namespaces, nodes
+* In Kubernetes we manage objects, or _resource types_ eg.
+   + nodes
+   + pods
+   + namespaces
 * The <!-- .element: class="fragment" data-fragment-index="0" -->`explain` command displays documentation about specific kubernetes resources 
 
 

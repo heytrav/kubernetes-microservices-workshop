@@ -16,10 +16,10 @@
 
 
 #### What you need to run Minikube
+* [minikube binaries](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 * A hypervisor
   + [KVM](https://www.linux-kvm.org/page/Main_Page)
   + [virtualbox](https://www.virtualbox.org/wiki/Downloads)
-* [minikube binaries](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 * The training machines should be set up
 
 

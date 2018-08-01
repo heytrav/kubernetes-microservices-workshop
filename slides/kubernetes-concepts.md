@@ -18,7 +18,7 @@
 
 
 #### Displaying Resources
-<code>kubectl </code><code style="color:green;">get </code><code style="color:red;">RESOURCE</code>
+<code>kubectl get </code><code style="color:red;">RESOURCE</code>
 * Retrieve information about kubernetes resources <!-- .element: class="fragment" data-fragment-index="0" -->
     + eg. nodes
 

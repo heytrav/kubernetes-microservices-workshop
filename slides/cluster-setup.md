@@ -1,9 +1,6 @@
 ### Kubernetes Cluster
 
 
-![fortune cookie](img/fortune-cookie.jpg "Fortune cookie")<!-- .slide: class="image-slide" -->
-
-
 #### Setup a Kubernetes cluster
 * Steps needed:
    + Create host machines in the cloud

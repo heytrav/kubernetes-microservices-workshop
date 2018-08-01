@@ -63,4 +63,4 @@
    + Integrated into Docker since mid 2016
 * Kubernetes
    + Descends from _Borg_, (Google)
-   + Can use other container platforms than Docker (eg. rkt)
+   + Supports multiple container runtimes (eg. Docker, rkt)
