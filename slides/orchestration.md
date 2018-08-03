@@ -1,6 +1,16 @@
 ### Orchestration
 
 
+#### Managing Microservice Containers
+* Still quite a lot of work maintaining large applications
+* Monitoring health of many services
+* Maintain homeostasis 
+   + constant number of _healthy_ services
+   + scale in proportion to demand
+* Next step: orchestration platforms
+Note: Containers solve part of the problem 
+
+
 #### Goals of Container Orchestration
 * Monitors health of services
    + Cull unhealthy services

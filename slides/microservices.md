@@ -1,12 +1,7 @@
 ### Microservices
 
 
-
-#### Literature about Microservices
-* [Microservices](https://www.martinfowler.com/articles/microservices.html): Martin Fowler and James Lewis
-
-
-#### Typical Monolithic Systems
+#### Some perspective: Monolithic Applications
 * Often standard MVC architecture
    + Frontend _view_ HTML, JavaScript
    + Backend _controller_
@@ -17,15 +12,16 @@
 
 
 #### Disadvantages of Monolith
-* Tightly coupled code
+* Tightly coupled code <!-- .element: class="fragment" data-fragment-index="0" -->
    + Smallest change still requires complete release
    + Small change can affect entire application
    + Long release cycles
-* Usually single large DB
+* Usually single large DB <!-- .element: class="fragment" data-fragment-index="1" -->
    + Tight coupling with data model
    + Simple schema change can break app
-* Horizontal Scaling
-* Rollback of an entire version
+* Matching demand <!-- .element: class="fragment" data-fragment-index="2" -->
+   + Horizontal scaling
+* Rollback of an entire version <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
 
@@ -51,3 +47,8 @@ Note: A component is a unit that is pluggable and replaceable
 
 #### Managing Microservices
 * How do you manage 10 or 100s of microservices? ![lots of services](img/title-container-networking-basics.jpg "lots of services") <!-- .element: class="img-right" -->
+
+
+
+#### Literature about Microservices
+* [Microservices](https://www.martinfowler.com/articles/microservices.html): Martin Fowler and James Lewis

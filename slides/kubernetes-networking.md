@@ -9,7 +9,7 @@
    + [some available implementations](https://kubernetes.io/docs/concepts/cluster-administration/networking/#how-to-implement-the-kubernetes-networking-model)
 
 
-#### Scary Kubernetes Networking ![Scary Network](img/k8s-arch1.png "Scary Network Architecture")<!-- .slide: class="image-slide" -->
+#### Simple Kubernetes Networking ![Scary Network](img/k8s-arch1.png "Scary Network Architecture")<!-- .slide: class="image-slide"  .element: width="50%" -->
 
 
 #### Less Scary Networking ![networking light](img/k8s-arch2.png "Less Scary Network Architecture")
