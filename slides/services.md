@@ -98,7 +98,7 @@ service/cat-app exposed
 #### Query namespace
 * Query the _cats_ namespace
    ```
-   $ kubectl -n cats get svc
+   $ kubectl -n cats get services
    ```
    <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
     NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE

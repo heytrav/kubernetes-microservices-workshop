@@ -11,7 +11,7 @@
 * Useful if you <!-- .element: class="fragment" data-fragment-index="1" -->
    + want to become familiar with Kubernetes concepts <!-- .element: class="fragment" data-fragment-index="2" -->
    + do not have a cluster <!-- .element: class="fragment" data-fragment-index="3" -->
-   + are preparing a Kubernetes workshop <!-- .element: class="fragment" data-fragment-index="4" -->
+   + are preparing/attending a Kubernetes workshop <!-- .element: class="fragment" data-fragment-index="4" -->
 
 
 

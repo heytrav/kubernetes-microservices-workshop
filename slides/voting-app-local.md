@@ -49,6 +49,18 @@ docker-compose up
 <asciinema-player autoplay="1" loop="loop"  font-size="medium" speed="1" theme="solarized-light" src="asciinema/asciicast-120556.json" cols="138" rows="21"></asciinema-player>
 
 
+#### Login to Docker Hub
+* In order to push images you'll need to login to docker.io
+   ```
+   $ docker login
+   ```
+   ```
+   Username: YOURNAME
+   Password: ********
+   ```
+   <!-- .element: class="fragment" data-fragment-index="0" -->
+
+
 
 ##### Exercise: Package your update into an image
 

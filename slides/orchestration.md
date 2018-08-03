@@ -35,13 +35,6 @@ Note: Containers solve part of the problem
 ![Orchestration](img/container-orchestration.svg "Container Orchestration") <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
-#### Container Orchestration: User perspective
-* Orchestration framework handles 
-   + Routing requests to containers ![orchestration-user-perspective](img/user-container-orchestration-interaction.svg "User Interaction") <!-- .element: class="img-right" -->
-   + Load balancing between different containers
-* From user perspective as if interacting with single appliation
-
-
 
 #### Masters and Nodes
 * The <!-- .element: class="fragment" data-fragment-index="3" -->_master_  is reponsible for
@@ -51,6 +44,13 @@ Note: Containers solve part of the problem
    + periodically kill/respawn containers <!-- .element: class="fragment" data-fragment-index="7" -->
 * The <!-- .element: class="fragment" data-fragment-index="8" -->_nodes_ or _workers_
    + Just run the containers
+
+
+#### Container Orchestration: User perspective
+* Orchestration framework handles 
+   + Routing requests to containers ![orchestration-user-perspective](img/user-container-orchestration-interaction.svg "User Interaction") <!-- .element: class="img-right" -->
+   + Load balancing between different containers
+* From user perspective as if interacting with single appliation
 
 
 
