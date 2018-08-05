@@ -60,18 +60,6 @@ that important. It is still good to be aware of the terminology
 * So, what is happening? <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
-#### Viewing all resources
-* We query multiple resource types using _all_
-
-    ```
-    kubectl get all
-    ```
-
-<asciinema-player autoplay="1"  font-size="medium" speed="1"
-    theme="solarized-light" src="asciinema/basic-kubectl-get.cast" rows="15" ></asciinema-player>
-
-
-
 #### View logs for a pod
 * The `logs` command behaves the same as with `docker logs`
 * Accepts either

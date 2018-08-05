@@ -54,21 +54,21 @@
 
 
 #### Service types
-* _ClusterIP_
-   - Exposes the Service on an internal IP in the cluster
 * _NodePort_
    - Expose port on each node in cluster
-
-
-#### ClusterIP Service
- Exposes the Service on an internal IP in the cluster 
- ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
+* _ClusterIP_
+   - Exposes the Service on an internal IP in the cluster
 
 
 #### NodePort Service
 Expose port on each node in cluster
  ![nodeport-service](img/k8s-nodeport-service.png "NodePort")
 
+
+
+#### ClusterIP Service
+ Exposes the Service on an internal IP in the cluster 
+ ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
 
 
 #### The `expose` command
@@ -112,10 +112,8 @@ service/cat-app exposed
 
 
 #### Service Specification Files
-* As we've seen, it is possible to expose a Pod with a Service using
-  `kubectl expose` command line
-* For complex applications, probably better to define Service
-  Specificatiion files
+* As we've seen, it is possible to expose a Pod with a Service using <!-- .element: class="fragment" data-fragment-index="0" -->`kubectl expose` command line
+* For complex applications, probably better to define Service Specificatiion files <!-- .element: class="fragment" data-fragment-index="1" -->
 
 
 #### ClusterIP Spec File
