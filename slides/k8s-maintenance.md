@@ -64,8 +64,7 @@
 #### Drain node
 * Let's drain worker 2
    ````
-   $ kubectl --server=127.0.0.1:8001 \
-     drain $USERNAME-worker2 --ignore-daemonsets --delete-local-data
+   $ kubeptl drain $USERNAME-worker2 --ignore-daemonsets --delete-local-data
    ```
    <!-- .element: style="font-size:10pt;"  -->
 * Watch _watch_ terminal to see how containers are redistributed
@@ -100,7 +99,7 @@
 * Uncordon returns or adds a cordoned node back to service
 * Let's restore the worker 2 node
    <pre ><code data-trim data-noescape>
-    kubectl --server=127.0.0.1:8001 uncordon $USERNAME-worker2 
+    kubeptl uncordon $USERNAME-worker2 
    </code></pre>
 * K8s will not immediately add pods to node
    + culling/respawning

@@ -18,7 +18,7 @@
 * Let's create a namespace for our application <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```
-$ kubectl  --server=127.0.0.1:8001 create namespace vote
+$ kubeptl create namespace vote
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
 ```
@@ -49,9 +49,8 @@ watch -t -n1 'echo Vote Pods \
 * The <!-- .element: class="fragment" data-fragment-index="0" -->`apply` command _applies_ a configuration to a specific resource
 *  <!-- .element: class="fragment" data-fragment-index="1" -->The entire vote app is specified in yaml files
    ```
-   cd ~/example-voting-app/k8s-specifications
-   for i in `ls *.yaml`; \
-    do kubectl --server=127.0.0.1:8001 apply -n vote -f $i; done
+   cd ~/example-voting-app
+   kubeptl apply -n vote -f k8s-specifications
    ```
 * <!-- .element: class="fragment" data-fragment-index="2" -->This tells Kubernetes to begin setting up containers
    + creates network endpoints
@@ -79,8 +78,7 @@ watch -t -n1 'echo Vote Pods \
 
 * Increase the number of replicas (pods) for the _vote_ service
    <pre class="fragment" data-fragment-index="0"><code data-trim data-noescape>
-      $ kubectl --server=127.0.0.1:8001 -n vote \
-          <mark>scale deployment vote</mark> --replicas=9
+      $ kubeptl -n vote <mark>scale deployment vote</mark> --replicas=9
     </code></pre>
 
 * Keep an eye on <!-- .element: class="fragment" data-fragment-index="1" -->_watcher_ terminal 
@@ -91,8 +89,7 @@ watch -t -n1 'echo Vote Pods \
 ##### Exercise:  Update voting app
 * Update the _vote_ application with your image
    <pre><code data-trim data-noescape>
-   kubectl --server=127.0.0.1:8001  \
-        -n vote <mark>set image</mark> deployment/vote \
+   kubeptl -n vote <mark>set image</mark> deployment/vote \
             vote=YOURNAME/vote:v2
   </code></pre>
 * Watch the _watcher_ terminal
