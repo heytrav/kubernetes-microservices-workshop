@@ -59,7 +59,10 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$US
    ```
    kubectl --server=127.0.0.1:8001 ...
    ```
-   + you might also consider making an alias in .bashrc
+   + There is an alias defined in your .bashrc file:
+   ```
+   alias kubeptl="kubectl --server=127.0.0.1:8001"
+   ```
 
 
 
