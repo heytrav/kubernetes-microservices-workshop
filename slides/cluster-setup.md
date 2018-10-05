@@ -35,7 +35,8 @@
 #### Create Kubernetes Cluster
 
 ```bash
-$ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$USERNAME
+$ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml \
+    -e prefix=$USERNAME
 ```
 <!-- .element: style="font-size:12pt;"  -->
 * This playbook should do the following
@@ -70,7 +71,7 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$US
 
 * Verify nodes
    ```bash
-   $ kubectl --server=127.0.0.1:8001 get nodes
+   $ kubeptl get nodes
    NAME               STATUS    ROLES     AGE       VERSION
    trainingpc-master   Ready     master    26m       v1.10.2
    trainingpc-worker1  Ready     <none>    25m       v1.10.2
@@ -83,7 +84,7 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml -e prefix=$US
 
 ##### Exercise: Get JSON list of nodes with IPs
 ```
-$ kubectl --server=127.0.0.1:8001 get nodes -o json | jq '.items[] | 
+$ kubeptl get nodes -o json | jq '.items[] | 
    {name: .metadata.name, ip: (.status.addresses[] 
             | select(.type == "InternalIP")) | .address }'
 ```

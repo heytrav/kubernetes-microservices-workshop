@@ -53,7 +53,8 @@
 * Open up a new terminal
 * Set up port forwarding for Grafana
    ```
-   kubeptl -n monitoring port-forward svc/grafana 3000
+   kubeptl -n monitoring port-forward \
+       svc/grafana 3000
    ```
 * Now open [Grafana](http://127.0.0.1:3000) in your browser
 
@@ -62,7 +63,8 @@
 * Open up a new terminal
 * Set up port forwarding for the alert manager
    ```
-   kubeptl -n monitoring port-forward svc/alertmanager-main 9093
+   kubeptl -n monitoring port-forward  \
+       svc/alertmanager-main 9093
    ```
 * No open the [alert manager](http://127.0.0.1:9093) in your browser
 
