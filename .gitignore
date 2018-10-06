@@ -1,3 +1,5 @@
 venv
 cloud-hosts
 *.retry
+sample-code/mycomposeapp/Dockerfile
+sample-code/mycomposeapp/docker-compose.yml
