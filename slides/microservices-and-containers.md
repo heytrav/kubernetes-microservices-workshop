@@ -51,7 +51,7 @@ Note: containers mitigate some of the above issues
 
 #### Exercise: Create microservices `docker-compose`
 ```
- cd ~/scaleconf-2018-kubernetes/sample-code/mycomposeapp 
+ cd ~/kubernetes-microservices-workshop/sample-code/mycomposeapp 
 ```
 <!-- .element: class="fragment" data-fragment-index="0" -->
 * Let's build a simple application with two components <!-- .element: class="fragment" data-fragment-index="1" -->
