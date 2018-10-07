@@ -35,8 +35,7 @@
 #### Create Kubernetes Cluster
 
 ```bash
-$ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml \
-    -e prefix=$USERNAME
+$ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 ```
 <!-- .element: style="font-size:12pt;"  -->
 * This playbook should do the following

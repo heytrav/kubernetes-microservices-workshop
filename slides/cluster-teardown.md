@@ -4,7 +4,7 @@
 ### Clean up
 
 ```
-$ ansible-playbook remove-cluster-hosts.yml -K -e prefix=$USERNAME
+$ ansible-playbook remove-cluster-hosts.yml -K
 ```
 <!-- .element: style="font-size:13pt;"  -->
 
