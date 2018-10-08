@@ -6,14 +6,30 @@
    - running services
    - resource usage
    - across dynamic set of pods, nodes
-* Alerting when something goes wrong
 * Important to consider monitoring at the beginning of any project
+* Alerting when something goes wrong
 * Lots of tools available for this
 
 
+#### Common Monitoring Tools
+* [Graphite](https://graphite.readthedocs.org/en/latest)
+* [InfluxDB](https://influxdata.com)
+* [OpenTSDB](https://opentsdb.net)
+* [Nagios](https://www.nagios.org)
+* [Prometheus](https://prometheus.io)
+
+
 #### Prometheus
-* Open source 
+* Full monitoring and trending system with built in scraping, storage and
+  alerting
 * Time series data identified by metric and key/value pairs
+* Flexible query langugage
+* Open source 
+* Part of the CNCF since 2016 
+
+
+#### Prometheus Architecture ![Prometheus architecture](img/prometheus-architecture.png "Prometheus Architecture") <!-- .slide: class="image-slide" -->
+
 
 
 #### Integrating Prometheus
@@ -57,6 +73,7 @@
        svc/grafana 3000
    ```
 * Now open [Grafana](http://127.0.0.1:3000) in your browser
+* User password `admin/admin` 
 
 
 #### Visualise the Alert Manager
