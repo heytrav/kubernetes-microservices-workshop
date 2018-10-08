@@ -19,7 +19,7 @@
    + Google Kubernetes Environment
 * Create an Ansible inventory file for your cluster
 
-
+<!--
 #### Setup
 * Set `USERNAME` environment variable
    ```
@@ -30,6 +30,9 @@
    + Add this to `~/.bashrc`
 * Follow [instructions](https://github.com/heytrav/k8s-ansible) for
   configuring Ansible
+
+-->
+
 
 
 #### Create Kubernetes Cluster

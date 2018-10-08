@@ -80,7 +80,6 @@ watch -t -n1 'echo Vote Pods \
    <pre class="fragment" data-fragment-index="0"><code data-trim data-noescape>
       $ kubeptl -n vote <mark>scale deployment vote</mark> --replicas=9
     </code></pre>
-
 * Keep an eye on <!-- .element: class="fragment" data-fragment-index="1" -->_watcher_ terminal 
 * Try varying number of replicas up and down<!-- .element: class="fragment" data-fragment-index="2" -->
 

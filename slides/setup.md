@@ -64,8 +64,8 @@ them anyway
 #### Course slides
 * The course slides are available as nodejs presentation
    ```
-   $ git clone https://github.com/heytrav/scaleconf-2018-kubernetes.git
-   $ cd ~/scaleconf-2018-kubernetes/slides
+   $ git clone https://github.com/heytrav/kubernetes-microservices-workshop
+   $ cd ~/kubernetes-microservices-workshop/slides
    ```
    <!-- .element: style="font-size:12pt;"  -->
 * To run them you'll need to have a recent nodejs
