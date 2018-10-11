@@ -46,6 +46,22 @@ service/cat-app exposed
 <!-- .element: class="fragment" data-fragment-index="1" font-size:13pt; -->
 
 
+#### Query namespace
+* Query the _cats_ namespace
+   ```
+   $ kubectl -n cats get services
+   ```
+   <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
+    NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
+    service/cat-app   NodePort   10.107.94.1   &lt;none&gt;        5000:<mark>31355</mark>/TCP   18s
+   </code></pre>
+* Find IP of minikube host <!-- .element: class="fragment" data-fragment-index="1" -->
+   ```
+   $ minikube ip
+   ```
+* Application should be exposed on the minikube IP at highlighted port <!-- .element: class="fragment" data-fragment-index="2" -->
+
+
 #### Networking Pods
 * Each Pod in k8s has its own IP<!-- .element: class="fragment" data-fragment-index="0" --> ![raw pod](img/k8s-raw-pod-ip.png "Raw Pod Networking") <!-- .element: class="img-right" -->
    + even on same node
@@ -72,6 +88,17 @@ service/cat-app exposed
 
 
 
+* Earlier we created a pod with label:<!-- .element: class="fragment" data-fragment-index="0" --> <code style="color:green;">name=cat-app</code>
+   <pre><code data-trim data-noescape>
+   kubectl run -n cats <mark>cat-app</mark>  --port=5000  \
+       --image=heytrav/cat-of-the-day:v1
+    </code></pre>
+* Then we created a service that maps request to the selector <!-- .element: class="fragment" data-fragment-index="1" --><code style="color:green;">name=cat-app</code>
+  <pre ><code data-trim data-noescape>
+  kubectl -n cats expose deployment <mark>cat-app</mark> --type=NodePort
+  </code></pre>
+
+
 #### Matching Services and Pods
 * Labels provide means for _services_ to route traffic to groups of pods
 * Services route traffic to Pods with certain label using _Selectors_ ![service-label-selector](img/k8s-service-label-selectors.png "Labels and Selectors") <!-- .element: class="img-right" -->
@@ -93,22 +120,6 @@ Expose port on each node in cluster
 #### ClusterIP Service
  Exposes the Service on an internal IP in the cluster 
  ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
-
-
-#### Query namespace
-* Query the _cats_ namespace
-   ```
-   $ kubectl -n cats get services
-   ```
-   <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
-    NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
-    service/cat-app   NodePort   10.107.94.1   &lt;none&gt;        5000:<mark>31355</mark>/TCP   18s
-   </code></pre>
-* Find IP of minikube host <!-- .element: class="fragment" data-fragment-index="1" -->
-   ```
-   $ minikube ip
-   ```
-* Application should be exposed on the minikube IP at highlighted port <!-- .element: class="fragment" data-fragment-index="2" -->
 
 
 #### Service Specification Files
