@@ -11,7 +11,7 @@
 
 
 
-#### Disadvantages of Monolith
+#### Disadvantages of Monolithic Apps
 * Tightly coupled code <!-- .element: class="fragment" data-fragment-index="0" -->
    + Smallest change still requires complete release
    + Small change can affect entire application

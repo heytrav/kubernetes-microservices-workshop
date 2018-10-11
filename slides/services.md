@@ -22,6 +22,30 @@
 
 
 
+#### The `expose` command
+<code>kubectl expose -h</code>
+* Creates a service
+* Takes the name (label) of a resource to use as a selector
+* Can assign a port on the host to route traffic to our pod
+
+
+
+##### Exercise: Expose our _Cat of the Day_ application
+* Need to create a service which
+  + is in _cats_ namespace
+  + uses name of _cat-app_ deployment as selector
+  + opens a port that is visible on our machine
+
+```
+$ kubectl -n cats expose deployment cat-app --type=NodePort
+```
+<!-- .element: class="fragment" data-fragment-index="0" font-size:13pt; -->
+```
+service/cat-app exposed
+```
+<!-- .element: class="fragment" data-fragment-index="1" font-size:13pt; -->
+
+
 #### Networking Pods
 * Each Pod in k8s has its own IP<!-- .element: class="fragment" data-fragment-index="0" --> ![raw pod](img/k8s-raw-pod-ip.png "Raw Pod Networking") <!-- .element: class="img-right" -->
    + even on same node
@@ -71,30 +95,6 @@ Expose port on each node in cluster
  ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
 
 
-#### The `expose` command
-<code>kubectl expose -h</code>
-* Creates a service
-* Takes the name (label) of a resource to use as a selector
-* Can assign a port on the host to route traffic to our pod
-
-
-
-##### Exercise: Expose our _Cat of the Day_ application
-* Need to create a service which
-  + is in _cats_ namespace
-  + uses name of _cat-app_ deployment as selector
-  + opens a port that is visible on our machine
-
-```
-$ kubectl -n cats expose deployment cat-app --type=NodePort
-```
-<!-- .element: class="fragment" data-fragment-index="0" font-size:13pt; -->
-```
-service/cat-app exposed
-```
-<!-- .element: class="fragment" data-fragment-index="1" font-size:13pt; -->
-
-
 #### Query namespace
 * Query the _cats_ namespace
    ```
@@ -113,7 +113,7 @@ service/cat-app exposed
 
 #### Service Specification Files
 * As we've seen, it is possible to expose a Pod with a Service using <!-- .element: class="fragment" data-fragment-index="0" -->`kubectl expose` command line
-* For complex applications, probably better to define Service Specificatiion files <!-- .element: class="fragment" data-fragment-index="1" -->
+* For complex applications, common to define <!-- .element: class="fragment" data-fragment-index="1" -->_service specification_ files 
 
 
 #### ClusterIP Spec File
