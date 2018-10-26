@@ -28,9 +28,6 @@
 * Part of the CNCF since 2016 
 
 
-#### Prometheus Architecture ![Prometheus architecture](img/prometheus-architecture.png "Prometheus Architecture") <!-- .slide: class="image-slide" -->
-
-
 
 #### Integrating Prometheus
 
@@ -53,6 +50,9 @@
     pod/alertmanager-main-2                    2/2     Running   0          1h
    ```
    <!-- .element: class="fragment" data-fragment-index="0" -->
+
+
+#### Prometheus Architecture ![Prometheus architecture](img/prometheus-architecture.png "Prometheus Architecture") <!-- .slide: class="image-slide" -->
 
 
 #### Monitoring

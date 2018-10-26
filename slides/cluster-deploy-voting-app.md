@@ -5,7 +5,10 @@
 #### Setting up the Voting Application
 * Have a look at kubernetes specs for the vote app
    ```
-   cd ~/example-voting-app/k8s-specifications
+   cd ~/example-voting-app
+   ```
+   ```
+   ls k8s-specifications
    ```
 * Folder contains specification files for 
    + Deployments
@@ -70,7 +73,7 @@ watch -t -n1 'echo Vote Pods \
 	result    NodePort    10.107.43.36     ...   5001:<mark>31001/TCP</mark>   3h
 	vote      NodePort    10.104.244.69    ...   5000:<mark>31000/TCP</mark>   3h
 </code></pre> <!-- .element: style="font-size:13pt;" -->
-* Go to the [voting app](http://voting:appl:31000). You may need to
+* Go to the [voting app](http://voting.appl:31000). You may need to
   change the port
 
 
