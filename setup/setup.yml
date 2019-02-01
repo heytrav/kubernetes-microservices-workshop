@@ -8,19 +8,16 @@
         repo: https://github.com/heytrav/k8s-ansible.git
         dest: "{{ lookup('env', 'HOME') }}/k8s-ansible"
 
-    - name: Set up scaleconf 2018 lessons
-      git:
-        version: master
-        repo: https://github.com/heytrav/kubernetes-microservices-workshop.git
-        dest: "{{ lookup('env', 'HOME') }}/kubernetes-microservices-workshop.git"
-
+- name: Install nodejs
+  hosts: localhost
+  become: true
+  roles:
+    - role: trainingpc-nodejs
 
 - name: Set up reveal presentation
   hosts: localhost
   tags: setup
-  roles:
-    - role: trainingpc-nodejs
-  post_tasks:
+  tasks:
 
     - name: Set up reveal presentation
       command: npm install
