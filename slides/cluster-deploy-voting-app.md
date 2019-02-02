@@ -21,7 +21,7 @@
 * Let's create a namespace for our application <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```
-$ kubeptl create namespace vote
+kubeptl create namespace vote
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
 ```
@@ -81,7 +81,7 @@ watch -t -n1 'echo Vote Pods \
 
 * Increase the number of replicas (pods) for the _vote_ service
    <pre class="fragment" data-fragment-index="0"><code data-trim data-noescape>
-      $ kubeptl -n vote <mark>scale deployment vote</mark> --replicas=9
+      kubeptl -n vote <mark>scale deployment vote</mark> --replicas=9
     </code></pre>
 * Keep an eye on <!-- .element: class="fragment" data-fragment-index="1" -->_watcher_ terminal 
 * Try varying number of replicas up and down<!-- .element: class="fragment" data-fragment-index="2" -->

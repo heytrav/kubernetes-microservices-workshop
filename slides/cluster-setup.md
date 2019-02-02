@@ -51,7 +51,7 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 #### Controlling Kubernetes Remotely
 * Start kubectl proxy locally <!-- .element: class="fragment" data-fragment-index="0" -->
    ```bash
-   $ kubectl --kubeconfig ~/k8s-admin.conf proxy
+   kubectl --kubeconfig ~/k8s-admin.conf proxy
    ```
    ```
    Starting to serve on 127.0.0.1:8001
@@ -73,7 +73,7 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 
 * Verify nodes
    ```bash
-   $ kubeptl get nodes
+   kubeptl get nodes
    NAME               STATUS    ROLES     AGE       VERSION
    trainingpc-master   Ready     master    26m       v1.10.2
    trainingpc-worker1  Ready     <none>    25m       v1.10.2
@@ -86,7 +86,7 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 
 ##### Exercise: Get JSON list of nodes with IPs
 ```
-$ kubeptl get nodes -o json | jq '.items[] | 
+kubeptl get nodes -o json | jq '.items[] | 
    {name: .metadata.name, ip: (.status.addresses[] 
             | select(.type == "InternalIP")) | .address }'
 ```

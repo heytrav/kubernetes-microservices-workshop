@@ -31,15 +31,15 @@
 
 #### Integrating Prometheus
 
-* Change directories to the prometheus operator repository
+* Change directories to the prometheus operator repository <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
    cd ~/prometheus-operator/contrib/kube-prometheus
    ```
-* Apply manifests
+* Apply manifests (do this twice) <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
    kubeptl create -f manifests/ || true
    ```
-* Check that things are up and running
+* Check that things are up and running <!-- .element: class="fragment" data-fragment-index="2" -->
    ```
    kubeptl -n monitoring get all
    ```
