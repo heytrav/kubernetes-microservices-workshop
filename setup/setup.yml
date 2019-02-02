@@ -8,6 +8,20 @@
         repo: https://github.com/heytrav/k8s-ansible.git
         dest: "{{ lookup('env', 'HOME') }}/k8s-ansible"
 
+    - name: Check out prometheus repository
+      git:
+        version: master
+        repo: https://github.com/coreos/prometheus-operator 
+        dest: "{{ lookup('env', 'HOME') }}/prometheus-operator"
+        force: true
+
+    - name: Check out voting app repository
+      git:
+        version: master
+        repo: https://github.com/docker/example-voting-app.git
+        dest: "{{ lookup('env', 'HOME') }}/example-voting-app"
+        force: true
+
 - name: Install nodejs
   hosts: localhost
   become: true

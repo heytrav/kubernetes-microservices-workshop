@@ -37,21 +37,15 @@ them anyway
 
 
 ### Setup Ansible
-* Check out the Catalyst Cloud Ansible repo: <!-- .element: class="fragment" data-fragment-index="0" -->
+* Create and activate a python virtual environment <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
-   git clone https://github.com/catalyst/catalystcloud-ansible.git
+   virtualenv -p /usr/bin/python3 ~/venv
+   source ~/venv/bin/activate
    ```
-   <!-- .element: style="font-size:12pt;" -->
-* Run the install script <!-- .element: class="fragment" data-fragment-index="1" -->
+* Install Ansible and some additional dependencies <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
-   cd catalystcloud-ansible
-   ./install-ansible.sh
-   . 
-   . <stuff happens>
-   .
-   source ansible-venv/bin/activate
+   pip install ansible openstacksdk shade
    ```
-   <!-- .element: style="font-size:12pt;"  -->
 * We'll be using this virtualenv for tasks throughout the course <!-- .element: class="fragment" data-fragment-index="2" -->
 * Might need to downgrade some libraries <!-- .element: class="fragment" data-fragment-index="3" -->
    ```
@@ -62,35 +56,37 @@ them anyway
 
 
 #### Course slides
-* The course slides are available as nodejs presentation
+* The course slides are available as nodejs presentation <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
-   $ git clone https://github.com/heytrav/kubernetes-microservices-workshop
-   $ cd ~/kubernetes-microservices-workshop/slides
+   git clone https://github.com/heytrav/kubernetes-microservices-workshop
    ```
    <!-- .element: style="font-size:12pt;"  -->
-* To run them you'll need to have a recent nodejs
-* Install nodejs and run the course slides
+* Run playbook to install nodejs and setup reveal presentation <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
-   npm install
+   cd ~/kubernetes-microservices-workshop/setup
+   ansible-galaxy install -f -r requirements.yml
+   ansible-playbook -K -i hosts setup.yml
+   ```
+* Run the course slides <!-- .element: class="fragment" data-fragment-index="2" -->
+   ```
+   cd ~/kubernetes-microservices-workshop/slides
    npm start
    ```
    <!-- .element: style="font-size:12pt;"  -->
-* This should open a browser with the slides for this workshop
+* This should open a browser with the slides for this workshop <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
-#### Checkout code for workshop
-* Checkout more resources needed for course
+#### Setup machine for workshop
+* Setup Ansible roles for project <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
-   git clone https://github.com/heytrav/k8s-ansible.git
+   cd ~/k8s-ansible
+   ansible-galaxy install -f -r requirements.yml
    ```
-   <!-- .element: style="font-size:13pt;"  -->
-* Run the `docker-install.yml` playbook
+* Run playbook to setup some configuration <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
-   $ cd k8s-ansible
-   $ ansible-galaxy install -f -r requirements.yml
-   $ ansible-playbook -i hosts docker-install.yml
+   ansible-playbook -i inventory/hosts k8s-workshop-setup.yml
    ```
-* This should install:
-   + Docker Community Edition
-   + `docker-compose`
-   + `minikube`
+* Run a second time to install dependencies <!-- .element: class="fragment" data-fragment-index="2" -->
+   ```
+   ansible-playbook -i inventory/training k8s-workshop-setup.yml -K
+   ```
