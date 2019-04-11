@@ -74,6 +74,9 @@
    ```
 * Now open [Grafana](http://127.0.0.1:3000) in your browser
 * User password `admin/admin` 
+* Try adding some dashboards:
+  - [cluster monitoring](https://grafana.com/dashboards/1621)
+  - [Kubernetes all nodes](https://grafana.com/dashboards/3131)
 
 
 #### Visualise the Alert Manager
