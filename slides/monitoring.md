@@ -78,15 +78,14 @@
   - [cluster monitoring](https://grafana.com/dashboards/1621)
   - [Kubernetes all nodes](https://grafana.com/dashboards/3131)
 
-
-#### Visualise the Alert Manager
+<!--#### Visualise the Alert Manager
 * Open up a new terminal
 * Set up port forwarding for the alert manager
    ```
    kubeptl -n monitoring port-forward  \
        svc/alertmanager-main 9093
    ```
-* No open the [alert manager](http://127.0.0.1:9093) in your browser
+* No open the [alert manager](http://127.0.0.1:9093) in your browser-->
 
 
 ##### Summary
