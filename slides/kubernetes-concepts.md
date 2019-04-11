@@ -79,8 +79,8 @@ Usage:
    + For example <!-- .element: class="fragment" data-fragment-index="1" -->[jq](https://stedolan.github.io/jq)
 * Get a JSON list of node names with corresponding IP <!-- .element: class="fragment" data-fragment-index="2" -->
 ```
-kubectl get nodes -o json | jq '.items[] | 
-   {name: .metadata.name, ip: (.status.addresses[] 
+kubectl get nodes -o json | jq '.items[] |  \
+   {name: .metadata.name, ip: (.status.addresses[]  \
             | select(.type == "InternalIP")) | .address }'
 ```
 <!-- .element: class="fragment" data-fragment-index="3" style="font-size:13pt;" -->

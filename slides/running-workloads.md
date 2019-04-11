@@ -55,6 +55,8 @@ that important. It is still good to be aware of the terminology
 * Let's run a <!-- .element: class="fragment" data-fragment-index="1" -->_ping_ command against Cloudflare's public DNS resolver
    ```
    kubectl run pingpong --image alpine ping 1.1.1.1
+   ```
+   ```
    deployment.apps "pingpong" created
    ```
 * So, what is happening? <!-- .element: class="fragment" data-fragment-index="3" -->
@@ -99,9 +101,9 @@ that important. It is still good to be aware of the terminology
 * In other words, a cronjob <!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```
-kubectl run pi --schedule="0/5 * * * ?" --image=perl 
-   --restart=OnFailure -- 
-       perl -Mbignum=bpi -wle 'print bpi(2000)'
+kubectl run pi --schedule="0/5 * * * ?" --image=perl \
+   --restart=OnFailure --  \
+       perl -Mbignum=bpi -wle 'print bpi(2000)'  
 ```
 <!-- .element: class="fragment" data-fragment-index="3" -->
 

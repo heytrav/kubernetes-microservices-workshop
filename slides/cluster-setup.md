@@ -86,8 +86,8 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 
 ##### Exercise: Get JSON list of nodes with IPs
 ```
-kubeptl get nodes -o json | jq '.items[] | 
-   {name: .metadata.name, ip: (.status.addresses[] 
+kubeptl get nodes -o json | jq '.items[] |  \
+   {name: .metadata.name, ip: (.status.addresses[] \
             | select(.type == "InternalIP")) | .address }'
 ```
 <!-- .element: class="fragment" data-fragment-index="0" style="font-size:13pt;" -->

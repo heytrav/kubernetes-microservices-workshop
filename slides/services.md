@@ -6,10 +6,9 @@
 * A small Python Flask application
 * At the moment there is no way to reach it
    ```
-   $ kubectl -n cats get pods -o json | 
-        jq '.items[] | 
-         {name: .metadata.name, 
-           podIP: .status.podIP }'
+   $ kubectl -n cats get pods -o json |  \
+        jq '.items[] |  \
+         {name: .metadata.name, podIP: .status.podIP }'
    ```
    ```
    {
