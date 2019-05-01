@@ -33,7 +33,7 @@
 
 * Change directories to the prometheus operator repository <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
-   cd ~/prometheus-operator/contrib/kube-prometheus
+   cd ~/kube-prometheus
    ```
 * Apply manifests (do this twice) <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
