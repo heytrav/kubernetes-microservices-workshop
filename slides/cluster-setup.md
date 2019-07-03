@@ -2,70 +2,68 @@
 
 
 #### Setup a Kubernetes cluster
-* Steps needed:
-   + Create host machines in the cloud
-   + Set up networking
-   + Install Kubernetes dependencies
-      - kubectl
-      - kubeadm
-      - kubelet
-   + Join nodes to master
+* Alternative ways to create a cluster
+  - Catalyst Cloud Open Stack Console
+  - `openstack` command line client
+* We'll use the client
 
 
-#### Bootstrapping a Cluster
-* Setting up a Kubernetes cluster by hand is complicated
-* Tools available to make this easier
-   + Magnum
-   + Google Kubernetes Environment
-* Create an Ansible inventory file for your cluster
 
-<!--
-#### Setup
-* Set `USERNAME` environment variable
+#### OpenStack Command Line 
+* OpenStack provides a command line interface
+* `openstack` command line script written in Python
+* Installed on your machines in a virtual environment
+  ```
+  /home/train/venv
+  ```
+* Everything should be setup
+
+
+#### Interacting with Catalyst Cloud
+* Try out the command line client
+* Query existing templates
    ```
-   export USERNAME=?
+   openstack coe cluster template list
    ```
-   + Something unique
-   + i.e.  Docker Hub username or `$(hostname)`
-   + Add this to `~/.bashrc`
-* Follow [instructions](https://github.com/heytrav/k8s-ansible) for
-  configuring Ansible
-
--->
-
-
-
-#### Create Kubernetes Cluster
-
-```bash
-$ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
-```
-<!-- .element: style="font-size:12pt;"  -->
-* This playbook should do the following
-  + Set up a cluster in OpenStack
-  + Install Docker and Kubernetes libraries on servers
-  + Initialise the _master_ node with `kubeadm`
-  + Join worker nodes to cluster
+   <pre style="font-size:8pt;"><code data-notrim data-noescape>
+   +--------------------------------------+----------------------------------+
+   | uuid                                 | name                             |
+   +--------------------------------------+----------------------------------+
+   | 9c6e9df7-955a-465e-8460-e84e386624a0 | kubernetes-v1.11.6-prod-20190130 |
+   | 4fcb04bd-22ba-4e1c-ab21-ff0339051d15 | kubernetes-v1.11.6-dev-20190130  |
+   | b1d124db-b7cc-4085-8e56-859a0a7796e6 | kubernetes-v1.11.9-dev-20190402  |
+   | cf337c0a-86e6-45de-9985-17914e78f181 | kubernetes-v1.11.9-prod-20190402 |
+   | 967a2b86-8709-4c07-ae89-c0fe6d69d62d | kubernetes-v1.12.7-dev-20190403  |
+   | f8fc0c67-84af-4bb8-89fb-d29f4c926975 | kubernetes-v1.12.7-prod-20190403 |
+   +--------------------------------------+----------------------------------+
+   </code></pre>
 
 
-#### Controlling Kubernetes Remotely
-* Start kubectl proxy locally <!-- .element: class="fragment" data-fragment-index="0" -->
-   ```bash
-   kubectl --kubeconfig ~/k8s-admin.conf proxy
+#### Creating a cluster
+* Creating a cluster is easy, but it takes a while (~10 to 15 min)
+* One has been created for you already
+* Query information about your cluster
+   ```
+   openstack coe cluster show  -f json $PREFIX-k8s-test \
+      | jq '{"name": .name, "status": .health_status}'
    ```
    ```
-   Starting to serve on 127.0.0.1:8001
+    {
+    "name": "trainpc-01-k8s-test",
+    "status": "HEALTHY"
+    }
    ```
-   <!-- .element: class="fragment" data-fragment-index="1" -->
-* Put this terminal aside and open a new one <!-- .element: class="fragment" data-fragment-index="2" -->
-* All <!-- .element: class="fragment" data-fragment-index="3" -->`kubectl` calls must override server location
+
+
+#### Interacting with your cluster
+* As with minikube, you'll use `kubectl`
+* Tell `kubectl` to talk to your new cluster
    ```
-   kubectl --server=127.0.0.1:8001 ...
+   kubectl config use-context cloud-k8s
    ```
-   + There is an alias defined in your .bashrc file:
-   ```
-   alias kubeptl="kubectl --server=127.0.0.1:8001"
-   ```
+* This tells `kubectl` to use the config for your cluster in Catalyst Cloud
+  instead of the default one for minikube
+* `kubectl` can easily switch between different clusters or *contexts*
 
 
 
@@ -73,11 +71,13 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 
 * Verify nodes
    ```bash
-   kubeptl get nodes
+   kubectl get nodes
+   ```
+   ```
    NAME               STATUS    ROLES     AGE       VERSION
-   trainingpc-master   Ready     master    26m       v1.10.2
-   trainingpc-worker1  Ready     <none>    25m       v1.10.2
-   trainingpc-worker2  Ready     <none>    25m       v1.10.2
+   trainpc-01-ivqn7i4nh66e-master-0   Ready    master   3h41m   v1.12.7
+   trainpc-01-ivqn7i4nh66e-minion-0   Ready    <none>   3h41m   v1.12.7
+   trainpc-01-ivqn7i4nh66e-minion-1   Ready    <none>   3h41m   v1.12.7
    ```
    <!-- .element: class="fragment" data-fragment-index="0" style="font-size:12pt;"-->
 
@@ -86,7 +86,7 @@ $ ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
 
 ##### Exercise: Get JSON list of nodes with IPs
 ```
-kubeptl get nodes -o json | jq '.items[] |  {name: .metadata.name, ip: (.status.addresses[] | select(.type == "InternalIP")) | .address }'
+kubectl get nodes -o json | jq '.items[] |  {name: .metadata.name, ip: (.status.addresses[] | select(.type == "InternalIP")) | .address }'
 ```
 <!-- .element: class="fragment" data-fragment-index="0" style="font-size:10pt;" -->
 
@@ -94,5 +94,5 @@ kubeptl get nodes -o json | jq '.items[] |  {name: .metadata.name, ip: (.status.
 
 #### Summary
 * We each have a functioning Kubernetes cluster
+* Can use `kubectl` to maintain multiple clusters
 * Set up the control plane
-* In the next section we'll deploy code to it
