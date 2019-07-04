@@ -13,9 +13,7 @@
 * OpenStack provides a command line interface
 * `openstack` command line script written in Python
 * Installed on your machines in a virtual environment
-  ```
-  /home/train/venv
-  ```
+   - should see `venv` in your command prompt
 * Everything should be setup
 
 
@@ -39,32 +37,48 @@
    </code></pre>
 
 
-#### Creating a cluster
+#### Accessing your cluster
 * Creating a cluster is easy, but it takes a while (~10 to 15 min)
 * One has been created for you already
 * Query information about your cluster
    ```
-   openstack coe cluster show  -f json $PREFIX-k8s-test \
+   openstack coe cluster show  -f json $PREFIX-k8s \
       | jq '{"name": .name, "status": .health_status}'
    ```
    ```
     {
-    "name": "trainpc-01-k8s-test",
+    "name": "trainpc-01-k8s",
     "status": "HEALTHY"
     }
    ```
 
+Note:
+To set up the cluster run the following: 
+```
+create-cluster
+```
+Wait for the cluster to build by checking 
+```
+openstack coe cluster show -f json $PREFIX-k8s
+```
+Once the cluster is running, fetch the kube config file
+```
+setup-kubeconfig
+```
+
 
 #### Interacting with your cluster
-* As with minikube, you'll use `kubectl`
-* Tell `kubectl` to talk to your new cluster
+* <!-- .element: class="fragment" data-fragment-index="0" -->As with minikube, you'll use `kubectl`
+* <!-- .element: class="fragment" data-fragment-index="1" -->First we must configure `kubectl` to talk to our new cluster
+* <!-- .element: class="fragment" data-fragment-index="2" -->`kubectl` can easily switch between different clusters or *contexts*
    ```
-   kubectl config use-context cloud-k8s
+   kubectl config use-context minikube
+   kubectl get nodes
    ```
-* This tells `kubectl` to use the config for your cluster in Catalyst Cloud
-  instead of the default one for minikube
-* `kubectl` can easily switch between different clusters or *contexts*
-
+* <!-- .element: class="fragment" data-fragment-index="3" -->Point it at the new cluster 
+   ```
+   kubectl config use-context default
+   ```
 
 
 ##### Exercise: Verify Kubernetes Cluster
