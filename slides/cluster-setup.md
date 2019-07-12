@@ -3,9 +3,10 @@
 
 #### Setup a Kubernetes cluster
 * Alternative ways to create a cluster
-  - Catalyst Cloud Open Stack Console
-  - `openstack` command line client
-* We'll use the client
+  - Cloud Infra Consoles
+    * [AWS EKS](https://aws.amazon.com/eks)
+    * [Catalyst Cloud](https://dashboard.cloud.catalyst.net.nz/project/clusters)
+  - Command line clients
 
 
 

@@ -104,10 +104,17 @@ service/cat-app exposed
 
 
 #### Service types
-* _NodePort_
-   - Expose port on each node in cluster
 * _ClusterIP_
    - Exposes the Service on an internal IP in the cluster
+* _NodePort_
+   - Expose port on each node in cluster
+* _LoadBalancer_
+   - Expose workload through single public IP
+
+
+#### ClusterIP Service
+ Exposes the Service on an internal IP in the cluster 
+ ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
 
 
 #### NodePort Service
@@ -115,10 +122,10 @@ Expose port on each node in cluster
  ![nodeport-service](img/k8s-nodeport-service.png "NodePort")
 
 
-
-#### ClusterIP Service
- Exposes the Service on an internal IP in the cluster 
- ![clusterip-service](img/k8s-cluster-ip-port-service.hml.png "ClusterIP")
+#### LoadBalancer Service
+Use load balancer to route traffic to service
+ ![loadbalancer-service](img/k8s-loadbalancer-service.png "NodePort")
+ 
 
 
 #### Service Specification Files
@@ -167,8 +174,6 @@ spec:
 
 
 ##### Other Service Types
-* _LoadBalancer_
-   - Creates LB on cloud (if supported)
 * _ExternalName_ 
    - Expose service using name by returning CNAME
 
