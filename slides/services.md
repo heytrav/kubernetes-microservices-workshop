@@ -124,7 +124,7 @@ Expose port on each node in cluster
 
 #### LoadBalancer Service
 Use load balancer to route traffic to service
- ![loadbalancer-service](img/k8s-loadbalancer-service.png "NodePort")
+ ![loadbalancer-service](img/k8s-loadbalancer-service.png "LoadBalancer")
  
 
 

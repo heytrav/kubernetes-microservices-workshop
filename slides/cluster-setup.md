@@ -1,13 +1,15 @@
-### Kubernetes Cluster
+### Deploy a Kubernetes Cluster
 
 
 #### Setup a Kubernetes cluster
 * Alternative ways to create a cluster
   - Cloud Infra Consoles
+    * [GKE](https://cloud.google.com/kubernetes-engine/)
     * [AWS EKS](https://aws.amazon.com/eks)
     * [Catalyst Cloud](https://dashboard.cloud.catalyst.net.nz/project/clusters)
   - Command line clients
-
+* We will be using Catalyst Cloud
+  - based on OpenStack
 
 
 #### OpenStack Command Line 
@@ -101,7 +103,8 @@ setup-kubeconfig
 
 ##### Exercise: Get JSON list of nodes with IPs
 ```
-kubectl get nodes -o json | jq '.items[] |  {name: .metadata.name, ip: (.status.addresses[] | select(.type == "InternalIP")) | .address }'
+kubectl get nodes -o json | \
+   jq '.items[] |  {name: .metadata.name, ip: (.status.addresses[] | select(.type == "ExternalIP")) | .address }'
 ```
 <!-- .element: class="fragment" data-fragment-index="0" style="font-size:10pt;" -->
 

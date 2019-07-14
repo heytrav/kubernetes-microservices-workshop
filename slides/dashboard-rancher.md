@@ -1,11 +1,21 @@
 ### Management Dashboard
 
 
+#### Management Dashboards
+* <!-- .element: class="fragment" data-fragment-index="0" -->Kubernetes has many moving parts
+   - Services
+   - Workloads
+* <!-- .element: class="fragment" data-fragment-index="1" -->Using `kubectl` to control and track everything not practical
+* <!-- .element: class="fragment" data-fragment-index="2" -->Dashboards useful for managing as well as monitoring your cluster
+
+
+
 #### Dashboard options
 * Standard Kubernetes dashboard
    - As seen with `minikube dashboard`
-   - Follow the [setup instructions](https://docs.catalystcloud.nz/kubernetes/quickstart.html#accessing-the-kubernetes-dashboard)
-* RancherOS Kubernetes Dashboard
+   - Can setup using [instructions](https://docs.catalystcloud.nz/kubernetes/quickstart.html#accessing-the-kubernetes-dashboard) in Catalyst Cloud documentation
+* Third party alternatives
+  - RancherOS Kubernetes Dashboard
 
 
 #### RancherOS dashboard
@@ -18,43 +28,55 @@
 
 
 #### Access the RancherOS dashboard
-* Navigate to the management interface
+* <!-- .element: class="fragment" data-fragment-index="0" -->Open the management interface
  ```
  open-rancher
  ```
-* Should open up a tab in firefox
-* You'll need to set an admin password and confirm the page url
+* <!-- .element: class="fragment" data-fragment-index="1" -->Click through the security warning
+* <!-- .element: class="fragment" data-fragment-index="2" -->You'll need to set an admin password and confirm the page url
+   - just use *admin* or something simple
+* <!-- .element: class="fragment" data-fragment-index="3" -->Confirm the IP address
+   - just click *Save URL*
 
-
-
-#### Add authentication
-##### Demo
-* Click on the *Security* tab
-* Let's set up an authentication backend using GitHub
-* Note that you will need to be able to log in to GitHub
-* Follow directions in interface to add a cluster
 
 
 #### Add Kubernetes Cluster
 * Click on *Clusters* and _Add_ a cluster
-* Click on *Import existing cluster* on the right
-* Select a name, can be anything you want
+* Click on **Import** button on the right under  *Import existing cluster* 
+* Enter a name in the *Cluster Name* field
+  - i.e. *sandbox*
 * Click *create*
 
 
 #### Add Kubernetes Cluster
-* Copy *curl* command at the bottom
-* Paste and execute in your terminal
-* Click *Done* and select your new cluster from the list
-* It will take a few seconds/minutes to register with the dashboard
+* <!-- .element: class="fragment" data-fragment-index="0" -->Copy the command in the box with:
+   ```
+   curl --insecure -sfL ...
+   ```
+* <!-- .element: class="fragment" data-fragment-index="1" -->Paste and execute into your terminal
+* <!-- .element: class="fragment" data-fragment-index="2" -->Click *Done* and select your new cluster from the list
+* <!-- .element: class="fragment" data-fragment-index="3" -->In the following screen select your cluster 
+* <!-- .element: class="fragment" data-fragment-index="4" -->It will take a few seconds/minutes to register with the dashboard
+
+
+#### The RancherOS dashboard
+* <!-- .element: class="fragment" data-fragment-index="0" -->Provides a main *Cluster* screen with some basic monitoring data (CPU,
+  Memory, Pods)
+* <!-- .element: class="fragment" data-fragment-index="1" -->We can also manage our cluster here; for example
+   - setup authentication (OAuth, LDAP, etc.)
+   - create namespaces
+   - scale deployments
+   - drain nodes
+* <!-- .element: class="fragment" data-fragment-index="2" -->We will explore some of the features as we deploy our app in upcoming
+  section
 
 
 #### Add monitoring to our cluster
-* In the top menu, select _Tools_ and  _Monitoring_
-* Just scroll to bottom and click _Enable Monitoring_
-* Navigate back to your main cluster dashboard
-* Monitoring should be available in a couple minutes
-* Initially there won't be much to see so we'll check back later
+* <!-- .element: class="fragment" data-fragment-index="0" -->In the top menu, select _Tools_ and  _Monitoring_
+* <!-- .element: class="fragment" data-fragment-index="1" -->Just scroll to bottom and click _Enable Monitoring_
+* <!-- .element: class="fragment" data-fragment-index="2" -->Navigate back to your main cluster dashboard
+* <!-- .element: class="fragment" data-fragment-index="3" -->Monitoring should be available in a couple minutes
+* <!-- .element: class="fragment" data-fragment-index="4" -->Initially there won't be much to see so we'll check back later
 
 
 #### Explore dashboard
