@@ -2,21 +2,20 @@
 
 
 #### Routing Traffic to Pods
-* We just started a _Cat of the Day_ web application
+* We just started a _Cat of the Day_ web application <!-- .element: class="stretch"  -->
 * A small Python Flask application
 * At the moment there is no way to reach it
    ```
-   $ kubectl -n cats get pods -o json |  \
-        jq '.items[] |  \
-         {name: .metadata.name, podIP: .status.podIP }'
+   kubectl -n cats get pods -o json | jq '.items[] | {name: .metadata.name, podIP: .status.podIP }'
    ```
+   <!-- .element: style="font-size: 9pt;"  -->
+* <!-- .element: class="fragment" data-fragment-index="0" -->Response
    ```
    {
      "name": "cat-app-b848f798f-clrvd",
      "podIP": "172.17.0.5"
    }
    ```
-   <!-- .element: style="font-size:13pt;" class="fragment" data-fragment-index="0"  -->
 * The <!-- .element: class="fragment" data-fragment-index="1" -->_podIP_ is not reachable
 
 
@@ -87,9 +86,10 @@ service/cat-app exposed
 
 
 
+#### Labels & Selectors
 * Earlier we created a pod with label:<!-- .element: class="fragment" data-fragment-index="0" --> <code style="color:green;">name=cat-app</code>
    <pre><code data-trim data-noescape>
-   kubectl run -n cats <mark>cat-app</mark>  --port=5000  \
+   kubectl run --generator=run-pod/v1 -n cats <mark>cat-app</mark>  --port=5000  \
        --image=heytrav/cat-of-the-day:v1
     </code></pre>
 * Then we created a service that maps request to the selector <!-- .element: class="fragment" data-fragment-index="1" --><code style="color:green;">name=cat-app</code>
@@ -171,11 +171,6 @@ spec:
   selector:
     app: app</code></pre>
 
-
-
-##### Other Service Types
-* _ExternalName_ 
-   - Expose service using name by returning CNAME
 
 
 ### Connecting an Application

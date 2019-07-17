@@ -2,15 +2,15 @@
 
 
 #### Running Containerised Workloads
-<code style="font-size:16pt;">kubectl run </code><code style="color:red;font-size:16pt;">name </code><code style="color:red;font-size:16pt;">--image=IMAGE:TAG</code><code style="color:green;font-size:16pt;"> OPTIONS</code>
+<code style="font-size:16pt;">kubectl create </code><code style="color:blue;font-size:16pt;"> deployment </code><code style="color:red;font-size:16pt;">name </code><code style="color:red;font-size:16pt;">--image=IMAGE:TAG</code><code style="color:green;font-size:16pt;"> OPTIONS</code>
 * Create and run jobs in Kubernetes
 * Example<!-- .element: class="fragment" data-fragment-index="0" -->:
    ```
-   $ kubectl run nginx --image=nginx 
+   kubectl create deployment nginx --image=nginx
    ```
 * Use get command to find out about container <!-- .element: class="fragment" data-fragment-index="1" -->
    ```
-   $ kubectl get containers
+   kubectl get containers
    ```
    ```
    error: the server doesn't have a resource type "container"
@@ -54,7 +54,7 @@ that important. It is still good to be aware of the terminology
 #### Running a Pod
 * Let's run a <!-- .element: class="fragment" data-fragment-index="1" -->_ping_ command against Cloudflare's public DNS resolver
    ```
-   kubectl run pingpong --image alpine ping 1.1.1.1
+   kubectl run pingpong --generator=run-pod/v1  --image alpine ping 1.1.1.1
    ```
    ```
    deployment.apps "pingpong" created
@@ -101,7 +101,7 @@ that important. It is still good to be aware of the terminology
 * In other words, a cronjob <!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```
-kubectl run pi --schedule="0/5 * * * ?" --image=perl --restart=OnFailure --  perl -Mbignum=bpi -wle 'print bpi(2000)'  
+kubectl run pi --generator=run-pod/v1 --schedule="0/5 * * * ?" --image=perl --restart=OnFailure --  perl -Mbignum=bpi -wle 'print bpi(2000)'  
 ```
 <!-- .element: class="fragment" data-fragment-index="3" style="font-size:10pt;" -->
 

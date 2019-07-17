@@ -5,7 +5,8 @@
 * <!-- .element: class="fragment" data-fragment-index="0" -->Kubernetes has many moving parts
    - Services
    - Workloads
-* <!-- .element: class="fragment" data-fragment-index="1" -->Using `kubectl` to control and track everything not practical
+* <!-- .element: class="fragment" data-fragment-index="1" -->Lots of commands
+  to remember for `kubectl`
 * <!-- .element: class="fragment" data-fragment-index="2" -->Dashboards useful for managing as well as monitoring your cluster
 
 

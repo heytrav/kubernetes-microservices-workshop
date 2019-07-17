@@ -12,10 +12,11 @@
    $ kubectl get namespace
    ```
    ```bash
-    NAME          STATUS    AGE
-    default       Active    16m
-    kube-public   Active    16m
-    kube-system   Active    16m
+    NAME              STATUS   AGE
+    default           Active   8m44s
+    kube-node-lease   Active   8m47s
+    kube-public       Active   8m47s
+    kube-system       Active   8m47s
    ```
    <!-- .element: class="fragment" data-fragment-index="0" -->
 
@@ -28,6 +29,8 @@
   + kube-public
     - Reserved for cluster usage for resources that should be visible
       throughout cluster
+  + kube-node-lease
+    - Added in 1.14; a new way to implement node heartbeats
   + kube-system
     - Reserved for Kubernetes control 
 
@@ -87,7 +90,7 @@
 ##### Create application in namespace
 * Let's spin up an application in our new namespace
    ```
-   kubectl run -n cats cat-app  --port=5000  \
+   kubectl run --generator=run-pod/v1 -n cats cat-app  --port=5000  \
        --image=heytrav/cat-of-the-day:v1
    ```
 * Query state of pod/deployments in <!-- .element: class="fragment" data-fragment-index="0" -->_cats_ namespace

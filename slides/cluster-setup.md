@@ -45,9 +45,10 @@
 * One has been created for you already
 * Query information about your cluster
    ```
-   openstack coe cluster show  -f json $PREFIX-k8s \
-      | jq '{"name": .name, "status": .health_status}'
+   openstack coe cluster show  -f json $PREFIX-k8s | jq '{"name": .name, "status": .health_status}'
    ```
+   <!-- .element: style="font-size:9pt;"  -->
+* <!-- .element: class="fragment" data-fragment-index="0" -->Response
    ```
     {
     "name": "trainpc-01-k8s",
@@ -103,10 +104,9 @@ setup-kubeconfig
 
 ##### Exercise: Get JSON list of nodes with IPs
 ```
-kubectl get nodes -o json | \
-   jq '.items[] |  {name: .metadata.name, ip: (.status.addresses[] | select(.type == "ExternalIP")) | .address }'
+kubectl get nodes -o json | jq '.items[] |  {name: .metadata.name, ip: (.status.addresses[] | select(.type == "ExternalIP")) | .address }' 
 ```
-<!-- .element: class="fragment" data-fragment-index="0" style="font-size:10pt;" -->
+<!-- .element: class="fragment" data-fragment-index="0" style="font-size:9pt;" -->
 
 
 
