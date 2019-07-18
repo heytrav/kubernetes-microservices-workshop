@@ -116,7 +116,15 @@
   ```
    kubectl -n cats expose deployment cat-app --type=LoadBalancer --port=80 --target-port=5000
   ```
-* <!-- .element: class="fragment" data-fragment-index="4" -->Watch available services to get IP
+
+
+##### Exercise: LoadBalanced application
+* Watch available services to get IP
    ```
    kubectl -n cats get svc -w
    ```
+   ```
+   NAME      TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE
+cat-app   LoadBalancer   10.100.25.215   10.100.25.215   80:30621/TCP   114m
+   ```
+* Go to web application by putting the IP under EXTERNAL-IP in your browser

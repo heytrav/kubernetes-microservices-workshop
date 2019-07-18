@@ -86,9 +86,8 @@ complicated scenarious we would use files to manage this
 
 #### Exercise: Update _Cat of the Day_
 * Update the _cat-app_ application
-   <pre class="fragment" data-fragment-index="0"><code data-trim data-noescape>
-   kubectl -n cats <mark>set image</mark> deployment/cat-app \
-            cat-app=heytrav/cat-of-the-day:v2
+   <pre class="fragment" data-fragment-index="0" style="font-size:10pt;"><code data-trim data-noescape>
+kubectl -n cats set image deployment cat-app cat-of-the-day=heytrav/cat-of-the-day:v2
   </code></pre>
 * Refresh the website periodically <!-- .element: class="fragment" data-fragment-index="1" -->
 
