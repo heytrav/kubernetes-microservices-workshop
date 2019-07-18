@@ -30,12 +30,10 @@
    minikube start
    ```
 * This will configure `~/.kube/config` to speak to local cluster
-* Download `kubectl` 
-   + Instructions in output of previous command
-  ```
 * Make sure we are using minikube's config
   ```
   kubectl config use-context minikube
+  ```
 
 
 #### Your Minikube Cluster
@@ -47,17 +45,12 @@
 
 
 #### Interacting with minikube
-* Find  ip of cluster
+* General usage instructions
    ```
-   minikube ip
+   minikube help
    ```
-* Use `kubectl` to control a minikube cluster
-Note: As with any kubernetes cluster
-
-
-
-#### Minikube Dashboard
-* To view the minikube dashboard
+* Open the minikube dashboard
    ```
    minikube dashboard
    ```
+   - will open a tab in your browser

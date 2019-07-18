@@ -1,18 +1,17 @@
 ### Services
 
 
-#### Routing Traffic to Pods
-* We just started a _Cat of the Day_ web application <!-- .element: class="stretch"  -->
-* A small Python Flask application
+#### Routing traffic to pods
+* Earlier we started an nginx pod
 * At the moment there is no way to reach it
    ```
-   kubectl -n cats get pods -o json | jq '.items[] | {name: .metadata.name, podIP: .status.podIP }'
+   kubectl get pods -o json | jq '.items[] | {name: .metadata.name, podIP: .status.podIP }'
    ```
    <!-- .element: style="font-size: 9pt;"  -->
 * <!-- .element: class="fragment" data-fragment-index="0" -->Response
    ```
    {
-     "name": "cat-app-b848f798f-clrvd",
+     "name": "nginx-b848f798f-clrvd",
      "podIP": "172.17.0.5"
    }
    ```
@@ -28,32 +27,34 @@
 
 
 
-##### Exercise: Expose our _Cat of the Day_ application
+##### Exercise: Expose nginx workload
 * Need to create a service which
-  + is in _cats_ namespace
-  + uses name of _cat-app_ deployment as selector
+  + uses name of _nginx_ deployment as selector
+  + maps requests to port on nginx pod (port 80)
   + opens a port that is visible on our machine
 
 ```
-$ kubectl -n cats expose deployment cat-app --type=NodePort
+$ kubectl expose deployment nginx --type=NodePort --port=80
 ```
 <!-- .element: class="fragment" data-fragment-index="0" font-size:13pt; -->
 ```
-service/cat-app exposed
+service/nginx exposed
 ```
 <!-- .element: class="fragment" data-fragment-index="1" font-size:13pt; -->
 
 
-#### Query namespace
-* Query the _cats_ namespace
+#### Get list of available services
+* Get list of services
    ```
-   $ kubectl -n cats get services
+   $ kubectl get services
    ```
    <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
-    NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
-    service/cat-app   NodePort   10.107.94.1   &lt;none&gt;        5000:<mark>31355</mark>/TCP   18s
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes   ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP        106m
+nginx        NodePort    10.110.58.243   &lt;none&gt;        80:<mark>31812</mark>/TCP   65m
    </code></pre>
-* Find IP of minikube host <!-- .element: class="fragment" data-fragment-index="1" -->
+* <!-- .element: class="fragment" data-fragment-index="1" -->Note the port that is displayed for the service (will vary)
+* Find IP of minikube host <!-- .element: class="fragment" data-fragment-index="2" -->
    ```
    $ minikube ip
    ```
@@ -87,14 +88,13 @@ service/cat-app exposed
 
 
 #### Labels & Selectors
-* Earlier we created a pod with label:<!-- .element: class="fragment" data-fragment-index="0" --> <code style="color:green;">name=cat-app</code>
+* Earlier we created a pod with label:<!-- .element: class="fragment" data-fragment-index="0" --> <code style="color:green;">name=nginx</code>
    <pre><code data-trim data-noescape>
-   kubectl run --generator=run-pod/v1 -n cats <mark>cat-app</mark>  --port=5000  \
-       --image=heytrav/cat-of-the-day:v1
+   kubectl create deployment <mark>nginx</mark> --image=nginx
     </code></pre>
-* Then we created a service that maps request to the selector <!-- .element: class="fragment" data-fragment-index="1" --><code style="color:green;">name=cat-app</code>
+* Then we created a service that maps requests to the selector <!-- .element: class="fragment" data-fragment-index="1" --><code style="color:green;">name=nginx</code>
   <pre ><code data-trim data-noescape>
-  kubectl -n cats expose deployment <mark>cat-app</mark> --type=NodePort
+  kubectl expose deployment <mark>cat-app</mark> --type=NodePort
   </code></pre>
 
 
@@ -129,8 +129,9 @@ Use load balancer to route traffic to service
 
 
 #### Service Specification Files
-* As we've seen, it is possible to expose a Pod with a Service using <!-- .element: class="fragment" data-fragment-index="0" -->`kubectl expose` command line
-* For complex applications, common to define <!-- .element: class="fragment" data-fragment-index="1" -->_service specification_ files 
+* It is possible to expose a Pod with a Service using <!-- .element: class="fragment" data-fragment-index="0" -->`kubectl expose` command line
+* For most applications, common to define <!-- .element: class="fragment" data-fragment-index="1" -->_service specification_ files 
+* <!-- .element: class="fragment" data-fragment-index="2" -->A YAML or JSON file that defines a service
 
 
 #### ClusterIP Spec File
@@ -173,7 +174,50 @@ spec:
 
 
 
-### Connecting an Application
+##### Exercise: View service spec
+* <!-- .element: class="fragment" data-fragment-index="0" -->The kubectl
+  `get` command can be used to get spec for a service or other objects
+* <!-- .element: class="fragment" data-fragment-index="1" -->Use it to view specification for nginx service
+   <pre class="fragment" data-fragment-index="2"><code data-trim data-noescape>
+   kubectl get svc nginx -o yaml
+</code></pre>
+* <!-- .element: class="fragment" data-fragment-index="3" -->Output spec to a file
+   <pre><code data-trim data-noescape>
+   kubectl get svc nginx -o yaml > nginx-service.yml
+</code></pre>
+
+
+
+##### Exercise: Create service using spec file
+* The spec file generated earlier can be used to create a service
+* <!-- .element: class="fragment" data-fragment-index="0" -->Delete the
+  *nginx* service
+  ```
+  kubectl delete svc nginx
+  ```
+* <!-- .element: class="fragment" data-fragment-index="1" -->Create service using file
+   ```
+   kubectl create -f nginx-service.yml
+   ```
+* <!-- .element: class="fragment" data-fragment-index="2" -->Check that the
+  service is up and the site is funtional
+  ```
+  kubectl get svc
+  ```
+
+
+##### Exercise: Edit a spec inline
+* It's also possible to edit a spec inline 
+   ```
+   kubectl edit service nginx
+   ```
+* <!-- .element: class="fragment" data-fragment-index="0" -->This will open up an editor (eg. vim) so you can edit the service
+* <!-- .element: class="fragment" data-fragment-index="1" -->Try raising the value for the NodePort
+  - Port must be between 30000 and 32767
+
+
+
+#### Connecting an Application
 * Functioning application depends on![kubernetes interaction](img/kubernetes-user-interaction.svg "Kubernetes Architecture") <!-- .element: class="img-right" style="width:50%;" -->
    + Deployment
    + Pods

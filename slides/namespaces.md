@@ -90,15 +90,33 @@
 ##### Create application in namespace
 * Let's spin up an application in our new namespace
    ```
-   kubectl run --generator=run-pod/v1 -n cats cat-app  --port=5000  \
-       --image=heytrav/cat-of-the-day:v1
+   kubectl -n cats create deployment cat-app --image=heytrav/cat-of-the-day:v1
    ```
+   <!-- .element: style="font-size:11pt;"  -->
 * Query state of pod/deployments in <!-- .element: class="fragment" data-fragment-index="0" -->_cats_ namespace
    ```
-   kubectl -n cats get pods
+   kubectl -n cats get all
    ```
    ```
    NAME                      READY     STATUS    RESTARTS   AGE
    cat-app-b848f798f-clrvd   1/1       Running   0          2h
    ```
    <!-- .element: class="fragment" data-fragment-index="1" style="font-size:13pt;" -->
+
+
+
+##### Expose our new application
+* <!-- .element: class="fragment" data-fragment-index="0" -->As with nginx example, we need a service to route requests to the pods
+* <!-- .element: class="fragment" data-fragment-index="1" -->Let's create a **LoadBalancer** service to serve on port 80 of our host
+* <!-- .element: class="fragment" data-fragment-index="2" -->First we need minikube to open a tunnel
+  ```
+  minikube tunnel
+  ```
+* <!-- .element: class="fragment" data-fragment-index="3" -->Next we create a LoadBalancer service
+  ```
+   kubectl -n cats expose deployment cat-app --type=LoadBalancer --port=80 --target-port=5000
+  ```
+* <!-- .element: class="fragment" data-fragment-index="4" -->Watch available services to get IP
+   ```
+   kubectl -n cats get svc -w
+   ```

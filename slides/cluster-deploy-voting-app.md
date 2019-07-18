@@ -20,7 +20,7 @@
 * <!-- .element: class="fragment" data-fragment-index="1" -->In the *Project Default* section, click *Add Namespace*
 * <!-- .element: class="fragment" data-fragment-index="2" -->On next page
   enter **vote** in *Name* field and click *Create*
-* <!-- .element: class="fragment" data-fragment-index="3" -->This creates a new namespace in you cluster
+* <!-- .element: class="fragment" data-fragment-index="3" -->This creates a new namespace in your cluster
 * <!-- .element: class="fragment" data-fragment-index="4" -->Can confirm by running in the shell
    ```
    kubectl get ns

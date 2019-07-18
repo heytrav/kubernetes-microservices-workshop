@@ -2,9 +2,10 @@
 
 
 #### Management Dashboards
-* <!-- .element: class="fragment" data-fragment-index="0" -->Kubernetes has many moving parts
-   - Services
+* <!-- .element: class="fragment" data-fragment-index="0" -->A kubernetes cluster has many moving parts to keep track of
+   - Control Plane
    - Workloads
+   - Configs, Secrets
 * <!-- .element: class="fragment" data-fragment-index="1" -->Lots of commands
   to remember for `kubectl`
 * <!-- .element: class="fragment" data-fragment-index="2" -->Dashboards useful for managing as well as monitoring your cluster
@@ -91,7 +92,3 @@
 * In the next menu select *Apps*
 * Catalogue displays apps available has Helm charts
 * Launch a Wordpress application
-
-
-
-
