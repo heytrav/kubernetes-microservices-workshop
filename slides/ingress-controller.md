@@ -41,13 +41,13 @@
 #### Exercise: Create our first ingress
 * <!-- .element: class="fragment" data-fragment-index="0" -->Let's run the cat app in our cluster
    ```
-    kubectl run -n cats cat-app  --port=5000  \
-        --image=heytrav/cat-of-the-day:v1
+    kubectl create ns cats
+    kubectl -n cats create deployment cat-app --image=heytrav/cat-of-the-day:v1
     kubectl -n cats expose deployment cat-app --port=5000
    ```
 * <!-- .element: class="fragment" data-fragment-index="1" -->Let's also start an nginx pod and expose it on port 80
    ```
-   kubectl -n cats run nginx --image nginx --port 80
+   kubectl -n cats create deployment nginx --image=nginx
    kubectl -n cats expose deployment nginx --port=80
    ```
 * <!-- .element: class="fragment" data-fragment-index="2" -->Add **my-cats.com** to `/etc/hosts` with the external IP of your
@@ -60,27 +60,27 @@
 #### Expose our ingress using paths
 * Put the following in a file called `cats-ingress.yml`
 <pre style="font-size:10pt;"><code data-trim data-noescape>
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: cat-ingress
-  namespace: cats
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-    - host: my-cats.com
-      http:
-        paths:
-          - backend:
-              serviceName: cat-app
-              servicePort: 5000
-            path: /cats
-          - backend:
-              serviceName: nginx
-              servicePort: 80
-            path: /hello
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      name: cat-ingress
+      namespace: cats
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/rewrite-target: /
+    spec:
+      rules:
+        - host: my-cats.com
+          http:
+            paths:
+              - backend:
+                  serviceName: cat-app
+                  servicePort: 5000
+                path: /cats
+              - backend:
+                  serviceName: nginx
+                  servicePort: 80
+                path: /hello
 </code></pre>
 * Create the ingress
    ```
@@ -89,7 +89,7 @@ spec:
 
 
 #### Ingress routing
-##### sub-domain based routing
+##### domain-based routing
 ![subdomain-routing](img/ingress-controller-route-sub.png "Ingress subdomain routing")
 
 
@@ -97,27 +97,27 @@ spec:
 #### Define an ingress for vote app
 * This can also be done with a spec file
 <pre style="font-size:12pt;"><code data-trim data-noescape>
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: vote-ingress
-  namespace: vote
-  annotations:
-    kubernetes.io/ingress.class: nginx
-spec:
-  rules:
-    - host: vote.my-app.com
-      http:
-        paths:
-          - backend:
-              serviceName: vote
-              servicePort: 80
-    - host: result.my-app.com
-      http:
-        paths:
-          - backend:
-              serviceName: result
-              servicePort: 80
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      name: vote-ingress
+      namespace: vote
+      annotations:
+        kubernetes.io/ingress.class: nginx
+    spec:
+      rules:
+        - host: vote.my-app.com
+          http:
+            paths:
+              - backend:
+                  serviceName: vote
+                  servicePort: 80
+        - host: result.my-app.com
+          http:
+            paths:
+              - backend:
+                  serviceName: result
+                  servicePort: 80
 </code></pre>
 * Let's do it in the dashboard instead
 
@@ -139,13 +139,12 @@ spec:
 #### Setup domain-based ingress
 * <!-- .element: class="fragment" data-fragment-index="0" -->Click *Add Rule* and repeat similar steps as above, replacing *vote* with
   *result* where applicable
-* <!-- .element: class="fragment" data-fragment-index="1" -->When complete, click *Create*
+* <!-- .element: class="fragment" data-fragment-index="1" -->When complete, click *Save*
 
 
 
 #### Summary
-* Ingress controllers are a versatile alternative to LoadBalancer service
+* Ingress controllers are a versatile and cost-effective alternative to LoadBalancer service
 * Can route traffic for multiple sites
   - path-based routing
   - subdomain-based routing
-* Can setup SSL traffic as well

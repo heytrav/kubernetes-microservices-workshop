@@ -21,18 +21,18 @@
 #### LoadBalancer Service
 * <!-- .element: class="fragment" data-fragment-index="0" -->Let's create a load balancer service for the *vote* app
 <pre><code data-noescape data-trim>
-kind: Service
-apiVersion: v1
-metadata:
-  name: loadbalanced-service
-spec:
-  selector:
-    <mark>app: vote</mark>
-  type: LoadBalancer
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
+    kind: Service
+    apiVersion: v1
+    metadata:
+      name: loadbalanced-service
+    spec:
+      selector:
+        <mark>app: vote</mark>
+      type: LoadBalancer
+      ports:
+      - name: http
+        port: 80
+        protocol: TCP
 </code></pre>
 * <!-- .element: class="fragment" data-fragment-index="1" -->Save this as `loadbalancer.yml`
 * <!-- .element: class="fragment" data-fragment-index="2" -->Apply with kubectl
@@ -44,7 +44,7 @@ spec:
 #### Using a LoadBalancer service
 * <!-- .element: class="fragment" data-fragment-index="0" -->Check available services to see when load balancer is ready
    ```
-   kubectl -n vote get svc
+   kubectl -n vote get svc -w
    ```
 * <!-- .element: class="fragment" data-fragment-index="1" -->It takes a few minutes while your provider provisions the load balancer
 * <!-- .element: class="fragment" data-fragment-index="2" -->Once finished a public IP will appear under EXTERNAL-IP
@@ -68,7 +68,17 @@ vote                   NodePort       10.254.234.53    &lt;none&gt;           50
 #### Disadvantages of a LoadBalancer
 * <!-- .element: class="fragment" data-fragment-index="0" -->We can only expose
   one workload (i.e. Pod/container/whatever)
-   - Have a LoadBalancer for *vote*
-   - Need a separate LoadBalancer for *result* 
-* <!-- .element: class="fragment" data-fragment-index="1" -->LoadBalancer service is expensive
+   - Have a LoadBalancer for *vote* pods
+   - Need a separate LoadBalancer for the *result* pods
+* <!-- .element: class="fragment" data-fragment-index="1" -->Load balancers are expensive
 * <!-- .element: class="fragment" data-fragment-index="2" -->Separate public IP so need a second domain
+
+
+
+#### Remove load balancer
+* In the next section we'll look at an alternative to using the LoadBalancer
+  service
+* For now let's delete the load balancer
+   ```
+   kubectl -n vote delete -f  loadbalancer.yml
+   ```
