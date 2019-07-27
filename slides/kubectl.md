@@ -61,7 +61,6 @@ Examples:
 <!-- .element: class="fragment" data-fragment-index="0" style="font-size:12pt;" -->
 
 
-
 #### Get documentation about resources in Kubernetes
 <code>kubectl explain </code><code style="color:red;">RESOURCE</code>
 * In Kubernetes we manage objects, or _resource types_ eg.
@@ -101,10 +100,11 @@ FIELDS:
 
 
 #### Configuring `kubectl`
-* Configuration file for `kubectl` 
+* Minikube set up a configuration file for us
    + `~/.kube/config`
+* Make sure we are using minikube's config
+  ```
+  kubectl config use-context minikube
+  ```
+* Configuration file for `kubectl` 
    + pass a configuration file with `--kubeconfig`
-* Override via specific CLI options; ie:
-   + `--server`
-   + `--user`
-* `kubectl` currently configured to interact with minikube 

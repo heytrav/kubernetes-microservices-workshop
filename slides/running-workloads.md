@@ -8,15 +8,14 @@
    ```
    kubectl create deployment nginx --image=nginx
    ```
-* Use get command to find out about container <!-- .element: class="fragment" data-fragment-index="1" -->
+* <!-- .element: class="fragment" data-fragment-index="1" -->Use **`get`** command to find out about container we just started
    ```
    kubectl get containers
    ```
+* <!-- .element: class="fragment" data-fragment-index="3" -->Container isn't actually a resource type in Kubernetes
    ```
    error: the server doesn't have a resource type "container"
    ```
-   <!-- .element: class="fragment" data-fragment-index="2" -->
-* Container isn't actually a resource type in Kubernetes <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
 #### Pods
@@ -42,7 +41,7 @@ that important. It is still good to be aware of the terminology
 ##### Exercise: Gather info about pods
 * Use `kubectl get` to find info about running pods
    ```
-   $ kubectl get pods
+   kubectl get pods
    ```
    ```
    NAME                     READY     STATUS    RESTARTS   AGE
@@ -63,15 +62,10 @@ that important. It is still good to be aware of the terminology
 
 
 #### View logs for a pod
-* The `logs` command behaves the same as with `docker logs`
-* Accepts either
-   + pod name
-      ```
-      kubectl logs pingpong-abcde1234
-      ```
-   + type/name
+* The **`logs`** command behaves the same as with `docker logs`
+* Query logs for pingpong
    ```
-   kubectl logs deploy/pingpong
+   kubectl logs pingpong
    ```
 
 |Option  | Description |
@@ -82,13 +76,13 @@ that important. It is still good to be aware of the terminology
 
 
 #### Watching pods
-* The `-w` option to kubectl is like the `watch` command
+* The **`-w`** option to kubectl is like the Linux **`watch`** command
    ```
    kubectl get pods -w
    ```
 * In another window run the following:
    ```
-   kubectl delete deploy/pingpong
+   kubectl delete pod/pingpong
    ```
 
 

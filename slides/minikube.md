@@ -29,11 +29,7 @@
    ```
    minikube start
    ```
-* This will configure `~/.kube/config` to speak to local cluster
-* Make sure we are using minikube's config
-  ```
-  kubectl config use-context minikube
-  ```
+* May take a few minutes to run while it starts your cluster
 
 
 #### Your Minikube Cluster
@@ -51,6 +47,6 @@
    ```
 * Open the minikube dashboard
    ```
-   minikube dashboard
+   minikube dashboard &
    ```
    - will open a tab in your browser

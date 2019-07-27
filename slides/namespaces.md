@@ -9,7 +9,7 @@
 ##### Exercise: Get list of namespaces
 * Use `kubectl` to get list of namespaces
    ```
-   $ kubectl get namespace
+   kubectl get namespace
    ```
    ```bash
     NAME              STATUS   AGE
@@ -23,7 +23,7 @@
 
 
 #### Namespaces in Kubernetes
-* Kubernetes has 3 namespaces out of the box
+* Kubernetes has several namespaces out of the box
   + default
     - Unless otherwise specified, objects will be created or queried here
   + kube-public
@@ -39,7 +39,7 @@
 <code>kubectl <code style="color:blue;">-n namespace </code>COMMAND </code><code style="color:red;">RESOURCE</code>
 * Specify a namespace with<!-- .element: class="fragment" data-fragment-index="2" -->*`-n <namespace>`* flag
    ```bash
-   $ kubectl -n kube-system get pods
+   kubectl -n kube-system get pods
    ```
    ```
    NAME                                    READY     STATUS    RESTARTS   AGE
@@ -71,11 +71,11 @@
 * The create command can be used to create a new namespace
 * Let's create a namespace
    ```
-   $ kubectl create namespace cats
+   kubectl create namespace cats
    ```
 * Verify that the new namespace exists <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
-   $ kubectl get ns
+   kubectl get ns
    ```
    ```
     NAME          STATUS    AGE
@@ -109,13 +109,13 @@
 * <!-- .element: class="fragment" data-fragment-index="0" -->As with nginx example, we need a service to route requests to the pods
 * <!-- .element: class="fragment" data-fragment-index="1" -->Let's create a **LoadBalancer** service to serve on port 80 of our host
 * <!-- .element: class="fragment" data-fragment-index="2" -->First we need minikube to open a tunnel
-  ```
-  minikube tunnel
-  ```
+   ```
+   minikube tunnel
+   ```
 * <!-- .element: class="fragment" data-fragment-index="3" -->Next we create a LoadBalancer service
-  ```
+   ```
    kubectl -n cats expose deployment cat-app --type=LoadBalancer --port=80 --target-port=5000
-  ```
+   ```
 
 
 ##### Exercise: LoadBalanced application

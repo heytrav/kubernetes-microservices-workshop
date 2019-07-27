@@ -19,6 +19,12 @@
 
 
 
+#### Services
+* <!-- .element: class="fragment" data-fragment-index="0" -->A **service** defines logical set of pods and policy to access them ![pods service](img/k8s-service-pods1.png "basic service") <!-- .element: class="img-right" -->
+* ensure pods for a specific deployment receive network traffic <!-- .element: class="fragment" data-fragment-index="1" -->
+
+
+
 #### The `expose` command
 <code>kubectl expose -h</code>
 * Creates a service
@@ -34,7 +40,7 @@
   + opens a port that is visible on our machine
 
 ```
-$ kubectl expose deployment nginx --type=NodePort --port=80
+kubectl expose deployment nginx --type=NodePort --port=80
 ```
 <!-- .element: class="fragment" data-fragment-index="0" font-size:13pt; -->
 ```
@@ -46,17 +52,18 @@ service/nginx exposed
 #### Get list of available services
 * Get list of services
    ```
-   $ kubectl get services
+   kubectl get services
    ```
    <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 kubernetes   ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP        106m
 nginx        NodePort    10.110.58.243   &lt;none&gt;        80:<mark>31812</mark>/TCP   65m
    </code></pre>
-* <!-- .element: class="fragment" data-fragment-index="1" -->Note the port that is displayed for the service (will vary)
-* Find IP of minikube host <!-- .element: class="fragment" data-fragment-index="2" -->
+* <!-- .element: class="fragment" data-fragment-index="1" -->Note the
+  highlighted port on your output; yours may be different
+* Open in your browser <!-- .element: class="fragment" data-fragment-index="2" -->
    ```
-   $ minikube ip
+   firefox `minikube ip`:<your port value>
    ```
 * Application should be exposed on the minikube IP at highlighted port <!-- .element: class="fragment" data-fragment-index="2" -->
 
@@ -71,17 +78,11 @@ nginx        NodePort    10.110.58.243   &lt;none&gt;        80:<mark>31812</mar
 * Need a way to reliably map traffic to Pods <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
-#### Services
-* A service defines logical set of pods and policy to access them <!-- .element: class="fragment" data-fragment-index="3" -->![pods service](img/k8s-service-pods1.png "Basic Service") <!-- .element: class="img-right" -->
-* Ensure Pods for a specific Deployment receive network traffic <!-- .element: class="fragment" data-fragment-index="4" -->
-
-
-
-#### Labels & Selectors
-* Labels are key/values assigned to objects
-   + Pods
-* Labels can be used in a variety of ways: ![pod-label](img/k8s-pod-label.png "Pod Label") <!-- .element: class="img-right" -->
-   + Classify object
+#### labels & selectors
+* labels are key/values assigned to objects
+   + pods
+* labels can be used in a variety of ways: ![pod-label](img/k8s-pod-label.png "pod label") <!-- .element: class="img-right" -->
+   + classify object
    + versioning
    + designate as production, staging, etc.
 
@@ -94,7 +95,7 @@ nginx        NodePort    10.110.58.243   &lt;none&gt;        80:<mark>31812</mar
     </code></pre>
 * Then we created a service that maps requests to the selector <!-- .element: class="fragment" data-fragment-index="1" --><code style="color:green;">name=nginx</code>
   <pre ><code data-trim data-noescape>
-  kubectl expose deployment <mark>cat-app</mark> --type=NodePort
+  kubectl expose deployment <mark>nginx</mark> --type=NodePort
   </code></pre>
 
 
@@ -105,9 +106,9 @@ nginx        NodePort    10.110.58.243   &lt;none&gt;        80:<mark>31812</mar
 
 #### Service types
 * _ClusterIP_
-   - Exposes the Service on an internal IP in the cluster
+   - Exposes workload on an internal IP in the cluster
 * _NodePort_
-   - Expose port on each node in cluster
+   - Expose workload on each node (assumes each node has public IP)
 * _LoadBalancer_
    - Expose workload through single public IP
 

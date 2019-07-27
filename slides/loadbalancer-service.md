@@ -67,7 +67,7 @@ vote                   NodePort       10.254.234.53    &lt;none&gt;           50
 
 #### Disadvantages of a LoadBalancer
 * <!-- .element: class="fragment" data-fragment-index="0" -->We can only expose
-  one workload (i.e. Pod/container/whatever)
+  one workload
    - Have a LoadBalancer for *vote* pods
    - Need a separate LoadBalancer for the *result* pods
 * <!-- .element: class="fragment" data-fragment-index="1" -->Load balancers are expensive

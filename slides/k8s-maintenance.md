@@ -9,50 +9,6 @@
 * Easiest way is to simply replace VMs on a regular basis
 
 
-#### Expand and Contract <!-- .slide: class="image-slide" -->
-![k8s-initial](img/k8s-nodes-expand-contract1.png "Start expand")
-
-
-#### Add a new worker
-* Edit your cloud inventory
-   ```
-   vim ~/.ansible/inventory/cloud-hosts
-   ```
-   <!-- .element: style="font-size:13pt;"  -->
-* Add an extra worker
-   <pre style="font-size:13pt;"><code class="ini" data-trim data-noescape>
-    localhost ansible_connection=local 
-
-    [cluster]
-    PREFIX-master
-    PREFIX-worker[1:<mark>3</mark>]
-
-    [master]
-    PREFIX-master
-
-    [worker]
-    PREFIX-worker[1:<mark>3</mark>]
-   </code></pre>
-* Re run the cluster setup
-   ```bash
-   ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
-   ```
-   <!-- .element: style="font-size:12pt;"  -->
-
-<!-- .element: class="stretch"  -->
-
-
-
-#### Verifying cluster
-* New node should be visible in _watch_ terminal
-* No containers running on it yet
-
-
-
-#### Drain Node <!-- .slide: class="image-slide" -->
-![k8s-drain](img/k8s-drain-expand.png "Expand")
-
-
 #### Draining nodes
 <code>kubectl </code><code style="color:blue;">drain</code><code style="color:green;"> OPTIONS</code>
 * Tell kubernetes to take a node out of service
@@ -61,32 +17,17 @@
 * K8s will not restart any Pods until node is _uncordoned_
 
 
-#### Drain node
-* Let's drain worker 2
-   ````
-   $ kubeptl drain $HOSTNAME-worker2 --ignore-daemonsets --delete-local-data
-   ```
-   <!-- .element: style="font-size:10pt;"  -->
-* Watch _watch_ terminal to see how containers are redistributed
+#### Drain Node <!-- .slide: class="image-slide" -->
+![k8s-drain](img/k8s-drain-expand.png "Expand")
 
 
-#### Remove worker node
-* Remove the worker node from our stack
-   <pre style="font-size:11pt;"><code data-trim data-noescape>
-   ansible-playbook -K <mark>-e node=$HOSTNAME-worker2 --tags node_only</mark> \
-       remove-cluster-hosts.yml
-</code></pre>
 
-
-#### Restore new node
-* Rerun the playbook for creating the cluster
-   ```bash
-   ansible-playbook -K create-cluster-hosts.yml kubeadm-install.yml
-     
-   ```
-   <!-- .element: style="font-size:10pt;"  -->
-* This will create a new worker node
-
+#### Adding back a node
+<code>kubectl </code><code style="color:blue;">uncordon</code><code style="color:red;"> node</code>
+* Uncordon returns or adds a cordoned node back to service
+* K8s will not immediately add pods to node
+   + culling/respawning
+   + scale operations
 
 
 #### Uncordon Node <!-- .slide: class="image-slide" -->
@@ -94,22 +35,15 @@
 
 
 
-#### Adding back a node
-<code>kubectl </code><code style="color:blue;">uncordon</code><code style="color:red;"> node</code>
-* Uncordon returns or adds a cordoned node back to service
-* Let's restore the worker 2 node
-   <pre ><code data-trim data-noescape>
-    kubeptl uncordon $HOSTNAME-worker2 
-   </code></pre>
-* K8s will not immediately add pods to node
-   + culling/respawning
-   + scale operations
+#### Managing maintenance
+* Dashboard provides some tooling for draining/uncordoning nodes
+* Ideally your cloud provider will do this for you
+  - Drain/Cordon
+  - patching/replacing nodes
+* cluster options
+  - built in
+  - trigger via API call
 
-
-#### Note about this method
-* There are probably cleaner ways to do what we just did
-* Probably do a little better with Ansible or other tools
-* It was just to illustrate what is _possible_
 
 
 #### Summary
