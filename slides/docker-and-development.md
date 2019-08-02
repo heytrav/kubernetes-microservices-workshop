@@ -34,12 +34,12 @@
    <!-- .element: style="font-size:13pt;"  -->
 * Contents of <!-- .element: class="fragment" data-fragment-index="1" -->`Dockerfile`
    ```
-   FROM python:3.4-alpine
-   WORKDIR /code
-   COPY requirements.txt /code
-   RUN pip install -r requirements.txt
-   COPY . /code
-   CMD ["python", "app.py"]
+  FROM python:3.4-alpine
+  WORKDIR /code
+  COPY requirements.txt /code
+  RUN pip install -r requirements.txt
+  COPY . /code
+  CMD ["python", "app.py"]
    ```
 *  Build Docker image for app  <!-- .element: class="fragment" data-fragment-index="2" -->
    ```
