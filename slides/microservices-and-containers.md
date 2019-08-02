@@ -42,7 +42,7 @@ Note: containers mitigate some of the above issues
 
 #### Using containers in development
 * So how can we run a containerised application in development?
-* Example tool for this:  <!-- .element: class="fragment" data-fragment-index="0" -->`docker-compose`
+* <!-- .element: class="fragment" data-fragment-index="0" -->`docker-compose`
    + A tool for easily bootstrapping multi-container applications
    + i.e. microservice
    + Ideal for developing/testing applications on a workstation
