@@ -26,7 +26,7 @@
 ##### Exercise: Using `kubectl get`
 * Use `kubectl get` to get info about current nodes
    ```
-   $ kubectl get nodes
+   kubectl get nodes
    ```
    <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
@@ -56,7 +56,7 @@ Usage:
 ##### Exercise: Get formatted data about nodes
 * Output node information in JSON
    ```
-   $ kubectl get nodes -o json
+   kubectl get nodes -o json
    ```
    ```json
    {

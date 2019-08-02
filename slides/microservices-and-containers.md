@@ -42,7 +42,7 @@ Note: containers mitigate some of the above issues
 
 #### Using containers in development
 * So how can we run a containerised application in development?
-* Introducing <!-- .element: class="fragment" data-fragment-index="0" -->`docker-compose`
+* Example tool for this:  <!-- .element: class="fragment" data-fragment-index="0" -->`docker-compose`
    + A tool for easily bootstrapping multi-container applications
    + i.e. microservice
    + Ideal for developing/testing applications on a workstation
@@ -64,18 +64,19 @@ Note: containers mitigate some of the above issues
 
 #### Create Our App
 * Fire up your favourite editor and create a Dockerfile <!-- .element: class="fragment" data-fragment-index="0" -->
+   - For example
    ```
    vim Dockerfile
    ```
    <!-- .element: style="font-size:13pt;"  -->
-* Contents of <!-- .element: class="fragment" data-fragment-index="1" -->`Dockerfile`
+* Add the following contents to <!-- .element: class="fragment" data-fragment-index="1" -->`Dockerfile`
    ```
-  FROM python:3.4-alpine
-  WORKDIR /code
-  COPY requirements.txt /code
-  RUN pip install -r requirements.txt
-  COPY . /code
-  CMD ["python", "app.py"]
+   FROM python:3.7-alpine
+   WORKDIR /code
+   COPY requirements.txt /code
+   RUN pip install -r requirements.txt
+   COPY . /code
+   CMD ["python", "app.py"]
    ```
 
 
@@ -97,12 +98,16 @@ Note: containers mitigate some of the above issues
  <!-- .element: style="font-size:10pt;" -->
 * Start our microservices <!-- .element: class="fragment" data-fragment-index="3" -->
    ```
-   $ docker-compose up -d
+   docker-compose up -d
    ```
 * Confirm application running at <!-- .element: class="fragment" data-fragment-index="4" -->[localhost:5000](http://localhost:5000)
 
 
 #### What did `docker-compose` do?
+* Check that services are running
+   ```
+   docker-compose ps
+   ```
 * Have a look at `docker-compose.yml`
 * Compose created two services
    + _web_ - which automatically built using our `Dockerfile`
@@ -110,11 +115,21 @@ Note: containers mitigate some of the above issues
 * Port 5000 on host machine mapped to 5000 on _web_ service
 
 
+#### Benefits of `docker-compose`
+* Orchestration of containers (a.k.a _services_)
+* Mount directories and _named volumes_
+  - persistent storage for databases
+  - local filesystem for development
+* Additional features
+  - create multiple networks
+  - scale _services_
+* A _production_ deployment platform?
+
 
 #### Scaling Services
 * Try scaling the redis service to 4 instances <!-- .element: class="fragment" data-fragment-index="0" -->
    ```
-   $ docker-compose up -d --scale redis=4
+   docker-compose up -d --scale redis=4
    ```
 
 <asciinema-player class="fragment" data-fragment-index="1" autoplay="1" loop="loop"  font-size="medium" speed="1"
@@ -126,7 +141,7 @@ Note: containers mitigate some of the above issues
 
 * In the directory where your `docker-compose.yml` file is, run:
    ```
-   $ docker-compose stop
+   docker-compose stop
    ```
 
 

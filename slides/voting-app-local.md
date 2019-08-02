@@ -52,7 +52,7 @@ docker-compose up
 #### Login to Docker Hub
 * In order to push images you'll need to login to docker.io
    ```
-   $ docker login
+   docker login
    ```
    ```
    Username: YOURNAME

@@ -35,7 +35,7 @@
 
 ##### Exercise: Expose nginx workload
 * Need to create a service which
-  + uses name of _nginx_ deployment as selector
+  + point to the _nginx_ deployment
   + maps requests to port on nginx pod (port 80)
   + opens a port that is visible on our machine
 
@@ -57,13 +57,13 @@ service/nginx exposed
    <pre class="fragment" data-fragment-index="0" style="font-size:13pt;"><code data-trim data-noescape>
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 kubernetes   ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP        106m
-nginx        NodePort    10.110.58.243   &lt;none&gt;        80:<mark>31812</mark>/TCP   65m
+nginx        NodePort    10.110.58.243   &lt;none&gt;        80:<mark>#####</mark>/TCP   65m
    </code></pre>
 * <!-- .element: class="fragment" data-fragment-index="1" -->Note the
-  highlighted port on your output; yours may be different
+  port that appears where the highlighted area is
 * Open in your browser <!-- .element: class="fragment" data-fragment-index="2" -->
    ```
-   firefox `minikube ip`:<your port value>
+   firefox 192.168.99.100:#####
    ```
 * Application should be exposed on the minikube IP at highlighted port <!-- .element: class="fragment" data-fragment-index="2" -->
 
