@@ -36,18 +36,27 @@
    </code></pre>
 
 
+#### Building your cluster
+* Run the helper script
+  ```
+  ./create-cluster.sh
+
+  ```
+
+
+
 #### Accessing your cluster
 * Creating a cluster is easy, but it takes a while (~10 to 15 min)
 * One has been created for you already
 * Query information about your cluster
    ```
-   openstack coe cluster show  -f json $PREFIX-k8s | jq '{"name": .name, "status": .health_status}'
+   openstack coe cluster show  -f json $PREFIX | jq '{"name": .name, "status": .health_status}'
    ```
    <!-- .element: style="font-size:9pt;"  -->
 * <!-- .element: class="fragment" data-fragment-index="0" -->Response
    ```
     {
-    "name": "trainpc-01-k8s",
+    "name": "trainpc-01",
     "status": "HEALTHY"
     }
    ```
@@ -59,12 +68,36 @@ create-cluster
 ```
 Wait for the cluster to build by checking 
 ```
-openstack coe cluster show -f json $PREFIX-k8s
+openstack coe cluster show -f json $PREFIX
 ```
 Once the cluster is running, fetch the kube config file
 ```
 setup-kubeconfig
 ```
+
+
+#### Set up kubernetes config
+* Retrieve the kubernetes config file from openstack
+  ```
+  ./setup-kubeconfig
+  ```
+* Creates the kubernetes config file
+  ```
+  ls ~/k8s-config
+  ```
+* We'll need to edit this later
+
+
+#### Set up helper servers
+* Kubernetes clusters are private by default
+* Need to set up a *bastion* host to interact
+* Change to the kubernetes infra repo
+   ```
+   cd ~/kubernetes-workshop-infra
+   ansible-playbook create-infra-helpers.yml
+   ```
+* Follow instructions output by playbooks
+* See [quickstart instructions](https://docs.catalystcloud.nz/kubernetes/quickstart.html#accessing-a-private-cluster)
 
 
 #### Interacting with your cluster
